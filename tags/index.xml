@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 不一般的凡 - 墩墩家的幸福生活</title>
+    <link>http://www.sunyour.org/tags/</link>
+    <description>Recent content in Tags on 不一般的凡 - 墩墩家的幸福生活</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.sunyour.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>doom</title>
+      <link>http://www.sunyour.org/tags/doom/</link>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/doom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emacs</title>
+      <link>http://www.sunyour.org/tags/emacs/</link>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>plantuml</title>
+      <link>http://www.sunyour.org/tags/plantuml/</link>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/plantuml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chrome</title>
+      <link>http://www.sunyour.org/tags/chrome/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/chrome/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>duckduckgo</title>
+      <link>http://www.sunyour.org/tags/duckduckgo/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/duckduckgo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>google</title>
+      <link>http://www.sunyour.org/tags/google/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/google/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qutebrowser</title>
+      <link>http://www.sunyour.org/tags/qutebrowser/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/qutebrowser/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>搜索引擎</title>
+      <link>http://www.sunyour.org/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>浏览器</title>
+      <link>http://www.sunyour.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>墩墩</title>
+      <link>http://www.sunyour.org/tags/%E5%A2%A9%E5%A2%A9/</link>
+      <pubDate>Wed, 07 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/%E5%A2%A9%E5%A2%A9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>company</title>
+      <link>http://www.sunyour.org/tags/company/</link>
+      <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/company/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>org2blog</title>
+      <link>http://www.sunyour.org/tags/org2blog/</link>
+      <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/org2blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tabnine</title>
+      <link>http://www.sunyour.org/tags/tabnine/</link>
+      <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/tabnine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>projectile</title>
+      <link>http://www.sunyour.org/tags/projectile/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/projectile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pytest</title>
+      <link>http://www.sunyour.org/tags/pytest/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/pytest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>http://www.sunyour.org/tags/python/</link>
+      <pubDate>Tue, 09 Jul 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>irony</title>
+      <link>http://www.sunyour.org/tags/irony/</link>
+      <pubDate>Sun, 07 Jul 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/irony/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>电影</title>
+      <link>http://www.sunyour.org/tags/%E7%94%B5%E5%BD%B1/</link>
+      <pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/%E7%94%B5%E5%BD%B1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>http://www.sunyour.org/tags/macos/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mode</title>
+      <link>http://www.sunyour.org/tags/mode/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/mode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>org</title>
+      <link>http://www.sunyour.org/tags/org/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/org/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>教育</title>
+      <link>http://www.sunyour.org/tags/%E6%95%99%E8%82%B2/</link>
+      <pubDate>Fri, 04 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/%E6%95%99%E8%82%B2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Home</title>
+      <link>http://www.sunyour.org/tags/home/</link>
+      <pubDate>Wed, 02 Sep 2015 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/tags/home/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

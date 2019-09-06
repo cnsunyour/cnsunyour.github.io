@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>org2blog on 不一般的凡 - 墩墩家的幸福生活</title>
+    <link>http://www.sunyour.org/tags/org2blog/</link>
+    <description>Recent content in org2blog on 不一般的凡 - 墩墩家的幸福生活</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 01 Aug 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.sunyour.org/tags/org2blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>发现 org2blog 发布时调用 doom-emacs 里 chinese 模块的过滤器出错</title>
+      <link>http://www.sunyour.org/post/%E5%8F%91%E7%8E%B0-org2blog-%E5%8F%91%E5%B8%83%E6%97%B6%E8%B0%83%E7%94%A8-doom-emacs-%E9%87%8C-chinese-%E6%A8%A1%E5%9D%97%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%87%BA%E9%94%99/</link>
+      <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/post/%E5%8F%91%E7%8E%B0-org2blog-%E5%8F%91%E5%B8%83%E6%97%B6%E8%B0%83%E7%94%A8-doom-emacs-%E9%87%8C-chinese-%E6%A8%A1%E5%9D%97%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%87%BA%E9%94%99/</guid>
+      <description>今天发文一直发不出去，百思不得其解，打开 debug 跟踪一下，发现是调用了 doom-emacs 里 chinese 模块的过滤器出错，改用 spacemacs chinese layer 里的代码可以修复此问题（需要禁用 doom-emacs 里的 chinese m</description>
+    </item>
+    
+  </channel>
+</rss>

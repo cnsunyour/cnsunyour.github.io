@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>终于独立解决了一个 emacs 的问题 - 不一般的凡 - 墩墩家的幸福生活</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="不一般的凡" /><meta name="description" content="这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也" /><meta name="keywords" content="墩墩, 不一般的凡, 编程, 技术" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.57.2 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.sunyour.org/post/%E7%BB%88%E4%BA%8E%E7%8B%AC%E7%AB%8B%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-emacs-%E7%9A%84%E9%97%AE%E9%A2%98/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="终于独立解决了一个 emacs 的问题" />
+<meta property="og:description" content="这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.sunyour.org/post/%E7%BB%88%E4%BA%8E%E7%8B%AC%E7%AB%8B%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-emacs-%E7%9A%84%E9%97%AE%E9%A2%98/" />
+<meta property="article:published_time" content="2019-07-09T00:00:00+08:00" />
+<meta property="article:modified_time" content="2019-09-06T04:54:06+08:00" />
+<meta itemprop="name" content="终于独立解决了一个 emacs 的问题">
+<meta itemprop="description" content="这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也">
+
+
+<meta itemprop="datePublished" content="2019-07-09T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-06T04:54:06&#43;08:00" />
+<meta itemprop="wordCount" content="600">
+
+
+
+<meta itemprop="keywords" content="projectile,pytest,python,emacs,doom," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="终于独立解决了一个 emacs 的问题"/>
+<meta name="twitter:description" content="这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">不一般的凡</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">不一般的凡</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">终于独立解决了一个 emacs 的问题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-09 </span>
+        <div class="post-category">
+            <a href="/categories/computer/"> Computer </a>
+            </div>
+          <span class="more-meta"> 约 600 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p>这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也很奇怪，显示的是</p>
+
+<p>file-remote-p: Wrong type argument: stringp, nil</p>
+
+<p>以前碰到这种问题几乎除了上 google 搜，几乎是没什么办法，今天也是开始 google，结果搜索了一晚上也没个结果，用出错信息搜索出的结果貌似都跟这个没什么关系，很是发愁。</p>
+
+<p>实在是没什么办法了，突然想到论坛上大佬们写的插件别人用着出问题时，大佬们通常都让抓个报错信息参考下。也就想试一试，反正也是没其它办法，死马当活马医呗。</p>
+
+<p>执行 M-x toggle-debug-on-err，然后再操作一次，果然出错，然后输出一堆错误信息，貌似是从发起指令开始，一直到出错位置，所有的调用信息都有，慢慢从后往前看。竟然真的发现一点端倪，发现 file-remote-p 接收到 nil 参数是因为之前调用的函数里给传的是<br />
+project-root 变量，而 project-root 变量在这里是 nil，再继续看，发现如果 project-root<br />
+是从 projectile-project-root 赋值来的，而 projectile-project-root 怎么来呢？</p>
+
+<p>不懂问 google，继续搜索，终于在一篇介绍 projectile 的文章里发现，在项目根目录里建一个空的.projectile 文件，即可让 projectile 认为当前目录为项目根目录，马上着手 touch<br />
+一个。再执行，成功！</p>
+
+<p>我去，原来这么简单。导致出现问题的原因 python-pytest 包调用了 projectile 包，而<br />
+projectile 包的所有操作都是基于有 project-root 的前提下，所以设定当前项目根目录是非常必要的。解决手段虽然简单，可也让自己多了解了一点 projectile 的相关知识，也是一大收获啊。至此对 emacs 的兴趣又加深了几分。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">不一般的凡</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-09-06
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/projectile/">projectile</a>
+          <a href="/tags/pytest/">pytest</a>
+          <a href="/tags/python/">python</a>
+          <a href="/tags/emacs/">emacs</a>
+          <a href="/tags/doom/">doom</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/%E7%BB%88%E4%BA%8E%E5%9C%A8-doom-emacs-%E4%B8%8B%E6%88%90%E5%8A%9F%E6%90%9E%E5%AE%9A%E4%BA%86-tabnine/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">终于在 doom-emacs 下成功搞定了 TabNine</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/">
+            <span class="next-text nav-default">Mac 上安装 irony-server 步骤二</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:sunyour@gmail.com" class="iconfont icon-email" title="email"></a>
+  <a href="http://www.sunyour.org/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2015 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">不一般的凡</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

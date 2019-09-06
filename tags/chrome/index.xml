@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>chrome on 不一般的凡 - 墩墩家的幸福生活</title>
+    <link>http://www.sunyour.org/tags/chrome/</link>
+    <description>Recent content in chrome on 不一般的凡 - 墩墩家的幸福生活</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.sunyour.org/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>开始试用qutebrowser和duckduckgo</title>
+      <link>http://www.sunyour.org/post/%E5%BC%80%E5%A7%8B%E8%AF%95%E7%94%A8qutebrowser%E5%92%8Cduckduckgo/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/post/%E5%BC%80%E5%A7%8B%E8%AF%95%E7%94%A8qutebrowser%E5%92%8Cduckduckgo/</guid>
+      <description>最近 TG 群里有人推荐 qutebrowser 浏览器，据说全 VIM 操作方式，我觉得挺有意思，正好对 chrome 一家独大的情况本身也有点意见，就尝试一用吧。安装好打开一看，默认页面和</description>
+    </item>
+    
+  </channel>
+</rss>

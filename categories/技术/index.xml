@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术 on 不一般的凡 - 墩墩家的幸福生活</title>
+    <link>http://www.sunyour.org/categories/%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 技术 on 不一般的凡 - 墩墩家的幸福生活</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.sunyour.org/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>开始试用qutebrowser和duckduckgo</title>
+      <link>http://www.sunyour.org/post/%E5%BC%80%E5%A7%8B%E8%AF%95%E7%94%A8qutebrowser%E5%92%8Cduckduckgo/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/post/%E5%BC%80%E5%A7%8B%E8%AF%95%E7%94%A8qutebrowser%E5%92%8Cduckduckgo/</guid>
+      <description>最近 TG 群里有人推荐 qutebrowser 浏览器，据说全 VIM 操作方式，我觉得挺有意思，正好对 chrome 一家独大的情况本身也有点意见，就尝试一用吧。安装好打开一看，默认页面和</description>
+    </item>
+    
+    <item>
+      <title>Mac 上安装 irony-server 步骤二</title>
+      <link>http://www.sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</link>
+      <pubDate>Sun, 07 Jul 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</guid>
+      <description>昨天写了一篇 Mac 上为 doom-emacs 安装 irone-server 的详细步骤，随着后来对配置的逐渐了解，发现不用那么麻烦，只要把环境变量设置好就可以成功编译。首先安装好 cmake 和 llvm</description>
+    </item>
+    
+    <item>
+      <title>在 Mac 上 doom-emacs 安装 irony-server 详细步骤</title>
+      <link>http://www.sunyour.org/post/%E5%9C%A8-mac-%E4%B8%8A-doom-emacs-%E5%AE%89%E8%A3%85-irony-server-%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</link>
+      <pubDate>Sat, 06 Jul 2019 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/post/%E5%9C%A8-mac-%E4%B8%8A-doom-emacs-%E5%AE%89%E8%A3%85-irony-server-%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</guid>
+      <description>Mac 上的 doom-emacs 不能直接通过 M-x irony-install-server 成功安装 irony-server，需要手工安装，下面把详细步骤纪录下来，以备后来查询。 下载 llvm 预编译软件包 1 2 cd /tmp wget http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz</description>
+    </item>
+    
+    <item>
+      <title>两个可以把 Mac 下应用程序的链接插入当前位置的插件</title>
+      <link>http://www.sunyour.org/post/%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%8A%8A-mac-%E4%B8%8B%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E6%8F%92%E5%85%A5%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
+      
+      <guid>http://www.sunyour.org/post/%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%8A%8A-mac-%E4%B8%8B%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E6%8F%92%E5%85%A5%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%8F%92%E4%BB%B6/</guid>
+      <description>一个是xuchunyang/grab-mac-link.el: Grab link from Mac Apps and insert it into Emacs 另一个是org-mac-link.el – Grab links from open Mac applications Spacemacs 里集</description>
+    </item>
+    
+  </channel>
+</rss>
