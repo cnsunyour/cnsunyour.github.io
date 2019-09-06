@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://www.sunyour.org/sitemap.xml
+Sitemap: https://cnsunyour.github.io/sitemap.xml

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>company on 不一般的凡 - 墩墩家的幸福生活</title>
-    <link>http://www.sunyour.org/tags/company/</link>
+    <link>https://cnsunyour.github.io/tags/company/</link>
     <description>Recent content in company on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 01 Aug 2019 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="http://www.sunyour.org/tags/company/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cnsunyour.github.io/tags/company/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>终于在 doom-emacs 下成功搞定了 TabNine</title>
-      <link>http://www.sunyour.org/post/%E7%BB%88%E4%BA%8E%E5%9C%A8-doom-emacs-%E4%B8%8B%E6%88%90%E5%8A%9F%E6%90%9E%E5%AE%9A%E4%BA%86-tabnine/</link>
+      <link>https://cnsunyour.github.io/post/%E7%BB%88%E4%BA%8E%E5%9C%A8-doom-emacs-%E4%B8%8B%E6%88%90%E5%8A%9F%E6%90%9E%E5%AE%9A%E4%BA%86-tabnine/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/post/%E7%BB%88%E4%BA%8E%E5%9C%A8-doom-emacs-%E4%B8%8B%E6%88%90%E5%8A%9F%E6%90%9E%E5%AE%9A%E4%BA%86-tabnine/</guid>
+      <guid>https://cnsunyour.github.io/post/%E7%BB%88%E4%BA%8E%E5%9C%A8-doom-emacs-%E4%B8%8B%E6%88%90%E5%8A%9F%E6%90%9E%E5%AE%9A%E4%BA%86-tabnine/</guid>
       <description>在论坛上看到好几位大神推荐 TabNine，说这是一个会深度学习的补全工具。在 doom-emacs 里简单的用 (package! company-tabnine)倒是安装上了，然后</description>
     </item>
     

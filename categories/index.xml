@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 不一般的凡 - 墩墩家的幸福生活</title>
-    <link>http://www.sunyour.org/categories/</link>
+    <link>https://cnsunyour.github.io/categories/</link>
     <description>Recent content in Categories on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Sep 2019 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="http://www.sunyour.org/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cnsunyour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Computer</title>
-      <link>http://www.sunyour.org/categories/computer/</link>
-      <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
+      <link>https://cnsunyour.github.io/categories/computer/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/categories/computer/</guid>
+      <guid>https://cnsunyour.github.io/categories/computer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>技术</title>
-      <link>http://www.sunyour.org/categories/%E6%8A%80%E6%9C%AF/</link>
-      <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
+      <link>https://cnsunyour.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/categories/%E6%8A%80%E6%9C%AF/</guid>
+      <guid>https://cnsunyour.github.io/categories/%E6%8A%80%E6%9C%AF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Home</title>
-      <link>http://www.sunyour.org/categories/home/</link>
+      <link>https://cnsunyour.github.io/categories/home/</link>
       <pubDate>Wed, 07 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/categories/home/</guid>
+      <guid>https://cnsunyour.github.io/categories/home/</guid>
       <description></description>
     </item>
     
     <item>
       <title>生活</title>
-      <link>http://www.sunyour.org/categories/%E7%94%9F%E6%B4%BB/</link>
+      <link>https://cnsunyour.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
       <pubDate>Wed, 07 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/categories/%E7%94%9F%E6%B4%BB/</guid>
+      <guid>https://cnsunyour.github.io/categories/%E7%94%9F%E6%B4%BB/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Lunchtime</title>
-      <link>http://www.sunyour.org/categories/lunchtime/</link>
+      <link>https://cnsunyour.github.io/categories/lunchtime/</link>
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/categories/lunchtime/</guid>
+      <guid>https://cnsunyour.github.io/categories/lunchtime/</guid>
       <description></description>
     </item>
     

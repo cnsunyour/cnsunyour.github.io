@@ -2,219 +2,237 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 不一般的凡 - 墩墩家的幸福生活</title>
-    <link>http://www.sunyour.org/tags/</link>
+    <link>https://cnsunyour.github.io/tags/</link>
     <description>Recent content in Tags on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Sep 2019 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="http://www.sunyour.org/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cnsunyour.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>doom</title>
-      <link>http://www.sunyour.org/tags/doom/</link>
-      <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
+      <link>https://cnsunyour.github.io/tags/doom/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/doom/</guid>
+      <guid>https://cnsunyour.github.io/tags/doom/</guid>
       <description></description>
     </item>
     
     <item>
       <title>emacs</title>
-      <link>http://www.sunyour.org/tags/emacs/</link>
-      <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
+      <link>https://cnsunyour.github.io/tags/emacs/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/emacs/</guid>
+      <guid>https://cnsunyour.github.io/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://cnsunyour.github.io/tags/hugo/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://cnsunyour.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ox</title>
+      <link>https://cnsunyour.github.io/tags/ox/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://cnsunyour.github.io/tags/ox/</guid>
       <description></description>
     </item>
     
     <item>
       <title>plantuml</title>
-      <link>http://www.sunyour.org/tags/plantuml/</link>
+      <link>https://cnsunyour.github.io/tags/plantuml/</link>
       <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/plantuml/</guid>
+      <guid>https://cnsunyour.github.io/tags/plantuml/</guid>
       <description></description>
     </item>
     
     <item>
       <title>chrome</title>
-      <link>http://www.sunyour.org/tags/chrome/</link>
+      <link>https://cnsunyour.github.io/tags/chrome/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/chrome/</guid>
+      <guid>https://cnsunyour.github.io/tags/chrome/</guid>
       <description></description>
     </item>
     
     <item>
       <title>duckduckgo</title>
-      <link>http://www.sunyour.org/tags/duckduckgo/</link>
+      <link>https://cnsunyour.github.io/tags/duckduckgo/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/duckduckgo/</guid>
+      <guid>https://cnsunyour.github.io/tags/duckduckgo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>google</title>
-      <link>http://www.sunyour.org/tags/google/</link>
+      <link>https://cnsunyour.github.io/tags/google/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/google/</guid>
+      <guid>https://cnsunyour.github.io/tags/google/</guid>
       <description></description>
     </item>
     
     <item>
       <title>qutebrowser</title>
-      <link>http://www.sunyour.org/tags/qutebrowser/</link>
+      <link>https://cnsunyour.github.io/tags/qutebrowser/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/qutebrowser/</guid>
+      <guid>https://cnsunyour.github.io/tags/qutebrowser/</guid>
       <description></description>
     </item>
     
     <item>
       <title>搜索引擎</title>
-      <link>http://www.sunyour.org/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
+      <link>https://cnsunyour.github.io/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid>
+      <guid>https://cnsunyour.github.io/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid>
       <description></description>
     </item>
     
     <item>
       <title>浏览器</title>
-      <link>http://www.sunyour.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</link>
+      <link>https://cnsunyour.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</link>
       <pubDate>Sun, 25 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</guid>
+      <guid>https://cnsunyour.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/</guid>
       <description></description>
     </item>
     
     <item>
       <title>墩墩</title>
-      <link>http://www.sunyour.org/tags/%E5%A2%A9%E5%A2%A9/</link>
+      <link>https://cnsunyour.github.io/tags/%E5%A2%A9%E5%A2%A9/</link>
       <pubDate>Wed, 07 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/%E5%A2%A9%E5%A2%A9/</guid>
+      <guid>https://cnsunyour.github.io/tags/%E5%A2%A9%E5%A2%A9/</guid>
       <description></description>
     </item>
     
     <item>
       <title>company</title>
-      <link>http://www.sunyour.org/tags/company/</link>
+      <link>https://cnsunyour.github.io/tags/company/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/company/</guid>
+      <guid>https://cnsunyour.github.io/tags/company/</guid>
       <description></description>
     </item>
     
     <item>
       <title>org2blog</title>
-      <link>http://www.sunyour.org/tags/org2blog/</link>
+      <link>https://cnsunyour.github.io/tags/org2blog/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/org2blog/</guid>
+      <guid>https://cnsunyour.github.io/tags/org2blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tabnine</title>
-      <link>http://www.sunyour.org/tags/tabnine/</link>
+      <link>https://cnsunyour.github.io/tags/tabnine/</link>
       <pubDate>Thu, 01 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/tabnine/</guid>
+      <guid>https://cnsunyour.github.io/tags/tabnine/</guid>
       <description></description>
     </item>
     
     <item>
       <title>projectile</title>
-      <link>http://www.sunyour.org/tags/projectile/</link>
+      <link>https://cnsunyour.github.io/tags/projectile/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/projectile/</guid>
+      <guid>https://cnsunyour.github.io/tags/projectile/</guid>
       <description></description>
     </item>
     
     <item>
       <title>pytest</title>
-      <link>http://www.sunyour.org/tags/pytest/</link>
+      <link>https://cnsunyour.github.io/tags/pytest/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/pytest/</guid>
+      <guid>https://cnsunyour.github.io/tags/pytest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>python</title>
-      <link>http://www.sunyour.org/tags/python/</link>
+      <link>https://cnsunyour.github.io/tags/python/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/python/</guid>
+      <guid>https://cnsunyour.github.io/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>irony</title>
-      <link>http://www.sunyour.org/tags/irony/</link>
+      <link>https://cnsunyour.github.io/tags/irony/</link>
       <pubDate>Sun, 07 Jul 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/irony/</guid>
+      <guid>https://cnsunyour.github.io/tags/irony/</guid>
       <description></description>
     </item>
     
     <item>
       <title>电影</title>
-      <link>http://www.sunyour.org/tags/%E7%94%B5%E5%BD%B1/</link>
+      <link>https://cnsunyour.github.io/tags/%E7%94%B5%E5%BD%B1/</link>
       <pubDate>Fri, 21 Jun 2019 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/%E7%94%B5%E5%BD%B1/</guid>
+      <guid>https://cnsunyour.github.io/tags/%E7%94%B5%E5%BD%B1/</guid>
       <description></description>
     </item>
     
     <item>
       <title>macos</title>
-      <link>http://www.sunyour.org/tags/macos/</link>
+      <link>https://cnsunyour.github.io/tags/macos/</link>
       <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/macos/</guid>
+      <guid>https://cnsunyour.github.io/tags/macos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mode</title>
-      <link>http://www.sunyour.org/tags/mode/</link>
+      <link>https://cnsunyour.github.io/tags/mode/</link>
       <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/mode/</guid>
+      <guid>https://cnsunyour.github.io/tags/mode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>org</title>
-      <link>http://www.sunyour.org/tags/org/</link>
+      <link>https://cnsunyour.github.io/tags/org/</link>
       <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/org/</guid>
+      <guid>https://cnsunyour.github.io/tags/org/</guid>
       <description></description>
     </item>
     
     <item>
       <title>教育</title>
-      <link>http://www.sunyour.org/tags/%E6%95%99%E8%82%B2/</link>
+      <link>https://cnsunyour.github.io/tags/%E6%95%99%E8%82%B2/</link>
       <pubDate>Fri, 04 Sep 2015 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/%E6%95%99%E8%82%B2/</guid>
+      <guid>https://cnsunyour.github.io/tags/%E6%95%99%E8%82%B2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Home</title>
-      <link>http://www.sunyour.org/tags/home/</link>
+      <link>https://cnsunyour.github.io/tags/home/</link>
       <pubDate>Wed, 02 Sep 2015 00:00:00 +0800</pubDate>
       
-      <guid>http://www.sunyour.org/tags/home/</guid>
+      <guid>https://cnsunyour.github.io/tags/home/</guid>
       <description></description>
     </item>
     
