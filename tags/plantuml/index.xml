@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>plantuml on 不一般的凡 - 墩墩家的幸福生活</title>
-    <link>https://cnsunyour.github.io/tags/plantuml/</link>
+    <link>https://sunyour.org/tags/plantuml/</link>
     <description>Recent content in plantuml on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="https://cnsunyour.github.io/tags/plantuml/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sunyour.org/tags/plantuml/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>对doom-emacs里plantuml的改进</title>
-      <link>https://cnsunyour.github.io/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</link>
+      <link>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</link>
       <pubDate>Thu, 29 Aug 2019 00:00:00 +0800</pubDate>
       
-      <guid>https://cnsunyour.github.io/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</guid>
+      <guid>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</guid>
       <description>昨晚跟群友 SteamedFish 交流 plantuml，发现在 org-mode 里的 src-block 代码块中写 plantuml 代码时，不能写上“@”开头的语句，否则必报错。必须在“@”前面加上“\”或“,”</description>
     </item>
     

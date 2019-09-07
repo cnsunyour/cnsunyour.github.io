@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>linux on 不一般的凡 - 墩墩家的幸福生活</title>
-    <link>https://cnsunyour.github.io/tags/linux/</link>
+    <link>https://sunyour.org/tags/linux/</link>
     <description>Recent content in linux on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 23 Mar 2016 22:55:00 +0800</lastBuildDate>
     
-	<atom:link href="https://cnsunyour.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sunyour.org/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>批量修改远程 Linux 服务器用户密码</title>
-      <link>https://cnsunyour.github.io/post/20160323-%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8Blinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</link>
+      <link>https://sunyour.org/post/20160323-%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8Blinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</link>
       <pubDate>Wed, 23 Mar 2016 22:55:00 +0800</pubDate>
       
-      <guid>https://cnsunyour.github.io/post/20160323-%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8Blinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</guid>
+      <guid>https://sunyour.org/post/20160323-%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8Blinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</guid>
       <description>首先是一个调用脚本，循环读取文本文件 文本文件格式为：ip loginuser loginpass passuser newpass 1 2 3 4 5 6 7 8 9 10 11 12 #!/bin/bash if [ &amp;#34;$1&amp;#34; = &amp;#34;&amp;#34; ] || [ &amp;#34;$1&amp;#34; = &amp;#34;-h&amp;#34; ] || [ &amp;#34;$1&amp;#34; = &amp;#34;--help&amp;#34; ] then echo &amp;#34;Usage: chpasswd.sh path/iplist &amp;#34; exit</description>
     </item>
     
     <item>
       <title>Ansible还是SaltStack，这是个问题</title>
-      <link>https://cnsunyour.github.io/post/2016-03-23-ansible%E8%BF%98%E6%98%AFsaltstack%E8%BF%99%E6%98%AF%E4%B8%AA%E9%97%AE%E9%A2%98/</link>
+      <link>https://sunyour.org/post/2016-03-23-ansible%E8%BF%98%E6%98%AFsaltstack%E8%BF%99%E6%98%AF%E4%B8%AA%E9%97%AE%E9%A2%98/</link>
       <pubDate>Wed, 23 Mar 2016 09:38:00 +0800</pubDate>
       
-      <guid>https://cnsunyour.github.io/post/2016-03-23-ansible%E8%BF%98%E6%98%AFsaltstack%E8%BF%99%E6%98%AF%E4%B8%AA%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://sunyour.org/post/2016-03-23-ansible%E8%BF%98%E6%98%AFsaltstack%E8%BF%99%E6%98%AF%E4%B8%AA%E9%97%AE%E9%A2%98/</guid>
       <description>再一次实际操作了一下服务器，真实感受到服务器数量多了以后维护的麻烦，看来确实需要批量维护工具。只不过，最终用哪个，这是个问题。Puppet 和</description>
     </item>
     

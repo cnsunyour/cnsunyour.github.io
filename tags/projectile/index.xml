@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>projectile on 不一般的凡 - 墩墩家的幸福生活</title>
-    <link>https://cnsunyour.github.io/tags/projectile/</link>
+    <link>https://sunyour.org/tags/projectile/</link>
     <description>Recent content in projectile on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 09 Jul 2019 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="https://cnsunyour.github.io/tags/projectile/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sunyour.org/tags/projectile/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>终于独立解决了一个 emacs 的问题</title>
-      <link>https://cnsunyour.github.io/post/%E7%BB%88%E4%BA%8E%E7%8B%AC%E7%AB%8B%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-emacs-%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <link>https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E7%8B%AC%E7%AB%8B%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-emacs-%E7%9A%84%E9%97%AE%E9%A2%98/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0800</pubDate>
       
-      <guid>https://cnsunyour.github.io/post/%E7%BB%88%E4%BA%8E%E7%8B%AC%E7%AB%8B%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-emacs-%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <guid>https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E7%8B%AC%E7%AB%8B%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-emacs-%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
       <description>这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也</description>
     </item>
     

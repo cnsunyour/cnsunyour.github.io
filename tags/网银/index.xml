@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网银 on 不一般的凡 - 墩墩家的幸福生活</title>
-    <link>https://cnsunyour.github.io/tags/%E7%BD%91%E9%93%B6/</link>
+    <link>https://sunyour.org/tags/%E7%BD%91%E9%93%B6/</link>
     <description>Recent content in 网银 on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 30 Mar 2016 18:26:00 +0800</lastBuildDate>
     
-	<atom:link href="https://cnsunyour.github.io/tags/%E7%BD%91%E9%93%B6/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sunyour.org/tags/%E7%BD%91%E9%93%B6/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>工行和中行网银全部顺利支持Mac平台</title>
-      <link>https://cnsunyour.github.io/post/20160330-use-usbkey-in-macos/</link>
+      <link>https://sunyour.org/post/20160330-use-usbkey-in-macos/</link>
       <pubDate>Wed, 30 Mar 2016 18:26:00 +0800</pubDate>
       
-      <guid>https://cnsunyour.github.io/post/20160330-use-usbkey-in-macos/</guid>
+      <guid>https://sunyour.org/post/20160330-use-usbkey-in-macos/</guid>
       <description>终于把 MBP 上的 Windows 删了，现在几乎所有工作都可以在 Mac 下完成，除了一样：网上银行。无奈再装个虚拟机好了，而在试验工行登录时，无意中发现有提示信息，有</description>
     </item>
     
