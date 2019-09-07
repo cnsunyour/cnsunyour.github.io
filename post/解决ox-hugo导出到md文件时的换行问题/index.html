@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.57.2 with even 4.0.0" />
+<meta name="generator" content="Hugo 0.58.0 with even 4.0.0" />
 
 
 <link rel="canonical" href="https://cnsunyour.github.io/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%88%B0md%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/" />
@@ -35,7 +35,7 @@
 
 
 <link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
 
 
 <meta property="og:title" content="解决ox-hugo导出到md文件时的换行问题" />
@@ -43,14 +43,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://cnsunyour.github.io/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%88%B0md%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/" />
 <meta property="article:published_time" content="2019-09-07T00:00:00+08:00" />
-<meta property="article:modified_time" content="2019-09-07T04:26:19+08:00" />
+<meta property="article:modified_time" content="2019-09-08T03:25:30+08:00" />
 <meta itemprop="name" content="解决ox-hugo导出到md文件时的换行问题">
 <meta itemprop="description" content="在用 ox-hugo 导出到 markdown 文件时，发现也会出现类似 org2blog 发布文章时的文字换行问题，也就是在 org 文件中的换行符没有自动清除掉。不一样的是，中文之间的换行符已经清">
 
 
 <meta itemprop="datePublished" content="2019-09-07T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-09-07T04:26:19&#43;08:00" />
-<meta itemprop="wordCount" content="373">
+<meta itemprop="dateModified" content="2019-09-08T03:25:30&#43;08:00" />
+<meta itemprop="wordCount" content="364">
 
 
 
@@ -93,6 +93,7 @@
       </a>
   </ul>
 </nav>
+
   <div class="container" id="mobile-panel">
     <header id="header" class="header">
         <div class="logo-wrapper">
@@ -112,6 +113,7 @@
       </li>
   </ul>
 </nav>
+
     </header>
 
     <main id="main" class="main">
@@ -128,7 +130,7 @@
             <a href="/categories/%E6%8A%80%E6%9C%AF/"> 技术 </a>
             <a href="/categories/computer/"> Computer </a>
             </div>
-          <span class="more-meta"> 约 373 字 </span>
+          <span class="more-meta"> 约 364 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -143,12 +145,11 @@
     <div class="post-content">
       <p>在用 ox-hugo 导出到 markdown 文件时，发现也会出现类似 org2blog 发布文章时的文字换行问题，也就是在 org 文件中的换行符没有自动清除掉。不一样的是，中文之间的换行符已经清除了，但是有英文之间或中英混合文字之间有换行符时就不会清除，这样在最后生成的 html 页面中就会转换成，所以必须要处理一下。</p>
 
-<p>类似于 org-html-paragraph，我们给 org-hugo-paragraph 也增加一个 advice，处理方法与 org-html-paragraph 的完全一样，代码完全可以复用。</p>
+<p>类似于 org-html-paragraph，我给 org-hugo-paragraph 也增加一个 advice，处理方法与 org-html-paragraph 的完全一样，代码完全可以复用。</p>
 
 <p>另外，对原先的代码也进行了一下升级，对中英文混合之间的换行符进行清除，对两个英文之间的换行符替换为空格。</p>
 
 <p>更新后的完整代码如下：</p>
-
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt"> 1
@@ -181,43 +182,40 @@
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
-</span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+chinese--org-html-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
-<span class="s">&#34;Join consecutive Chinese lines into a single long line without
+  <span class="s">&#34;Join consecutive Chinese lines into a single long line without
 </span><span class="s">unwanted space when exporting org-mode to html.&#34;</span>
-<span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-html-paragraph</span>
-<span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">))</span>
+  <span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-html-paragraph</span>
+  <span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">))</span>
 
 <span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+chinese--org-hugo-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
-<span class="s">&#34;Join consecutive Chinese lines into a single long line without
+  <span class="s">&#34;Join consecutive Chinese lines into a single long line without
 </span><span class="s">unwanted space when exporting org-mode to hugo markdown.&#34;</span>
-<span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-hugo-paragraph</span>
-<span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">))</span>
+  <span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-hugo-paragraph</span>
+  <span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">))</span>
 
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">++chinese--org-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">cl-destructuring-bind</span> <span class="p">(</span><span class="nv">paragraph</span> <span class="nv">content</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">args</span>
-<span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">fix-regexp</span> <span class="s">&#34;[[]]&#34;</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">origin-contents</span>
-<span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-<span class="s">&#34;&lt;[Bb][rr][\t ]*/&gt;&#34;</span>
-<span class="s">&#34;&#34;</span>
-<span class="nv">content</span><span class="p">))</span>
-<span class="p">(</span><span class="nv">temp-contents</span>
-<span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-<span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;\\(&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;\\)[\t ]_\n[\t ]_\\(&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;\\)&#34;</span><span class="p">)</span>
-<span class="s">&#34;\\1\\2&#34;</span>
-<span class="nv">origin-contents</span><span class="p">))</span>
-<span class="p">(</span><span class="nv">fixed-contents</span>
-<span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-<span class="s">&#34;\\([^\t ]\\)[\t ]_\n[\t ]_\\([^\t ]\\)&#34;</span>
-<span class="s">&#34;\\1 \\2&#34;</span>
-<span class="nv">temp-contents</span><span class="p">)))</span>
-<span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">))))</span></code></pre></td></tr></table>
+  <span class="p">(</span><span class="nb">cl-destructuring-bind</span> <span class="p">(</span><span class="nv">paragraph</span> <span class="nv">content</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">args</span>
+    <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">origin-contents</span>
+            <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
+             <span class="s">&#34;&lt;[Bb][Rr][\t ]*/&gt;&#34;</span>
+             <span class="s">&#34;&#34;</span>
+             <span class="nv">content</span><span class="p">))</span>
+           <span class="p">(</span><span class="nv">origin-contents</span>
+            <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
+             <span class="s">&#34;\\([[:multibyte:]]\\)[\t ]*\n[\t ]*\\([[:multibyte:]]\\)&#34;</span>
+             <span class="s">&#34;\\1\\2&#34;</span>
+             <span class="nv">origin-contents</span><span class="p">))</span>
+           <span class="p">(</span><span class="nv">fixed-contents</span>
+            <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
+             <span class="s">&#34;\\([^\t ]\\)[\t ]*\n[\t ]*\\([^\t ]\\)&#34;</span>
+             <span class="s">&#34;\\1 \\2&#34;</span>
+             <span class="nv">origin-contents</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">))))</span></code></pre></td></tr></table>
 </div>
 </div>
-
     </div>
 
     <div class="post-copyright">
@@ -228,7 +226,7 @@
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
     <span class="item-content">
-        2019-09-07
+        2019-09-08
         
     </span>
   </p>
@@ -244,7 +242,7 @@
           </div>
       <nav class="post-nav">
         
-        <a class="next" href="/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/">
+        <a class="next" href="https://cnsunyour.github.io/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/">
             <span class="next-text nav-default">对doom-emacs里plantuml的改进</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
@@ -265,6 +263,10 @@
     <footer id="footer" class="footer">
       <div class="social-links">
       <a href="mailto:sunyour@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/cnsunyour" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.facebook.com/cnsunyour" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="https://github.com/cnsunyour" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/cnsunyour" class="iconfont icon-gitlab" title="gitlab"></a>
   <a href="https://cnsunyour.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
@@ -296,10 +298,16 @@
       <i class="iconfont icon-up"></i>
     </div>
   </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+    <script type="text/javascript" src="/lib/timeago/timeago-3.0.2.min.js"></script>
+    <script type="text/javascript" src="/lib/timeago/timeago.locales-3.0.2.min.js"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
 <script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
 
 

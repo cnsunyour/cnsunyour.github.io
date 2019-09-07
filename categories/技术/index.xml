@@ -39,12 +39,39 @@
     </item>
     
     <item>
-      <title>两个可以把 Mac 下应用程序的链接插入当前位置的插件</title>
-      <link>https://cnsunyour.github.io/post/%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%8A%8A-mac-%E4%B8%8B%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E6%8F%92%E5%85%A5%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%8F%92%E4%BB%B6/</link>
-      <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
+      <title>从spacemacs迁移到doom-emacs</title>
+      <link>https://cnsunyour.github.io/post/20190706-%E4%BB%8Espacemacs%E8%BF%81%E7%A7%BB%E5%88%B0doom-emacs/</link>
+      <pubDate>Sat, 06 Jul 2019 08:21:00 +0800</pubDate>
       
-      <guid>https://cnsunyour.github.io/post/%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%8A%8A-mac-%E4%B8%8B%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E6%8F%92%E5%85%A5%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%8F%92%E4%BB%B6/</guid>
-      <description>一个是xuchunyang/grab-mac-link.el: Grab link from Mac Apps and insert it into Emacs 另一个是org-mac-link.el – Grab links from open Mac applications Spacemacs 里集</description>
+      <guid>https://cnsunyour.github.io/post/20190706-%E4%BB%8Espacemacs%E8%BF%81%E7%A7%BB%E5%88%B0doom-emacs/</guid>
+      <description>用了半天时间把 Emacs 从 spacemacs 迁移到了 doom-emacs，严格的说，应该是复制，现在两个配置可以随时切换，以进行比较，此文是在 doom-emacs 上编辑发布，以资纪念</description>
+    </item>
+    
+    <item>
+      <title>Emacs org to pdf (with LaTeX)设置</title>
+      <link>https://cnsunyour.github.io/post/20160327-emacs-org-to-pdf-with-latex/</link>
+      <pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate>
+      
+      <guid>https://cnsunyour.github.io/post/20160327-emacs-org-to-pdf-with-latex/</guid>
+      <description>如何能正确把中文导出成 PDF 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分： 安装 LaTeX 应用程序 我的</description>
+    </item>
+    
+    <item>
+      <title>批量修改远程 Linux 服务器用户密码</title>
+      <link>https://cnsunyour.github.io/post/20160323-%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8Blinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</link>
+      <pubDate>Wed, 23 Mar 2016 22:55:00 +0800</pubDate>
+      
+      <guid>https://cnsunyour.github.io/post/20160323-%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8Blinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/</guid>
+      <description>首先是一个调用脚本，循环读取文本文件 文本文件格式为：ip loginuser loginpass passuser newpass 1 2 3 4 5 6 7 8 9 10 11 12 #!/bin/bash if [ &amp;#34;$1&amp;#34; = &amp;#34;&amp;#34; ] || [ &amp;#34;$1&amp;#34; = &amp;#34;-h&amp;#34; ] || [ &amp;#34;$1&amp;#34; = &amp;#34;--help&amp;#34; ] then echo &amp;#34;Usage: chpasswd.sh path/iplist &amp;#34; exit</description>
+    </item>
+    
+    <item>
+      <title>Ansible还是SaltStack，这是个问题</title>
+      <link>https://cnsunyour.github.io/post/2016-03-23-ansible%E8%BF%98%E6%98%AFsaltstack%E8%BF%99%E6%98%AF%E4%B8%AA%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 23 Mar 2016 09:38:00 +0800</pubDate>
+      
+      <guid>https://cnsunyour.github.io/post/2016-03-23-ansible%E8%BF%98%E6%98%AFsaltstack%E8%BF%99%E6%98%AF%E4%B8%AA%E9%97%AE%E9%A2%98/</guid>
+      <description>再一次实际操作了一下服务器，真实感受到服务器数量多了以后维护的麻烦，看来确实需要批量维护工具。只不过，最终用哪个，这是个问题。Puppet 和</description>
     </item>
     
   </channel>

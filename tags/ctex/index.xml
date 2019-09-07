@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ctex on 不一般的凡 - 墩墩家的幸福生活</title>
+    <link>https://cnsunyour.github.io/tags/ctex/</link>
+    <description>Recent content in ctex on 不一般的凡 - 墩墩家的幸福生活</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 27 Mar 2016 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://cnsunyour.github.io/tags/ctex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Emacs org to pdf (with LaTeX)设置</title>
+      <link>https://cnsunyour.github.io/post/20160327-emacs-org-to-pdf-with-latex/</link>
+      <pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate>
+      
+      <guid>https://cnsunyour.github.io/post/20160327-emacs-org-to-pdf-with-latex/</guid>
+      <description>如何能正确把中文导出成 PDF 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分： 安装 LaTeX 应用程序 我的</description>
+    </item>
+    
+  </channel>
+</rss>
