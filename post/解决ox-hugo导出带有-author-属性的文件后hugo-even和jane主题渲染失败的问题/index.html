@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>hugo · 不一般的凡 - 墩墩家的幸福生活</title>
+  <title>解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题 - 不一般的凡 - 墩墩家的幸福生活</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -24,7 +24,8 @@
 
 
 <meta name="author" content="不一般的凡" />
-  <meta name="description" content="墩墩家的幸福生活" />
+  <meta name="description" content="把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用" />
+
   <meta name="keywords" content="墩墩, 不一般的凡, 编程, 技术" />
 
 
@@ -35,8 +36,7 @@
 <meta name="generator" content="Hugo 0.58.1" />
 
 
-<link rel="canonical" href="https://sunyour.org/tags/hugo/" />
-<link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/tags/hugo/index.xml%20https://sunyour.org/tags/hugo/index.xml%7d" rel="alternate" type="application/rss+xml" title="不一般的凡 - 墩墩家的幸福生活" />
+<link rel="canonical" href="https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89-author-%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/" />
 
 
 
@@ -58,18 +58,26 @@
 
 
 
-<meta property="og:title" content="hugo" />
-<meta property="og:description" content="墩墩家的幸福生活" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://sunyour.org/tags/hugo/" />
+<meta property="og:title" content="解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题" />
+<meta property="og:description" content="把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89-author-%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/" />
+<meta property="article:published_time" content="2019-09-09T00:00:00+08:00" />
+<meta property="article:modified_time" content="2019-09-09T16:09:52+08:00" />
+<meta itemprop="name" content="解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题">
+<meta itemprop="description" content="把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用">
 
-<meta property="og:updated_time" content="2019-09-09T00:00:00+08:00" />
-<meta itemprop="name" content="hugo">
-<meta itemprop="description" content="墩墩家的幸福生活">
 
+<meta itemprop="datePublished" content="2019-09-09T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-09-09T16:09:52&#43;08:00" />
+<meta itemprop="wordCount" content="805">
+
+
+
+<meta itemprop="keywords" content="jane,even,theme,ox,hugo,emacs," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="hugo"/>
-<meta name="twitter:description" content="墩墩家的幸福生活"/>
+<meta name="twitter:title" content="解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题"/>
+<meta name="twitter:description" content="把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -268,66 +276,217 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-
-<section id="archive" class="archive">
-  
+          <article class="post bg-white">
     
-      <div class="archive-title tag">
-        <h2 class="archive-name">标签： hugo</h2>
+    <header class="post-header">
+      <h1 class="post-title">解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-09-09" class="post-time">
+          2019-09-09
+        </time>
+        <div class="post-category">
+            <a href="https://sunyour.org/categories/%E6%8A%80%E6%9C%AF/"> 技术 </a>
+            <a href="https://sunyour.org/categories/computer/"> Computer </a>
+            
+          </div>
+        <span class="more-meta"> 约 805 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+
+        
+        
+
+        
+        
       </div>
+    </header>
+
     
-  
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
 
-  
-    <div class="archive-post">
-      <time datetime="2019-09-09" class="archive-post-time">
-        2019-09-09
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89-author-%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-post-link">
-          解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题
-        </a>
-      </span>
+    
+    <div class="post-content">
+      <p>把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用的最多的 even 和 jane 两个主题更喜欢一些。</p>
+
+<p>但没想到的是，改用这两个主题后，全部出现文章渲染失败的情况。看提示，是 author 属性的类型不是 string 类型，而是[]string 类型，看样子是类似数组或列表之类的类型。找一篇生成后的 md 文件查看，果然 author 属性的值是[不一般的凡]，外面被中括号括起来了。</p>
+
+<p>心中很不理解为什么，查看 ox-hugo 文档，发现还真是特意这么做的，为的是处理多个:author:属性，也就是多作者的情况。ox-hugo 文档中还专门有一节写了这个情况：</p>
+
+<p>Link: <a href="https://ox-hugo.scripter.co/doc/author/">https://ox-hugo.scripter.co/doc/author/</a></p>
+
+<p>文中提到有两个解决办法，第一是禁止导出 author 参数，方法是在 org 文件头加上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-org" data-lang="org"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-org" data-lang="org"><span class="cs">#+options</span><span class="c">: author:nil</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>或在 subtree 里加上属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-org" data-lang="org"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-org" data-lang="org"><span class="c">:PROPERTIES:
+</span><span class="c"></span><span class="cs">:EXPORT_OPTIONS: author:nil
+</span><span class="cs"></span><span class="c">:END:</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>第二个解决办法就是修改主题模板来支持[]string 形式的 list，也即在调用.Param.author 属性时使用如下代码段：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">{{- with .Params.author -}}
+    {{- $author_type := (printf &#34;%T&#34; .) -}}
+    {{- $author_is_slice := (eq &#34;[]string&#34; $author_type) -}}
+        {{- if $author_is_slice -}}
+            {{- $author_id := delimit . &#34;, &#34; -}}
+        {{- else -}}
+            {{- $author_id != . -}}
+        {{- end -}}
+{{- end -}}</code></pre></td></tr></table>
+</div>
+</div>
+<p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以 even 主题为例，需要修改的是两个文件，第一个是 layouts/partials/head.html 的第 13 行，原为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">&lt;meta name=&#34;author&#34; content=&#34;{{ if .Params.author }}{{ .Params.author | safeHTML}}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&#34; /&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">&lt;meta name=&#34;author&#34; content=&#34;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &#34;%T&#34; .) }}{{ $author_is_slice := (eq &#34;[]string&#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &#34;, &#34; | safeHTML }}{{ else }}{{ . | safeHTML}}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&#34; /&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>第二个文件是 layouts/partials/post/copyright.html 的第 4 行，原为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">&lt;span class=&#34;item-content&#34;&gt;{{ if .Params.author }}{{ .Params.author | safeHTML }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&lt;/span&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-hugo" data-lang="hugo">&lt;span class=&#34;item-content&#34;&gt;{{ if .Params.author }}{{ with .Params.author  }}{{ $author_type := (printf &#34;%T&#34; .)  }}{{ $author_is_slice := (eq &#34;[]string&#34; $author_type)  }}{{ if $author_is_slice  }}{{ delimit . &#34;, &#34; | safeHTML  }}{{ else  }}{{ . | safeHTML }}{{ end  }}{{ end  }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&lt;/span&gt;</code></pre></td></tr></table>
+</div>
+</div>
+<p>两个文件修改完成后重新启动 hugo server 渲染成功。</p>
+
+<p>jane 主题类似，需要修改的文件是 layouts/partials/head.html 第 25 行至 30 行那一段，但是我对 hugo 的 template 语法不熟，这段不知道怎么改，请了解的同学做相应改动吧。</p>
+
+<p>当然有可能考虑不周，even 主题我已经提交了 PR，jane 主题我提了 issue，不知会不会被接受。</p>
+
     </div>
+
+    
+    
+
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/wechatpay-qrcode.jpeg">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/alipay-qrcode.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://sunyour.org/tags/jane/">jane</a>
+          <a href="https://sunyour.org/tags/even/">even</a>
+          <a href="https://sunyour.org/tags/theme/">theme</a>
+          <a href="https://sunyour.org/tags/ox/">ox</a>
+          <a href="https://sunyour.org/tags/hugo/">hugo</a>
+          <a href="https://sunyour.org/tags/emacs/">emacs</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%88%B0md%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/">
+            <span class="next-text nav-default">解决ox-hugo导出到md文件时的换行问题</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
   
-    <div class="archive-post">
-      <time datetime="2019-09-07" class="archive-post-time">
-        2019-09-07
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%88%B0md%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/" class="archive-post-link">
-          解决ox-hugo导出到md文件时的换行问题
-        </a>
-      </span>
-    </div>
-  
-</section>
-
-
-
-
-
-
-  
-  
   
 
   
   
 
   
-  
 
   
   
 
   
+
   
 
+  
 
+    
 
-
+  
 
         </div>
       </div>
