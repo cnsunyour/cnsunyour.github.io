@@ -62,14 +62,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/" />
 <meta property="article:published_time" content="2019-08-29T00:00:00+08:00" />
-<meta property="article:modified_time" content="2019-09-08T18:59:26+08:00" />
+<meta property="article:modified_time" content="2019-10-26T18:33:01+08:00" />
 <meta itemprop="name" content="对doom-emacs里plantuml的改进">
 <meta itemprop="description" content="昨晚跟群友 SteamedFish 交流 plantuml，发现在 org-mode 里的 src-block 代码块中写 plantuml 代码时，不能写上“@”开头的语句，否则必报错。必须在“@”前面加上“\”或“,”">
 
 
 <meta itemprop="datePublished" content="2019-08-29T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-09-08T18:59:26&#43;08:00" />
-<meta itemprop="wordCount" content="359">
+<meta itemprop="dateModified" content="2019-10-26T18:33:01&#43;08:00" />
+<meta itemprop="wordCount" content="403">
 
 
 
@@ -288,7 +288,7 @@
             <a href="https://sunyour.org/categories/computer/"> Computer </a>
             
           </div>
-        <span class="more-meta"> 约 359 字 </span>
+        <span class="more-meta"> 约 403 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -310,7 +310,7 @@
 
     
     <div class="post-content">
-      <p>昨晚跟群友 SteamedFish 交流 plantuml，发现在 org-mode 里的 src-block 代码块中写 plantuml 代码时，不能写上“@”开头的语句，否则必报错。必须在“@”前面加上“\”或“,”才可以。后来经过多次尝试，发现在开头的@start 前面加上“\”就可以。于是想到写个 defadvice 处理一下。另外把 SteamedFish 兄弟写的自动加上“:cmdline -charset utf-8”的方法也加了进来。另外在我的 doom-emacs 里 exec-mode 只能设置为`executable`，否则 C-c C-c 时报错，不知为啥。</p>
+      <p>昨晚跟群友 SteamedFish 交流 plantuml，发现在 org-mode 里的 src-block 代码块中写 plantuml 代码时，不能写上“@”开头的语句，否则必报错。必须在“@”前面加上“\”或“,”才可以。后来经过多次尝试，发现在开头的@start 前面加上“\”就可以。于是想到写个 defadvice 处理一下。另外把 SteamedFish 兄弟写的自动加上“:cmdline -charset utf-8”的方法也加了进来。另外在我的 doom-emacs 里 exec-mode 只能设置为`executable`，否则 C-c C-c 时报错，不知为啥。(*<strong>*10 月 26 日更新**</strong> doom 修复了此问题，现在不用设置为`executable`也可以了)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="lnt"> 1
