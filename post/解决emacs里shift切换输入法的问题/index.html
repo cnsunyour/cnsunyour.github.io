@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>正则表达式中?=和?:和?!的理解 - 不一般的凡 - 墩墩家的幸福生活</title>
+  <title>解决Emacs里Shift切换输入法的问题 - 不一般的凡 - 墩墩家的幸福生活</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="不一般的凡" />
-  <meta name="description" content="今天查看 beancount 的配置，总觉得配置写的有点笨，稍微优化了一点点。其中把.bean 和.beancount 文件都映射到 beancount-mode，之" />
+  <meta name="description" content="Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断" />
 
   <meta name="keywords" content="墩墩, 不一般的凡, 编程, 技术, 家庭, 生活, 幸福" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.59.0" />
 
 
-<link rel="canonical" href="https://sunyour.org/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD-%E5%92%8C-%E5%92%8C-%E7%9A%84%E7%90%86%E8%A7%A3/" />
+<link rel="canonical" href="https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/" />
 
 
 
@@ -57,26 +57,26 @@
 
 
 
-<meta property="og:title" content="正则表达式中?=和?:和?!的理解" />
-<meta property="og:description" content="今天查看 beancount 的配置，总觉得配置写的有点笨，稍微优化了一点点。其中把.bean 和.beancount 文件都映射到 beancount-mode，之" />
+<meta property="og:title" content="解决Emacs里Shift切换输入法的问题" />
+<meta property="og:description" content="Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://sunyour.org/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD-%E5%92%8C-%E5%92%8C-%E7%9A%84%E7%90%86%E8%A7%A3/" />
-<meta property="article:published_time" content="2019-10-26T00:00:00+08:00" />
-<meta property="article:modified_time" content="2019-10-26T12:27:11+08:00" />
-<meta itemprop="name" content="正则表达式中?=和?:和?!的理解">
-<meta itemprop="description" content="今天查看 beancount 的配置，总觉得配置写的有点笨，稍微优化了一点点。其中把.bean 和.beancount 文件都映射到 beancount-mode，之">
+<meta property="og:url" content="https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/" />
+<meta property="article:published_time" content="2019-11-01T00:00:00+08:00" />
+<meta property="article:modified_time" content="2019-11-01T17:46:26+08:00" />
+<meta itemprop="name" content="解决Emacs里Shift切换输入法的问题">
+<meta itemprop="description" content="Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断">
 
 
-<meta itemprop="datePublished" content="2019-10-26T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-10-26T12:27:11&#43;08:00" />
-<meta itemprop="wordCount" content="717">
+<meta itemprop="datePublished" content="2019-11-01T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-01T17:46:26&#43;08:00" />
+<meta itemprop="wordCount" content="1060">
 
 
 
-<meta itemprop="keywords" content="正则表达式,regexp," />
+<meta itemprop="keywords" content="输入法,Emacs,json,Karabiner,Elements,pyim," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="正则表达式中?=和?:和?!的理解"/>
-<meta name="twitter:description" content="今天查看 beancount 的配置，总觉得配置写的有点笨，稍微优化了一点点。其中把.bean 和.beancount 文件都映射到 beancount-mode，之"/>
+<meta name="twitter:title" content="解决Emacs里Shift切换输入法的问题"/>
+<meta name="twitter:description" content="Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -278,19 +278,19 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">正则表达式中?=和?:和?!的理解</h1>
+      <h1 class="post-title">解决Emacs里Shift切换输入法的问题</h1>
       
       <div class="post-meta">
-        <time datetime="2019-10-26" class="post-time">
-          2019-10-26
+        <time datetime="2019-11-01" class="post-time">
+          2019-11-01
         </time>
         <div class="post-category">
-            <a href="https://sunyour.org/categories/computer/"> Computer </a>
             <a href="https://sunyour.org/categories/%E6%8A%80%E6%9C%AF/"> 技术 </a>
+            <a href="https://sunyour.org/categories/computer/"> Computer </a>
             
           </div>
-        <span class="more-meta"> 约 717 字 </span>
-          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span class="more-meta"> 约 1060 字 </span>
+          <span class="more-meta"> 预计阅读 3 分钟 </span>
 
         
         
@@ -311,65 +311,198 @@
 
     
     <div class="post-content">
-      <p>今天查看 beancount 的配置，总觉得配置写的有点笨，稍微优化了一点点。其中把.bean 和.beancount 文件都映射到 beancount-mode，之前是用两条语句完成，应该用正则表达式`&ldquo;\\.bean\\(count\)\\&rsquo;&rdquo;`一行语句就设置完成就好。可能是习惯使然，顺便查了一下 auto-mode-alist 的值，竟然发现里面的值都是类似`&ldquo;\\.bean\\(?:count\)\\&rsquo;&rdquo;`的形式，里面多了一个`?:`，不知是什么作用。祭出 google 大法后，才明白`?:`的作用。</p>
+      <p>Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断的按 Ctrl-\切换，而这个组合键按起来就不是很方便了。如果能像外部输入法那样用 Shift 切换就好了，但是在 Emacs 里是不能把 Shift 键设成快捷键的，所以这个问题就一直放着了。</p>
 
-<p>要理解?=和?!，首先需要理解前瞻，后顾，负前瞻，负后顾四个概念：</p>
+<p>后来有人提出，可以把 Shift 映射成一个 F<n>（比如 F19)，再在 Emacs 里绑定切换输入法的快捷键，以此达到可以快捷切换的效果。我想，既然可以把 Shift 映射到 F<n>，那干嘛不干脆把 Shift 映射到 Ctrl-\岂不是更好，还省得多占一个快捷键。</p>
+
+<p>说干就干，达到目标是单独按 Shift 键，系统输出 Ctrl-\快捷键，而 Shift 和其它键一起按时，还是输出 Shift 本身，另外最好这个映射只在 Emacs 里有效，这样就不会影响其它程序，避免出现意想不到的问题。</p>
+
+<p>基于这样的原则，在键盘层面进行编程映射就不合适了，因为它无法区分不同程序。MacOS 里有一款软件堪称神器，这就是 Karabiner-Elements，用它可以实现各种各样的键盘映射，而且完全免费。Karabiner-Elements 的安装使用此处省略，请自行搜索安装，这里只介绍一下如何自定义映射规则。</p>
+
+<p>映射规则理论上可以直接写 json 文件直接使用，比如我自己的 json 文件是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt">1
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Change shift key (YH)&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Change left_shift to Ctrl-\\ if pressed alone in Emacs&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;manipulators&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;basic&#34;</span><span class="p">,</span>
+          <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;left_shift&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;modifiers&#34;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="nt">&#34;optional&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;any&#34;</span><span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">},</span>
+          <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;left_shift&#34;</span>
+            <span class="p">}</span>
+          <span class="p">],</span>
+          <span class="nt">&#34;to_if_alone&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;backslash&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;modifiers&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;left_control&#34;</span><span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">],</span>
+          <span class="nt">&#34;conditions&#34;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;frontmost_application_if&#34;</span><span class="p">,</span>
+              <span class="nt">&#34;bundle_identifiers&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;^org\\.gnu\\.Emacs$&#34;</span><span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>但我多次尝试直接编写 json 文件都无法成功添加，最后发现是文件换行格式的问题，因此实际的作法是编写 erb 文件，然后用 KE-complex_modifications 进行生成，这样生成的 json 文件格式就完全没问题了。</p>
+
+<p>先从 github 下 clone 下来 KE-complex_modifications 代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/pqrs-org/KE-complex_modifications</code></pre></td></tr></table>
+</div>
+</div>
+<p>然后进入 KE-complex_modifications 目录，并在 src/json 目录下新建一个后缀为.json.erb 的文件，如 yh-shift.json.erb，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Change shift key (YH)&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;rules&#34;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Change left_shift to Ctrl-\\ if pressed alone in Emacs&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;manipulators&#34;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;basic&#34;</span><span class="p">,</span>
+                    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="err">&lt;%=</span> <span class="err">from(</span><span class="s2">&#34;left_shift&#34;</span><span class="p">,</span> <span class="err">[],</span> <span class="err">[</span><span class="nt">&#34;any&#34;</span><span class="err">])</span> <span class="err">%&gt;</span><span class="p">,</span>
+                    <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="err">&lt;%=</span> <span class="err">to(</span><span class="p">[[</span><span class="s2">&#34;left_shift&#34;</span><span class="p">]]</span><span class="err">)</span> <span class="err">%&gt;</span><span class="p">,</span>
+                    <span class="nt">&#34;to_if_alone&#34;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;backslash&#34;</span><span class="p">,</span>
+                            <span class="nt">&#34;modifiers&#34;</span><span class="p">:</span> <span class="p">[</span>
+                              <span class="s2">&#34;left_control&#34;</span>
+                            <span class="p">]</span>
+                        <span class="p">}</span>
+                    <span class="p">],</span>
+                    <span class="nt">&#34;conditions&#34;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;frontmost_application_if&#34;</span><span class="p">,</span>
+                            <span class="nt">&#34;bundle_identifiers&#34;</span><span class="p">:</span> <span class="p">[</span>
+                                <span class="s2">&#34;^org\\.gnu\\.Emacs$&#34;</span>
+                            <span class="p">]</span>
+                        <span class="p">}</span>
+                    <span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>然后编辑 docs/groups.json 文件，里面在比照已有代码在任意一个组内增加一段代码，指定 json 文件名称（注意后面没有.erb 后缀，注意前后的逗号分隔）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil">// 前瞻：
-exp1(?=exp2) 查找exp2前面的exp1
-// 后顾：
-(?&lt;=exp2)exp1 查找exp2后面的exp1
-// 负前瞻：
-exp1(?!exp2) 查找后面不是exp2的exp1
-// 负后顾：
-(?&lt;!exp2)exp1 查找前面不是exp2的exp1</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;json/yh-shift.json&#34;</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>举例：</p>
+<p>这时执行 make，如果文件没有错误的话，就会在 docs/json/目录下生成 yh-shift.json。把这个文件拷贝到 Karabiner-Elements 的配置目录下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt">1
-</span><span class="lnt">2
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil">&#34;中国人&#34;.replace(/(?&lt;=中国)人/, &#34;rr&#34;) // 匹配中国人中的人，将其替换为rr，结果为 中国rr
-&#34;法国人&#34;.replace(/(?&lt;=中国)人/, &#34;rr&#34;) // 结果为 法国人，因为人前面不是中国，所以无法匹配到</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">cp docs/json/yh-shift.json ~/.config/karabiner/assets/complex_modifications/</code></pre></td></tr></table>
 </div>
 </div>
-<p>要理解?:则需要理解捕获分组和非捕获分组的概念：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil">()表示捕获分组，()会把每个分组里的匹配的值保存起来，使用$n(n是一个数字，表示第n个捕获组的内容)
-(?:)表示非捕获分组，和捕获分组唯一的区别在于，非捕获分组匹配的值不会保存起来</code></pre></td></tr></table>
-</div>
-</div>
-<p>举例：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-nil" data-lang="nil">// 数字格式化 1,123,000
-&#34;1234567890&#34;.replace(/\B(?=(?:\d{3})+(?!\d))/g,&#34;,&#34;) // 结果：1,234,567,890，匹配的是后面是3*n个数字的非单词边界(\B)</code></pre></td></tr></table>
-</div>
-</div>
-<p>之前一直觉得自己对正则表达式已经掌握的不错了，现在看来还是远远不够，学无止尽啊！</p>
+<p>这时就可以在 karabiner-Elements 设置里导入这项规则了。菜单项是：Karabiner-Elements Preferences &gt; Complex Modifications &gt; Rules &gt; Add rule</p>
+
+<p>大功告成。</p>
 
     </div>
 
@@ -382,30 +515,21 @@ exp1(?!exp2) 查找后面不是exp2的exp1
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://sunyour.org/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
-          <a href="https://sunyour.org/tags/regexp/">regexp</a>
+          <a href="https://sunyour.org/tags/%E8%BE%93%E5%85%A5%E6%B3%95/">输入法</a>
+          <a href="https://sunyour.org/tags/emacs/">Emacs</a>
+          <a href="https://sunyour.org/tags/json/">json</a>
+          <a href="https://sunyour.org/tags/karabiner/">Karabiner</a>
+          <a href="https://sunyour.org/tags/elements/">Elements</a>
+          <a href="https://sunyour.org/tags/pyim/">pyim</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">解决Emacs里Shift切换输入法的问题</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
-          <a class="next" href="/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89-author-%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/">
-            <span class="next-text nav-default">解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题</span>
+          <a class="next" href="/post/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%AD-%E5%92%8C-%E5%92%8C-%E7%9A%84%E7%90%86%E8%A7%A3/">
+            <span class="next-text nav-default">正则表达式中?=和?:和?!的理解</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
