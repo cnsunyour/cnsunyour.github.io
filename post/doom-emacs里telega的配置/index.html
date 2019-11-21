@@ -62,14 +62,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sunyour.org/post/doom-emacs%E9%87%8Ctelega%E7%9A%84%E9%85%8D%E7%BD%AE/" />
 <meta property="article:published_time" content="2019-11-01T00:00:00+08:00" />
-<meta property="article:modified_time" content="2019-11-01T18:05:57+08:00" />
+<meta property="article:modified_time" content="2019-11-21T11:40:04+08:00" />
 <meta itemprop="name" content="Doom Emacs里telega的配置">
 <meta itemprop="description" content="最近一直跟随大佬们在 Emacs 里用 telega，也逐渐开始喜欢在 emacs 里集中做事的方式。我用的是 doom-emacs，跟其它的 emacs 配置版本有些不同。一是像">
 
 
 <meta itemprop="datePublished" content="2019-11-01T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-11-01T18:05:57&#43;08:00" />
-<meta itemprop="wordCount" content="391">
+<meta itemprop="dateModified" content="2019-11-21T11:40:04&#43;08:00" />
+<meta itemprop="wordCount" content="407">
 
 
 
@@ -289,7 +289,7 @@
             <a href="https://sunyour.org/categories/%E6%8A%80%E6%9C%AF/"> 技术 </a>
             
           </div>
-        <span class="more-meta"> 约 391 字 </span>
+        <span class="more-meta"> 约 407 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -340,33 +340,39 @@
 </span><span class="lnt">24
 </span><span class="lnt">25
 </span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">(</span>use-package! telega
-  :when <span class="o">(</span>display-graphic-p<span class="o">)</span>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="p">;;</span> telegram client <span class="k">for</span> emacs
+<span class="o">(</span>use-package! telega
   :commands <span class="o">(</span>telega<span class="o">)</span>
   :defer t
   :bind <span class="o">(</span><span class="s2">&#34;C-c t&#34;</span> . <span class="c1">#&#39;telega)</span>
+  :init
+  <span class="o">(</span>unless <span class="o">(</span>display-graphic-p<span class="o">)</span> <span class="o">(</span>setq telega-use-images nil<span class="o">))</span>
+  :hook
+  <span class="o">(</span><span class="s1">&#39;telega-root-mode . #&#39;</span>evil-emacs-state<span class="o">)</span>
+  <span class="o">(</span><span class="s1">&#39;telega-chat-mode . #&#39;</span>evil-emacs-state<span class="o">)</span>
+  <span class="o">(</span><span class="s1">&#39;telega-chat-mode . #&#39;</span>yas-minor-mode<span class="o">)</span>
+  <span class="o">(</span><span class="s1">&#39;telega-chat-mode . (lambda ()
+</span><span class="s1">                         (set-company-backend! &#39;</span>telega-chat-mode
+                           <span class="o">(</span>append <span class="s1">&#39;(telega-company-emoji
+</span><span class="s1">                                     telega-company-username
+</span><span class="s1">                                     telega-company-hashtag)
+</span><span class="s1">                                   (when (telega-chat-bot-p telega-chatbuf--chat)
+</span><span class="s1">                                     &#39;</span><span class="o">(</span>telega-company-botcmd<span class="o">))))</span>
+                         <span class="o">(</span>company-mode <span class="m">1</span><span class="o">)))</span>
+  <span class="o">(</span><span class="s1">&#39;telega-chat-pre-message . #&#39;</span>telega-msg-ignore-blocked-sender<span class="o">)</span>
   :config
   <span class="o">(</span>setq telega-proxies
         <span class="o">(</span>list <span class="s1">&#39;(:server &#34;127.0.0.1&#34; :port 1086 :enable t
 </span><span class="s1">                        :type (:@type &#34;proxyTypeSocks5&#34;))))
-</span><span class="s1">  (add-hook! &#39;</span><span class="o">(</span>telega-root-mode-hook telega-chat-mode-hook<span class="o">)</span> <span class="c1">#&#39;evil-emacs-state)</span>
-  <span class="o">(</span>add-hook! <span class="s1">&#39;telega-chat-mode-hook :append
-</span><span class="s1">            #&#39;</span>yas-minor-mode
-            <span class="o">(</span>lambda <span class="o">()</span>
-              <span class="o">(</span>set-company-backend! <span class="s1">&#39;telega-chat-mode
-</span><span class="s1">                (append &#39;</span><span class="o">(</span>telega-company-emoji
-                          telega-company-username
-                          telega-company-hashtag<span class="o">)</span>
-                        <span class="o">(</span>when <span class="o">(</span>telega-chat-bot-p telega-chatbuf--chat<span class="o">)</span>
-                          <span class="s1">&#39;(telega-company-botcmd))))
-</span><span class="s1">              (company-mode 1)))
-</span><span class="s1">  (add-hook &#39;</span>telega-chat-pre-message-hook <span class="c1">#&#39;telega-msg-ignore-blocked-sender)</span>
-  <span class="o">(</span>set-popup-rule! <span class="s2">&#34;^\\*Telega Root&#34;</span>
-    :side <span class="s1">&#39;right :size 95 :quit nil :modeline t)
-</span><span class="s1">  (set-popup-rule! &#34;^◀\\(\\[\\|&lt;\\|{\\).*\\(\\]\\|&gt;\\|}\\)&#34;
-</span><span class="s1">    :side &#39;</span>right :size <span class="m">95</span> :quit nil :modeline t<span class="o">)</span>
+</span><span class="s1">  (set-popup-rule! &#34;^\\*Telega Root&#34;
+</span><span class="s1">    :side &#39;</span>right :size <span class="m">100</span> :quit nil :modeline t<span class="o">)</span>
+  <span class="o">(</span>set-popup-rule! <span class="s2">&#34;^◀\\(\\[\\|&lt;\\|{\\).*\\(\\]\\|&gt;\\|}\\)&#34;</span>
+    :side <span class="err">&#39;</span>right :size <span class="m">100</span> :quit nil :modeline t<span class="o">)</span>
   <span class="o">(</span>telega-mode-line-mode <span class="m">1</span><span class="o">))</span></code></pre></td></tr></table>
 </div>
 </div>
