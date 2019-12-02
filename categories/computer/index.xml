@@ -6,10 +6,19 @@
     <description>Recent content in Computer on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Nov 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/categories/computer/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Beancount使用——卖出物品的记账</title>
+      <link>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8-%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8-%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</guid>
+      <description>在闲鱼上处理一些不用的东西，开始仅仅是记 Income:Sales 和 Assets:Alipay 这两个账户，当邮寄物品时再记 Expenses:ExpressFee 支出。但总是觉得有问题，一是有人购买时当时并没有收到货款，而是在</description>
+    </item>
     
     <item>
       <title>我的Karabiner-Elements规则设置</title>
@@ -125,7 +134,7 @@
       <pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate>
       
       <guid>https://sunyour.org/post/20160327-emacs-org-to-pdf-with-latex/</guid>
-      <description>如何能正确把中文导出成 PDF 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分： 安装 LaTeX 应用程序 我的</description>
+      <description>如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf} 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括</description>
     </item>
     
     <item>

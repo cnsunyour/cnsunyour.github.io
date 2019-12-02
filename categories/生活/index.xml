@@ -6,10 +6,19 @@
     <description>Recent content in 生活 on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 07 Aug 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Beancount使用——卖出物品的记账</title>
+      <link>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8-%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8-%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</guid>
+      <description>在闲鱼上处理一些不用的东西，开始仅仅是记 Income:Sales 和 Assets:Alipay 这两个账户，当邮寄物品时再记 Expenses:ExpressFee 支出。但总是觉得有问题，一是有人购买时当时并没有收到货款，而是在</description>
+    </item>
     
     <item>
       <title>今天好好教训一下儿子</title>

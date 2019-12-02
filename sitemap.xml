@@ -2,15 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sunyour.org/tags/beancount/</loc>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8-%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</loc>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://sunyour.org/categories/</loc>
-    <lastmod>2019-11-21T11:44:40+08:00</lastmod>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/categories/computer/</loc>
-    <lastmod>2019-11-21T11:44:40+08:00</lastmod>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/post/</loc>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/tags/</loc>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/</loc>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2019-12-02T15:01:25+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -25,27 +67,6 @@
   <url>
     <loc>https://sunyour.org/tags/mac/</loc>
     <lastmod>2019-11-04T13:25:58+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/post/</loc>
-    <lastmod>2019-11-21T11:44:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/tags/</loc>
-    <lastmod>2019-11-21T11:44:40+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/</loc>
-    <lastmod>2019-11-21T11:44:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -283,13 +304,6 @@
   
   <url>
     <loc>https://sunyour.org/tags/%E5%A2%A9%E5%A2%A9/</loc>
-    <lastmod>2019-09-08T03:30:48+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2019-09-08T03:30:48+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

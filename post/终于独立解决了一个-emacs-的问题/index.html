@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E7%8B%AC%E7%AB%8B%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA-emacs-%E7%9A%84%E9%97%AE%E9%A2%98/" />
@@ -51,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
 
 
 
@@ -65,16 +65,13 @@
 <meta property="article:modified_time" content="2019-09-08T03:25:29+08:00" />
 <meta itemprop="name" content="终于独立解决了一个 emacs 的问题">
 <meta itemprop="description" content="这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也">
-
-
 <meta itemprop="datePublished" content="2019-07-09T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-08T03:25:29&#43;08:00" />
 <meta itemprop="wordCount" content="600">
 
 
 
-<meta itemprop="keywords" content="projectile,pytest,python,emacs,doom," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="projectile,pytest,python,emacs,doom," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="终于独立解决了一个 emacs 的问题"/>
 <meta name="twitter:description" content="这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也"/>
 
@@ -304,24 +301,18 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
 
     
     <div class="post-content">
       <p>这两天正在学习 python，今天学到测试部分，就想在 emacs 里写个测试用例试一下。结果写完测试用例在终端里执行没问题，到 emacs 里执行却发现报错，错误也很奇怪，显示的是</p>
-
 <p>file-remote-p: Wrong type argument: stringp, nil</p>
-
 <p>以前碰到这种问题几乎除了上 google 搜，几乎是没什么办法，今天也是开始 google，结果搜索了一晚上也没个结果，用出错信息搜索出的结果貌似都跟这个没什么关系，很是发愁。</p>
-
 <p>实在是没什么办法了，突然想到论坛上大佬们写的插件别人用着出问题时，大佬们通常都让抓个报错信息参考下。也就想试一试，反正也是没其它办法，死马当活马医呗。</p>
-
 <p>执行 M-x toggle-debug-on-err，然后再操作一次，果然出错，然后输出一堆错误信息，貌似是从发起指令开始，一直到出错位置，所有的调用信息都有，慢慢从后往前看。竟然真的发现一点端倪，发现 file-remote-p 接收到 nil 参数是因为之前调用的函数里给传的是 project-root 变量，而 project-root 变量在这里是 nil，再继续看，发现如果 project-root 是从 projectile-project-root 赋值来的，而 projectile-project-root 怎么来呢？</p>
-
 <p>不懂问 google，继续搜索，终于在一篇介绍 projectile 的文章里发现，在项目根目录里建一个空的.projectile 文件，即可让 projectile 认为当前目录为项目根目录，马上着手 touch 一个。再执行，成功！</p>
-
 <p>我去，原来这么简单。导致出现问题的原因 python-pytest 包调用了 projectile 包，而 projectile 包的所有操作都是基于有 project-root 的前提下，所以设定当前项目根目录是非常必要的。解决手段虽然简单，可也让自己多了解了一点 projectile 的相关知识，也是一大收获啊。至此对 emacs 的兴趣又加深了几分。</p>
 
     </div>

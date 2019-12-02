@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/" />
@@ -51,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
 
 
 
@@ -65,16 +65,13 @@
 <meta property="article:modified_time" content="2019-11-01T18:04:26+08:00" />
 <meta itemprop="name" content="解决Emacs里Shift切换输入法的问题">
 <meta itemprop="description" content="Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断">
-
-
 <meta itemprop="datePublished" content="2019-11-01T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-11-01T18:04:26&#43;08:00" />
 <meta itemprop="wordCount" content="1061">
 
 
 
-<meta itemprop="keywords" content="输入法,Emacs,json,Karabiner,Elements,pyim," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="输入法,Emacs,json,Karabiner,Elements,pyim," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="解决Emacs里Shift切换输入法的问题"/>
 <meta name="twitter:description" content="Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断"/>
 
@@ -305,24 +302,20 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
 
     
     <div class="post-content">
       <p>Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断的按 Ctrl-\切换，而这个组合键按起来就不是很方便了。如果能像外部输入法那样用 Shift 切换就好了，但是在 Emacs 里是不能把 Shift 键设成快捷键的，所以这个问题就一直放着了。</p>
-
-<p>后来有人提出，可以把 Shift 映射成一个 Fn（比如 F19)，再在 Emacs 里绑定切换输入法的快捷键，以此达到可以快捷切换的效果。我想，既然可以把 Shift 映射到 F<n>，那干嘛不干脆把 Shift 映射到 Ctrl-\岂不是更好，还省得多占一个快捷键。</p>
-
+<p>后来有人提出，可以把 Shift 映射成一个 Fn（比如 F19)，再在 Emacs 里绑定切换输入法的快捷键，以此达到可以快捷切换的效果。我想，既然可以把 Shift 映射到 F<!-- raw HTML omitted -->，那干嘛不干脆把 Shift 映射到 Ctrl-\岂不是更好，还省得多占一个快捷键。</p>
 <p>说干就干，达到目标是单独按 Shift 键，系统输出 Ctrl-\快捷键，而 Shift 和其它键一起按时，还是输出 Shift 本身，另外最好这个映射只在 Emacs 里有效，这样就不会影响其它程序，避免出现意想不到的问题。</p>
-
 <p>基于这样的原则，在键盘层面进行编程映射就不合适了，因为它无法区分不同程序。MacOS 里有一款软件堪称神器，这就是 Karabiner-Elements，用它可以实现各种各样的键盘映射，而且完全免费。Karabiner-Elements 的安装使用此处省略，请自行搜索安装，这里只介绍一下如何自定义映射规则。</p>
-
 <p>映射规则理论上可以直接写 json 文件直接使用，比如我自己的 json 文件是：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -373,18 +366,18 @@
             <span class="nt">&#34;modifiers&#34;</span><span class="p">:</span> <span class="p">{</span>
               <span class="nt">&#34;optional&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;any&#34;</span><span class="p">]</span>
             <span class="p">}</span>
-          <span class="p">},</span>
+          <span class="p">}</span><span class="p">,</span>
           <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
               <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;left_shift&#34;</span>
             <span class="p">}</span>
-          <span class="p">],</span>
+          <span class="p">]</span><span class="p">,</span>
           <span class="nt">&#34;to_if_alone&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
               <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;backslash&#34;</span><span class="p">,</span>
               <span class="nt">&#34;modifiers&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;left_control&#34;</span><span class="p">]</span>
             <span class="p">}</span>
-          <span class="p">],</span>
+          <span class="p">]</span><span class="p">,</span>
           <span class="nt">&#34;conditions&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
               <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;frontmost_application_if&#34;</span><span class="p">,</span>
@@ -395,24 +388,23 @@
       <span class="p">]</span>
     <span class="p">}</span>
   <span class="p">]</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>但我多次尝试直接编写 json 文件都无法成功添加，最后发现是文件换行格式的问题，因此实际的作法是编写 erb 文件，然后用 KE-complex_modifications 进行生成，这样生成的 json 文件格式就完全没问题了。</p>
-
+</div><p>但我多次尝试直接编写 json 文件都无法成功添加，最后发现是文件换行格式的问题，因此实际的作法是编写 erb 文件，然后用 KE-complex_modifications 进行生成，这样生成的 json 文件格式就完全没问题了。</p>
 <p>先从 github 下 clone 下来 KE-complex_modifications 代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/pqrs-org/KE-complex_modifications</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">git clone https://github.com/pqrs-org/KE-complex_modifications
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>然后进入 KE-complex_modifications 目录，并在 src/json 目录下新建一个后缀为.json.erb 的文件，如 yh-shift.json.erb，内容如下：</p>
+</div><p>然后进入 KE-complex_modifications 目录，并在 src/json 目录下新建一个后缀为.json.erb 的文件，如 yh-shift.json.erb，内容如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -453,8 +445,8 @@
             <span class="nt">&#34;manipulators&#34;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;basic&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="err">&lt;%=</span> <span class="err">from(</span><span class="s2">&#34;left_shift&#34;</span><span class="p">,</span> <span class="err">[],</span> <span class="err">[</span><span class="nt">&#34;any&#34;</span><span class="err">])</span> <span class="err">%&gt;</span><span class="p">,</span>
-                    <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="err">&lt;%=</span> <span class="err">to(</span><span class="p">[[</span><span class="s2">&#34;left_shift&#34;</span><span class="p">]]</span><span class="err">)</span> <span class="err">%&gt;</span><span class="p">,</span>
+                    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="err">&lt;</span><span class="err">%</span><span class="err">=</span> <span class="err">f</span><span class="err">r</span><span class="err">o</span><span class="err">m</span><span class="err">(</span><span class="s2">&#34;left_shift&#34;</span><span class="p">,</span> <span class="err">[</span><span class="err">]</span><span class="err">,</span> <span class="err">[</span><span class="nt">&#34;any&#34;</span><span class="err">]</span><span class="err">)</span> <span class="err">%</span><span class="err">&gt;</span><span class="p">,</span>
+                    <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="err">&lt;</span><span class="err">%</span><span class="err">=</span> <span class="err">t</span><span class="err">o</span><span class="err">(</span><span class="p">[</span><span class="p">[</span><span class="s2">&#34;left_shift&#34;</span><span class="p">]</span><span class="p">]</span><span class="err">)</span> <span class="err">%</span><span class="err">&gt;</span><span class="p">,</span>
                     <span class="nt">&#34;to_if_alone&#34;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="p">{</span>
                             <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;backslash&#34;</span><span class="p">,</span>
@@ -462,7 +454,7 @@
                               <span class="s2">&#34;left_control&#34;</span>
                             <span class="p">]</span>
                         <span class="p">}</span>
-                    <span class="p">],</span>
+                    <span class="p">]</span><span class="p">,</span>
                     <span class="nt">&#34;conditions&#34;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="p">{</span>
                             <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;frontmost_application_if&#34;</span><span class="p">,</span>
@@ -475,33 +467,32 @@
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">]</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>然后编辑 docs/groups.json 文件，里面在比照已有代码在任意一个组内增加一段代码，指定 json 文件名称（注意后面没有.erb 后缀，注意前后的逗号分隔）：</p>
+</div><p>然后编辑 docs/groups.json 文件，里面在比照已有代码在任意一个组内增加一段代码，指定 json 文件名称（注意后面没有.erb 后缀，注意前后的逗号分隔）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;json/yh-shift.json&#34;</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<span class="p">}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这时执行 make，如果文件没有错误的话，就会在 docs/json/目录下生成 yh-shift.json。把这个文件拷贝到 Karabiner-Elements 的配置目录下：</p>
+</div><p>这时执行 make，如果文件没有错误的话，就会在 docs/json/目录下生成 yh-shift.json。把这个文件拷贝到 Karabiner-Elements 的配置目录下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">cp docs/json/yh-shift.json ~/.config/karabiner/assets/complex_modifications/</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">cp docs/json/yh-shift.json ~/.config/karabiner/assets/complex_modifications/
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>这时就可以在 karabiner-Elements 设置里导入这项规则了。菜单项是：Karabiner-Elements Preferences &gt; Complex Modifications &gt; Rules &gt; Add rule</p>
-
+</div><p>这时就可以在 karabiner-Elements 设置里导入这项规则了。菜单项是：Karabiner-Elements Preferences &gt; Complex Modifications &gt; Rules &gt; Add rule</p>
 <p>大功告成。</p>
 
     </div>

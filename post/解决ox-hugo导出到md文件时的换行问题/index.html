@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%88%B0md%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/" />
@@ -51,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
 
 
 
@@ -65,16 +65,13 @@
 <meta property="article:modified_time" content="2019-09-11T17:59:07+08:00" />
 <meta itemprop="name" content="解决ox-hugo导出到md文件时的换行问题">
 <meta itemprop="description" content="在用 ox-hugo 导出到 markdown 文件时，发现也会出现类似 org2blog 发布文章时的文字换行问题，也就是在 org 文件中的换行符没有自动清除掉。不一样的是，中文之间的换行符已经清">
-
-
 <meta itemprop="datePublished" content="2019-09-07T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-11T17:59:07&#43;08:00" />
-<meta itemprop="wordCount" content="375">
+<meta itemprop="wordCount" content="368">
 
 
 
-<meta itemprop="keywords" content="ox,hugo,emacs,doom," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="ox,hugo,emacs,doom," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="解决ox-hugo导出到md文件时的换行问题"/>
 <meta name="twitter:description" content="在用 ox-hugo 导出到 markdown 文件时，发现也会出现类似 org2blog 发布文章时的文字换行问题，也就是在 org 文件中的换行符没有自动清除掉。不一样的是，中文之间的换行符已经清"/>
 
@@ -289,7 +286,7 @@
             <a href="https://sunyour.org/categories/computer/"> Computer </a>
             
           </div>
-        <span class="more-meta"> 约 375 字 </span>
+        <span class="more-meta"> 约 368 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -305,22 +302,19 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
 
     
     <div class="post-content">
       <p>在用 ox-hugo 导出到 markdown 文件时，发现也会出现类似 org2blog 发布文章时的文字换行问题，也就是在 org 文件中的换行符没有自动清除掉。不一样的是，中文之间的换行符已经清除了，但是有英文之间或中英混合文字之间有换行符时就不会清除，这样在最后生成的 html 页面中就会转换成&lt;br /&gt;，所以必须要处理一下。</p>
-
 <p>类似于 org-html-paragraph，我给 org-hugo-paragraph 也增加一个 advice，处理方法与 org-html-paragraph 的完全一样，代码完全可以复用。</p>
-
 <p>另外，对原先的代码也进行了一下升级，对中英文混合之间的换行符进行清除，对两个英文之间的换行符替换为空格。</p>
-
 <p>更新后的完整代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -353,35 +347,36 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+chinese--org-html-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
-  <span class="s">&#34;Join consecutive Chinese lines into a single long line without
-</span><span class="s">unwanted space when exporting org-mode to html.&#34;</span>
+  <span class="s">&#34;</span><span class="s">Join consecutive Chinese lines into a single long line without
+</span><span class="s">unwanted space when exporting org-mode to html.</span><span class="s">&#34;</span>
   <span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-html-paragraph</span>
-  <span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">)</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+chinese--org-hugo-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
-  <span class="s">&#34;Join consecutive Chinese lines into a single long line without
-</span><span class="s">unwanted space when exporting org-mode to hugo markdown.&#34;</span>
+  <span class="s">&#34;</span><span class="s">Join consecutive Chinese lines into a single long line without
+</span><span class="s">unwanted space when exporting org-mode to hugo markdown.</span><span class="s">&#34;</span>
   <span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-hugo-paragraph</span>
-  <span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">))</span>
+  <span class="p">(</span><span class="nv">++chinese--org-paragraph-a</span> <span class="nv">args</span><span class="p">)</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">++chinese--org-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">cl-destructuring-bind</span> <span class="p">(</span><span class="nv">paragraph</span> <span class="nv">content</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">args</span>
-    <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">origin-contents</span>
+    <span class="p">(</span><span class="nb">let*</span> <span class="p">(</span><span class="p">(</span><span class="nv">origin-contents</span>
             <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-             <span class="s">&#34;&lt;[Bb][Rr][\t ]*/&gt;&#34;</span>
-             <span class="s">&#34;&#34;</span>
-             <span class="nv">content</span><span class="p">))</span>
+             <span class="s">&#34;</span><span class="s">&lt;[Bb][Rr][</span><span class="s">\t</span><span class="s"> ]*/&gt;</span><span class="s">&#34;</span>
+             <span class="s">&#34;</span><span class="s">&#34;</span>
+             <span class="nv">content</span><span class="p">)</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">origin-contents</span>
             <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-             <span class="s">&#34;\\([[:multibyte:]]\\)[\t ]*\n[\t ]*\\([[:multibyte:]]\\)&#34;</span>
-             <span class="s">&#34;\\1\\2&#34;</span>
-             <span class="nv">origin-contents</span><span class="p">))</span>
+             <span class="s">&#34;</span><span class="s">\\</span><span class="s">([[:multibyte:]]</span><span class="s">\\</span><span class="s">)[</span><span class="s">\t</span><span class="s"> ]*</span><span class="s">\n</span><span class="s">[</span><span class="s">\t</span><span class="s"> ]*</span><span class="s">\\</span><span class="s">([[:multibyte:]]</span><span class="s">\\</span><span class="s">)</span><span class="s">&#34;</span>
+             <span class="s">&#34;</span><span class="s">\\</span><span class="s">1</span><span class="s">\\</span><span class="s">2</span><span class="s">&#34;</span>
+             <span class="nv">origin-contents</span><span class="p">)</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">fixed-contents</span>
             <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-             <span class="s">&#34;\\([^\t ]\\)[\t ]*\n[\t ]*\\([^\t ]\\)&#34;</span>
-             <span class="s">&#34;\\1 \\2&#34;</span>
-             <span class="nv">origin-contents</span><span class="p">)))</span>
-      <span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">))))</span></code></pre></td></tr></table>
+             <span class="s">&#34;</span><span class="s">\\</span><span class="s">([^</span><span class="s">\t</span><span class="s"> ]</span><span class="s">\\</span><span class="s">)[</span><span class="s">\t</span><span class="s"> ]*</span><span class="s">\n</span><span class="s">[</span><span class="s">\t</span><span class="s"> ]*</span><span class="s">\\</span><span class="s">([^</span><span class="s">\t</span><span class="s"> ]</span><span class="s">\\</span><span class="s">)</span><span class="s">&#34;</span>
+             <span class="s">&#34;</span><span class="s">\\</span><span class="s">1 </span><span class="s">\\</span><span class="s">2</span><span class="s">&#34;</span>
+             <span class="nv">origin-contents</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>

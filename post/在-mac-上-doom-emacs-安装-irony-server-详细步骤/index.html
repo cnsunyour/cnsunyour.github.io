@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E5%9C%A8-mac-%E4%B8%8A-doom-emacs-%E5%AE%89%E8%A3%85-irony-server-%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" />
@@ -51,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
 
 
 
@@ -65,16 +65,13 @@
 <meta property="article:modified_time" content="2019-09-08T03:25:28+08:00" />
 <meta itemprop="name" content="在 Mac 上 doom-emacs 安装 irony-server 详细步骤">
 <meta itemprop="description" content="Mac 上的 doom-emacs 不能直接通过 M-x irony-install-server 成功安装 irony-server，需要手工安装，下面把详细步骤纪录下来，以备后来查询。 下载 llvm 预编译软件包 1 2 cd /tmp wget http://releases.llvm.org/8.0.0/clang&#43;llvm-8.0.0-x86_64-apple-darwin.tar.xz">
-
-
 <meta itemprop="datePublished" content="2019-07-06T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-08T03:25:28&#43;08:00" />
 <meta itemprop="wordCount" content="153">
 
 
 
-<meta itemprop="keywords" content="irony,doom,emacs," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="irony,doom,emacs," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="在 Mac 上 doom-emacs 安装 irony-server 详细步骤"/>
 <meta name="twitter:description" content="Mac 上的 doom-emacs 不能直接通过 M-x irony-install-server 成功安装 irony-server，需要手工安装，下面把详细步骤纪录下来，以备后来查询。 下载 llvm 预编译软件包 1 2 cd /tmp wget http://releases.llvm.org/8.0.0/clang&#43;llvm-8.0.0-x86_64-apple-darwin.tar.xz"/>
 
@@ -301,52 +298,48 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
 
     
     <div class="post-content">
       <p>Mac 上的 doom-emacs 不能直接通过 M-x irony-install-server 成功安装 irony-server，需要手工安装，下面把详细步骤纪录下来，以备后来查询。</p>
-
 <ol>
 <li>下载 llvm 预编译软件包</li>
 </ol>
-
-<!--listend-->
+<!-- raw HTML omitted -->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /tmp
-wget http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz</code></pre></td></tr></table>
+wget http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol>
 <li>解压到临时目录（如/tmp）</li>
 </ol>
-
-<!--listend-->
+<!-- raw HTML omitted -->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /tmp
-x clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz</code></pre></td></tr></table>
+x clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol>
 <li>准备编译环境</li>
 </ol>
-
-<!--listend-->
+<!-- raw HTML omitted -->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -357,43 +350,42 @@ x clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz</code></pre></td></tr></table>
 <span class="nb">cd</span> /tmp
 git clone https://github.com/Sarcasm/irony-mode irony-mode
 mkdir irony-mode/server/build
-<span class="nb">pushd</span> irony-mode/server/build</code></pre></td></tr></table>
+<span class="nb">pushd</span> irony-mode/server/build
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol>
 <li>开始编译</li>
 </ol>
-
-<!--listend-->
+<!-- raw HTML omitted -->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">DEST</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.emacs.d/.local/etc/irony-server/&#34;</span>
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">DEST</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.emacs.d/.local/etc/irony-server/</span><span class="s2">&#34;</span>
 cmake -DCMAKE_INSTALL_RPATH_USE_LINK_PATH<span class="o">=</span>ON -DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="s2">&#34;</span><span class="nv">$DEST</span><span class="s2">&#34;</span> -DCMAKE_PREFIX_PATH<span class="o">=</span>/tmp/clang+llvm-8.0.0-x86_64-apple-darwin ../
 cmake --build . --use-stderr --config Release --target install
-install_name_tool -change @rpath/libclang.dylib /usr/local/opt/llvm/lib/libclang.dylib <span class="s2">&#34;</span><span class="nv">$DEST</span><span class="s2">/bin/irony-server&#34;</span></code></pre></td></tr></table>
+install_name_tool -change @rpath/libclang.dylib /usr/local/opt/llvm/lib/libclang.dylib <span class="s2">&#34;</span><span class="nv">$DEST</span><span class="s2">/bin/irony-server</span><span class="s2">&#34;</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<ol>
+</div><ol>
 <li>清理</li>
 </ol>
-
-<!--listend-->
+<!-- raw HTML omitted -->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">popd</span>
 rm -rf irony-mode
-rm -rf clang+llvm-8.0.0-x86_64-apple-darwin</code></pre></td></tr></table>
+rm -rf clang+llvm-8.0.0-x86_64-apple-darwin
+</code></pre></td></tr></table>
 </div>
 </div>
     </div>

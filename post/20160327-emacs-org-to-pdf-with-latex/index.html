@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="不一般的凡" />
-  <meta name="description" content="如何能正确把中文导出成 PDF 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分： 安装 LaTeX 应用程序 我的" />
+  <meta name="description" content="如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf} 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括" />
 
   <meta name="keywords" content="墩墩, 不一般的凡, 编程, 技术, 家庭, 生活, 幸福" />
 
@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/20160327-emacs-org-to-pdf-with-latex/" />
@@ -51,32 +51,29 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
 
 
 
 
 
 <meta property="og:title" content="Emacs org to pdf (with LaTeX)设置" />
-<meta property="og:description" content="如何能正确把中文导出成 PDF 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分： 安装 LaTeX 应用程序 我的" />
+<meta property="og:description" content="如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf} 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sunyour.org/post/20160327-emacs-org-to-pdf-with-latex/" />
 <meta property="article:published_time" content="2016-03-27T00:00:00+08:00" />
 <meta property="article:modified_time" content="2019-09-08T03:31:47+08:00" />
 <meta itemprop="name" content="Emacs org to pdf (with LaTeX)设置">
-<meta itemprop="description" content="如何能正确把中文导出成 PDF 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分： 安装 LaTeX 应用程序 我的">
-
-
+<meta itemprop="description" content="如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf} 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括">
 <meta itemprop="datePublished" content="2016-03-27T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-08T03:31:47&#43;08:00" />
-<meta itemprop="wordCount" content="442">
+<meta itemprop="wordCount" content="488">
 
 
 
-<meta itemprop="keywords" content="emacs,org,latex,ctex,pdf," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="emacs,org,latex,ctex,pdf," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Emacs org to pdf (with LaTeX)设置"/>
-<meta name="twitter:description" content="如何能正确把中文导出成 PDF 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分： 安装 LaTeX 应用程序 我的"/>
+<meta name="twitter:description" content="如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf} 网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -289,7 +286,7 @@
             <a href="https://sunyour.org/categories/computer/"> Computer </a>
             
           </div>
-        <span class="more-meta"> 约 442 字 </span>
+        <span class="more-meta"> 约 488 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -306,71 +303,59 @@
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
     <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#如何能正确把中文导出成 pdf">如何能正确把中文导出成 PDF</a>
-<ul>
-<li><a href="#安装 latex 应用程序">安装 LaTeX 应用程序</a></li>
-<li><a href="#调用 ctex 宏包">调用 CTeX 宏包</a></li>
-<li><a href="#使用 xelatex 程序进行编译转换">使用 XeLaTeX 程序进行编译转换</a></li>
-<li><a href="#示例">示例</a></li>
-</ul></li>
-</ul></li>
-</ul>
+  <ul>
+    <li><a href="#-pdf--pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}</a>
+      <ul>
+        <li><a href="#-latex---latex-">安装 LaTeX 应用程序 {#安装 latex 应用程序}</a></li>
+        <li><a href="#-ctex---ctex-">调用 CTeX 宏包 {#调用 ctex 宏包}</a></li>
+        <li><a href="#-xelatex---xelatex-">使用 XeLaTeX 程序进行编译转换 {#使用 xelatex 程序进行编译转换}</a></li>
+        <li><a href="#示例">示例</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
   </div>
 </div>
 
     
     <div class="post-content">
-      
-
-<h2 id="如何能正确把中文导出成 pdf">如何能正确把中文导出成 PDF</h2>
-
+      <h2 id="-pdf--pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}</h2>
 <p>网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分：</p>
-
-<h3 id="安装 latex 应用程序">安装 LaTeX 应用程序</h3>
-
+<h3 id="-latex---latex-">安装 LaTeX 应用程序 {#安装 latex 应用程序}</h3>
 <p>我的电脑是 Mac，直接安装 MacTeX，就是有点大，安装包要 2.68G，听说 BasicTeX 要小的多，不知道能不能用，有兴趣的同学可以试试。</p>
-
 <p>另外，如果系统是最新版的 OSX 10.11，那安装完 MacTeX 后一定要 update 到最新版，最主要解决的是在 OSX 10.11 下不能在/usr 目录下建 texbin 目录的问题，最新版会在/Library/Support 目录下也建一个 texbin 目录的符号链接，并加入到 PATH 环境变量中，供读取。</p>
-
-<h3 id="调用 ctex 宏包">调用 CTeX 宏包</h3>
-
+<h3 id="-ctex---ctex-">调用 CTeX 宏包 {#调用 ctex 宏包}</h3>
 <p>CTeX 是专为处理中文而定制的宏包，能够根据不同平台自动调用相应的中文字体，达到正常转换的目的。添加方法是在 org 文件头增加如下代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-org" data-lang="org"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-org" data-lang="org"><span class="cs">#+LATEX_HEADER</span><span class="c">: \usepackage[UTF8]{ctex}</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-org" data-lang="org"><span class="cs">#+LATEX_HEADER</span><span class="c">: \usepackage[UTF8]{ctex}</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="使用 xelatex 程序进行编译转换">使用 XeLaTeX 程序进行编译转换</h3>
-
+</div><h3 id="-xelatex---xelatex-">使用 XeLaTeX 程序进行编译转换 {#使用 xelatex 程序进行编译转换}</h3>
 <p>有两个方法，一是在 org 文件头进行指定，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-org" data-lang="org"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-org" data-lang="org"><span class="cs">#+LATEX_CMD</span><span class="c">: xelatex</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-org" data-lang="org"><span class="cs">#+LATEX_CMD</span><span class="c">: xelatex</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>如果不想每次都在 org 文件头指定，可以在 Emacs 配置文件中进行如下设定：</p>
+</div><p>如果不想每次都在 org 文件头指定，可以在 Emacs 配置文件中进行如下设定：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-latex-pdf-process</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;xelatex -interaction nonstopmode %f&#34;</span>
-                              <span class="s">&#34;xelatex -interaction nonstopmode %f&#34;</span><span class="p">))</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-latex-pdf-process</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;</span><span class="s">xelatex -interaction nonstopmode %f</span><span class="s">&#34;</span>
+                              <span class="s">&#34;</span><span class="s">xelatex -interaction nonstopmode %f</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
-</div>
-<h3 id="示例">示例</h3>
-
+</div><h3 id="示例">示例</h3>
 <p>本文按此方法生成的 PDF 文件在此：<a href="/ox-hugo/20160327-emacs-org-to-pdf-with-latex.pdf">emacs-org-to-pdf-with-latex.pdf</a></p>
 
     </div>

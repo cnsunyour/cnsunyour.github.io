@@ -6,7 +6,7 @@
     <description>Recent content in Categories on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Nov 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,18 @@
     <item>
       <title>Computer</title>
       <link>https://sunyour.org/categories/computer/</link>
-      <pubDate>Mon, 04 Nov 2019 00:00:00 +0800</pubDate>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0800</pubDate>
       
       <guid>https://sunyour.org/categories/computer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>生活</title>
+      <link>https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/</guid>
       <description></description>
     </item>
     
@@ -35,15 +44,6 @@
       <pubDate>Wed, 07 Aug 2019 00:00:00 +0800</pubDate>
       
       <guid>https://sunyour.org/categories/home/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>生活</title>
-      <link>https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/</link>
-      <pubDate>Wed, 07 Aug 2019 00:00:00 +0800</pubDate>
-      
-      <guid>https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/</guid>
       <description></description>
     </item>
     

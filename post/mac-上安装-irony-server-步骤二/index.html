@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.60.1" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/" />
@@ -51,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.af20b78e95c84de86b00a0242a4a77bd2601700e1b250edf27537d957ac0041d.css" integrity="sha256-ryC3jpXITehrAKAkKkp3vSYBcA4bJQ7fJ1N9lXrABB0=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
 
 
 
@@ -65,16 +65,13 @@
 <meta property="article:modified_time" content="2019-09-08T03:25:28+08:00" />
 <meta itemprop="name" content="Mac 上安装 irony-server 步骤二">
 <meta itemprop="description" content="昨天写了一篇 Mac 上为 doom-emacs 安装 irone-server 的详细步骤，随着后来对配置的逐渐了解，发现不用那么麻烦，只要把环境变量设置好就可以成功编译。首先安装好 cmake 和 llvm">
-
-
 <meta itemprop="datePublished" content="2019-07-07T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-08T03:25:28&#43;08:00" />
 <meta itemprop="wordCount" content="313">
 
 
 
-<meta itemprop="keywords" content="irony,emacs,doom," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="irony,emacs,doom," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Mac 上安装 irony-server 步骤二"/>
 <meta name="twitter:description" content="昨天写了一篇 Mac 上为 doom-emacs 安装 irone-server 的详细步骤，随着后来对配置的逐渐了解，发现不用那么麻烦，只要把环境变量设置好就可以成功编译。首先安装好 cmake 和 llvm"/>
 
@@ -305,7 +302,7 @@
 <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content">
-    
+    <nav id="TableOfContents"></nav>
   </div>
 </div>
 
@@ -314,29 +311,29 @@
       <p>昨天写了一篇 Mac 上为 doom-emacs 安装 irone-server 的详细步骤，随着后来对配置的逐渐了解，发现不用那么麻烦，只要把环境变量设置好就可以成功编译。首先安装好 cmake 和 llvm（llvm 非常大，且要编译，时间非常长，耐心等候^_^）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">brew install cmake llvm</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">brew install cmake llvm
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>在 doom-emacs 里执行 M-x irony-install-server，会提示执行命令（各有路径有所区别）：</p>
+</div><p>在 doom-emacs 里执行 M-x irony-install-server，会提示执行命令（各有路径有所区别）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
 /Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
-             <span class="o">&amp;&amp;</span> cmake --build . --use-stderr --config Release --target install</code></pre></td></tr></table>
+             <span class="o">&amp;&amp;</span> cmake --build . --use-stderr --config Release --target install
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>我们在 cmake 后面加上环境变量</p>
+</div><p>我们在 cmake 后面加上环境变量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -345,13 +342,13 @@
 <pre class="chroma"><code class="language-shell" data-lang="shell">-DCMAKE_PREFIX_PATH<span class="o">=</span>/usr/local/opt/llvm
 -DCMAKE_INSTALL_RPATH_USE_LINK_PATH<span class="o">=</span>ON
 -DLIBCLANG_INCLUDE_DIR<span class="o">=</span>/usr/local/opt/llvm/include
--DLIBCLANG_LIBRARY<span class="o">=</span>/usr/local/opt/llvm/lib/libclang.dylib</code></pre></td></tr></table>
+-DLIBCLANG_LIBRARY<span class="o">=</span>/usr/local/opt/llvm/lib/libclang.dylib
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>完成后的编译命令为：</p>
+</div><p>完成后的编译命令为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -366,15 +363,14 @@
 -DLIBCLANG_INCLUDE_DIR<span class="o">=</span>/usr/local/opt/llvm/include
 -DLIBCLANG_LIBRARY<span class="o">=</span>/usr/local/opt/llvm/lib/libclang.dylib
 /Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
-             <span class="o">&amp;&amp;</span> cmake --build . --use-stderr --config Release --target install</code></pre></td></tr></table>
+             <span class="o">&amp;&amp;</span> cmake --build . --use-stderr --config Release --target install
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>即可正常编译。</p>
-
+</div><p>即可正常编译。</p>
 <p>另外，也可以用 xcode 的 libclang.dylib，编译命令为：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -387,10 +383,10 @@
 -DCMAKE_INSTALL_RPATH_USE_LINK_PATH<span class="o">=</span>ON -DLIBCLANG_INCLUDE_DIR<span class="o">=</span>/usr/local/opt/llvm/include
 -DLIBCLANG_LIBRARY<span class="o">=</span>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib
 /Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
-             <span class="o">&amp;&amp;</span> cmake --build . --use-stderr --config Release --target install</code></pre></td></tr></table>
+             <span class="o">&amp;&amp;</span> cmake --build . --use-stderr --config Release --target install
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>*<strong>*注意：这里为了展示效果，把命令进行了换行，在实际执行时要在一行内。**</strong></p>
+</div><p>*<strong>*注意：这里为了展示效果，把命令进行了换行，在实际执行时要在一行内。**</strong></p>
 
     </div>
 
