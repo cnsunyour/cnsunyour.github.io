@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.60.1" />
+<meta name="generator" content="Hugo 0.61.0" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89-author-%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/" />
@@ -67,7 +67,7 @@
 <meta itemprop="description" content="把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用">
 <meta itemprop="datePublished" content="2019-09-09T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-09T18:45:39&#43;08:00" />
-<meta itemprop="wordCount" content="788">
+<meta itemprop="wordCount" content="801">
 
 
 
@@ -286,7 +286,7 @@
             <a href="https://sunyour.org/categories/computer/"> Computer </a>
             
           </div>
-        <span class="more-meta"> 约 788 字 </span>
+        <span class="more-meta"> 约 801 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -335,24 +335,67 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>第二个解决办法就是修改主题模板来支持[]string 形式的 list，也即在调用.Param.author 属性时使用如下代码段：</p>
-<pre><code class="language-hugo" data-lang="hugo">{{ with .Params.author }}
-    {{ $author_type := (printf &quot;%T&quot; .) }}
-    {{ $author_is_slice := (eq &quot;[]string&quot; $author_type) }}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">{{ with .Params.author }}
+    {{ $author_type := (printf &#34;%T&#34; .) }}
+    {{ $author_is_slice := (eq &#34;[]string&#34; $author_type) }}
         {{ if $author_is_slice }}
-            {{ delimit . &quot;, &quot; }}
+            {{ delimit . &#34;, &#34; }}
         {{ else }}
             {{ . }}
         {{ end }}
 {{ end }}
-</code></pre><p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以 even 主题为例，需要修改的是两个文件，第一个是 layouts/partials/head.html 的第 13 行，原为：</p>
-<pre><code class="language-hugo" data-lang="hugo">&lt;meta name=&quot;author&quot; content=&quot;{{ if .Params.author }}{{ .Params.author | safeHTML}}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&quot; /&gt;
-</code></pre><p>修改为：</p>
-<pre><code class="language-hugo" data-lang="hugo">&lt;meta name=&quot;author&quot; content=&quot;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &quot;%T&quot; .) }}{{ $author_is_slice := (eq &quot;[]string&quot; $author_type) }}{{ if $author_is_slice }}{{ delimit . &quot;, &quot; | safeHTML }}{{ else }}{{ . | safeHTML}}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&quot; /&gt;
-</code></pre><p>第二个文件是 layouts/partials/post/copyright.html 的第 4 行，原为：</p>
-<pre><code class="language-hugo" data-lang="hugo">&lt;span class=&quot;item-content&quot;&gt;{{ if .Params.author }}{{ .Params.author | safeHTML }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&lt;/span&gt;
-</code></pre><p>修改为：</p>
-<pre><code class="language-hugo" data-lang="hugo">&lt;span class=&quot;item-content&quot;&gt;{{ if .Params.author }}{{ with .Params.author  }}{{ $author_type := (printf &quot;%T&quot; .)  }}{{ $author_is_slice := (eq &quot;[]string&quot; $author_type)  }}{{ if $author_is_slice  }}{{ delimit . &quot;, &quot; | safeHTML  }}{{ else  }}{{ . | safeHTML }}{{ end  }}{{ end  }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&lt;/span&gt;
-</code></pre><p>两个文件修改完成后重新启动 hugo server 渲染成功。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以 even 主题为例，需要修改的是两个文件，第一个是 layouts/partials/head.html 的第 13 行，原为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;meta name=&#34;author&#34; content=&#34;{{ if .Params.author }}{{ .Params.author | safeHTML}}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&#34; /&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;meta name=&#34;author&#34; content=&#34;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &#34;%T&#34; .) }}{{ $author_is_slice := (eq &#34;[]string&#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &#34;, &#34; | safeHTML }}{{ else }}{{ . | safeHTML}}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&#34; /&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>第二个文件是 layouts/partials/post/copyright.html 的第 4 行，原为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;span class=&#34;item-content&#34;&gt;{{ if .Params.author }}{{ .Params.author | safeHTML }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&lt;/span&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>修改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;span class=&#34;item-content&#34;&gt;{{ if .Params.author }}{{ with .Params.author  }}{{ $author_type := (printf &#34;%T&#34; .)  }}{{ $author_is_slice := (eq &#34;[]string&#34; $author_type)  }}{{ if $author_is_slice  }}{{ delimit . &#34;, &#34; | safeHTML  }}{{ else  }}{{ . | safeHTML }}{{ end  }}{{ end  }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&lt;/span&gt;
+</code></pre></td></tr></table>
+</div>
+</div><p>两个文件修改完成后重新启动 hugo server 渲染成功。</p>
 <p>jane 主题类似，需要修改的文件是 layouts/partials/head.html 第 25 行至 30 行那一段，但是我对 hugo 的 template 语法不熟，这段不知道怎么改，请了解的同学做相应改动吧。</p>
 <p>当然有可能考虑不周，even 主题我已经提交了 PR，jane 主题我提了 issue，不知会不会被接受。</p>
 

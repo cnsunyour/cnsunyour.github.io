@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.60.1" />
+<meta name="generator" content="Hugo 0.61.0" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8-%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/" />
@@ -67,7 +67,7 @@
 <meta itemprop="description" content="在闲鱼上处理一些不用的东西，开始仅仅是记 Income:Sales 和 Assets:Alipay 这两个账户，当邮寄物品时再记 Expenses:ExpressFee 支出。但总是觉得有问题，一是有人购买时当时并没有收到货款，而是在">
 <meta itemprop="datePublished" content="2019-12-02T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-12-02T15:01:25&#43;08:00" />
-<meta itemprop="wordCount" content="510">
+<meta itemprop="wordCount" content="513">
 
 
 
@@ -286,7 +286,7 @@
             <a href="https://sunyour.org/categories/computer/"> Computer </a>
             
           </div>
-        <span class="more-meta"> 约 510 字 </span>
+        <span class="more-meta"> 约 513 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -312,22 +312,43 @@
 <p>但是琢磨了半天也没想明白到底应该怎么记，最主要的是如何在发快递时平掉全部货款中的运费部分。因为在发快递时记：贷银行账户/借快递费两项，两项已经平了，没有其它账户去平收到款项中的运费了。</p>
 <p>祭出搜索大法，了解了很多销售类公司垫付运费销售货物的记账方法，总算弄明白了。之前记账中有一个很大的误解，就是快递发货记支出，其实这里不应该记支出，因为是替买方应付的运费，所以应该记为贷其它应收。而在实际发货垫付运费时记为借其它应收，贷银行账户。</p>
 <p>总体记账条目如下：</p>
-<pre><code class="language-nil" data-lang="nil">;; 卖出时
-2019-11-01 * &quot;闲鱼&quot; &quot;卖HHKB键帽&quot;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">;; 卖出时
+2019-11-01 * &#34;闲鱼&#34; &#34;卖HHKB键帽&#34;
   Assets:AccountsReceivable:Alipay      214.00 CNY
   Income:Sales                         -200.00 CNY
   Assets:OtherReceivables:ExpressFee    -14.00 CNY
 
 ;；快递发出
-2019-11-02 * &quot;快递&quot; &quot;闲鱼发货——卖HHKB键帽&quot;
+2019-11-02 * &#34;快递&#34; &#34;闲鱼发货——卖HHKB键帽&#34;
   Assets:Alipay:Saving                  -14.00 CNY
   Assets:OtherReceivables:ExpressFee     14.00 CNY
 
 ;; 收到货款时
-2019-11-10 * &quot;支付宝&quot; &quot;收到货款——卖HHKB键帽&quot;
+2019-11-10 * &#34;支付宝&#34; &#34;收到货款——卖HHKB键帽&#34;
   Assets:Alipay:Saving                  214.00 CNY
   Assets:AccountsReceivable:Alipay     -214.00 CNY
-</code></pre>
+</code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
