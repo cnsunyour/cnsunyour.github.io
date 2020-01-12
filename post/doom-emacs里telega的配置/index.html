@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/doom-emacs%E9%87%8Ctelega%E7%9A%84%E9%85%8D%E7%BD%AE/" />
@@ -137,6 +137,11 @@
     <nav id="TableOfContents"></nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2019-11-21T11:44:40" title="November 21, 2019">November 21, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>最近一直跟随大佬们在 Emacs 里用 telega，也逐渐开始喜欢在 emacs 里集中做事的方式。我用的是 doom-emacs，跟其它的 emacs 配置版本有些不同。一是像 spacemacs 一样，doom-emacs 也是全局使用 evil 包，这样对于类似我这样的 vim 党比较容易适应；二是 doom-emacs 里进行了比较深的封装，导致有些个性化配置不能生效。比如我想在 telega 里使用 telega-company-emoji 包进行表情补全，却发现按照官网的示例无论如何都不能生效，最后发现还是 doom-emacs 对 company-backends 的特殊处理造成的。因此对配置进行了一些修改，总算能正常使用了，现在贴出最终配置（11 月 21 日更新，注意在 packages.el 里加上 telega 包）：</p>
 <div class="highlight"><div class="chroma">
@@ -262,6 +267,8 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
+      <a href="https://github.com/cnsunyour" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/cnsunyour" class="iconfont icon-gitlab" title="gitlab"></a>
   <a href="https://sunyour.org/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
@@ -280,7 +287,7 @@
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>

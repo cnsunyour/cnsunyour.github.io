@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.61.0 with theme even" />
+<meta name="generator" content="Hugo 0.62.2 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/20160327-emacs-org-to-pdf-with-latex/" />
@@ -136,11 +136,11 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#-pdf--pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}</a>
+    <li><a href="#如何能正确把中文导出成-pdf-如何能正确把中文导出成-pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}</a>
       <ul>
-        <li><a href="#-latex---latex-">安装 LaTeX 应用程序 {#安装 latex 应用程序}</a></li>
-        <li><a href="#-ctex---ctex-">调用 CTeX 宏包 {#调用 ctex 宏包}</a></li>
-        <li><a href="#-xelatex---xelatex-">使用 XeLaTeX 程序进行编译转换 {#使用 xelatex 程序进行编译转换}</a></li>
+        <li><a href="#安装-latex-应用程序-安装-latex-应用程序">安装 LaTeX 应用程序 {#安装 latex 应用程序}</a></li>
+        <li><a href="#调用-ctex-宏包-调用-ctex-宏包">调用 CTeX 宏包 {#调用 ctex 宏包}</a></li>
+        <li><a href="#使用-xelatex-程序进行编译转换-使用-xelatex-程序进行编译转换">使用 XeLaTeX 程序进行编译转换 {#使用 xelatex 程序进行编译转换}</a></li>
         <li><a href="#示例">示例</a></li>
       </ul>
     </li>
@@ -154,12 +154,12 @@
     </div>
   </div>
     <div class="post-content">
-      <h2 id="-pdf--pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}</h2>
+      <h2 id="如何能正确把中文导出成-pdf-如何能正确把中文导出成-pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}</h2>
 <p>网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分：</p>
-<h3 id="-latex---latex-">安装 LaTeX 应用程序 {#安装 latex 应用程序}</h3>
+<h3 id="安装-latex-应用程序-安装-latex-应用程序">安装 LaTeX 应用程序 {#安装 latex 应用程序}</h3>
 <p>我的电脑是 Mac，直接安装 MacTeX，就是有点大，安装包要 2.68G，听说 BasicTeX 要小的多，不知道能不能用，有兴趣的同学可以试试。</p>
 <p>另外，如果系统是最新版的 OSX 10.11，那安装完 MacTeX 后一定要 update 到最新版，最主要解决的是在 OSX 10.11 下不能在/usr 目录下建 texbin 目录的问题，最新版会在/Library/Support 目录下也建一个 texbin 目录的符号链接，并加入到 PATH 环境变量中，供读取。</p>
-<h3 id="-ctex---ctex-">调用 CTeX 宏包 {#调用 ctex 宏包}</h3>
+<h3 id="调用-ctex-宏包-调用-ctex-宏包">调用 CTeX 宏包 {#调用 ctex 宏包}</h3>
 <p>CTeX 是专为处理中文而定制的宏包，能够根据不同平台自动调用相应的中文字体，达到正常转换的目的。添加方法是在 org 文件头增加如下代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -169,7 +169,7 @@
 <pre class="chroma"><code class="language-org" data-lang="org"><span class="cs">#+LATEX_HEADER</span><span class="c">: \usepackage[UTF8]{ctex}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="-xelatex---xelatex-">使用 XeLaTeX 程序进行编译转换 {#使用 xelatex 程序进行编译转换}</h3>
+</div><h3 id="使用-xelatex-程序进行编译转换-使用-xelatex-程序进行编译转换">使用 XeLaTeX 程序进行编译转换 {#使用 xelatex 程序进行编译转换}</h3>
 <p>有两个方法，一是在 org 文件头进行指定，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -252,6 +252,8 @@
 
     <footer id="footer" class="footer">
       <div class="social-links">
+      <a href="https://github.com/cnsunyour" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/cnsunyour" class="iconfont icon-gitlab" title="gitlab"></a>
   <a href="https://sunyour.org/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
@@ -270,7 +272,7 @@
   <span class="copyright-year">
     &copy; 
     2015 - 
-    2019
+    2020
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
