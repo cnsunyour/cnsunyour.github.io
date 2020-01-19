@@ -6,10 +6,19 @@
     <description>Recent content in Computer on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 12 Jan 2020 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jan 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/categories/computer/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>telega.el阶段性配置小结</title>
+      <link>https://sunyour.org/post/telega-dot-el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Sun, 19 Jan 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/post/telega-dot-el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</guid>
+      <description>经过一段时间的调整，telega.el 的配置也基本固定了，都是一些细节上的小调整。另外自己加了个 advice，根据不同类型的 chatbuf 自动激活或关闭</description>
+    </item>
     
     <item>
       <title>模块化拆分doom-private-config的收获</title>

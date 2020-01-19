@@ -3,62 +3,69 @@
   
   <url>
     <loc>https://sunyour.org/categories/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/categories/computer/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/tags/doom/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/tags/emacs/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/post/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/tags/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://sunyour.org/tags/theme/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <loc>https://sunyour.org/post/telega-dot-el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</loc>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/</loc>
-    <lastmod>2020-01-13T23:02:15+08:00</lastmod>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/tags/theme/</loc>
     <lastmod>2020-01-13T23:02:15+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
