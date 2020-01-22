@@ -117,14 +117,14 @@
       <div class="post-category">
           <a href="/categories/computer/"> Computer </a>
           </div>
-        <span class="more-meta"> 约 124 字 </span>
+        <span class="more-meta"> 约 143 字 </span>
         <span class="more-meta"> 预计阅读 1 分钟 </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      在 mac 上通过 brew install dbus 安装好 dbus 后，却无论如何无法启动，试过 &ndash;HEAD 也是不行。后来看到源码包里的 org.freedesktop.dbus-session.plist.in 里有这么几行： ```xml ``` 看说明，是要在 10.14 版加这一段，我猜 10.15 估计
+      在 mac 上通过 brew install dbus 安装好 dbus 后，却无论如何无法启动，试过 &ndash;HEAD 也是不行。后来看到源码包里的 org.freedesktop.dbus-session.plist.in 里有这么几行： 1 2 3 4 5 &lt;!--Please uncomment on 10.4; OnDemand doesn&#39;t work properly there. --&gt; &lt;!--&lt;key&gt;OnDemand&lt;/key&gt; &lt;false /&gt; --&gt; 看说
     </div>
     <div class="read-more">
       <a href="/post/%E5%9C%A8-macos-10-dot-14-plus-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/" class="read-more-link">阅读更多</a>
