@@ -3,14 +3,56 @@
   
   <url>
     <loc>https://sunyour.org/categories/</loc>
-    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/categories/computer/</loc>
-    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/tags/dbus/</loc>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/tags/emacs/</loc>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/post/</loc>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/tags/</loc>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/</loc>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/post/%E5%9C%A8-macos-10-dot-14-plus-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/</loc>
+    <lastmod>2020-01-22T18:00:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -23,35 +65,7 @@
   </url>
   
   <url>
-    <loc>https://sunyour.org/tags/emacs/</loc>
-    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/post/</loc>
-    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/tags/</loc>
-    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://sunyour.org/post/telega-dot-el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</loc>
-    <lastmod>2020-01-19T18:35:01+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/</loc>
     <lastmod>2020-01-19T18:35:01+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
