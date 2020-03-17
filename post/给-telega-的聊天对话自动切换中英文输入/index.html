@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>给 telega 的聊天对话自动切换中英文输入 - 不一般的凡 - 墩墩家的幸福生活</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="不一般的凡" /><meta name="description" content="现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不" /><meta name="keywords" content="墩墩, 不一般的凡, 编程, 技术, 家庭, 生活, 幸福" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.67.1 with theme even" />
+
+
+<link rel="canonical" href="https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+<meta property="og:title" content="给 telega 的聊天对话自动切换中英文输入" />
+<meta property="og:description" content="现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/" />
+<meta property="article:published_time" content="2020-03-17T00:00:00+08:00" />
+<meta property="article:modified_time" content="2020-03-17T16:43:31+08:00" />
+<meta itemprop="name" content="给 telega 的聊天对话自动切换中英文输入">
+<meta itemprop="description" content="现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不">
+<meta itemprop="datePublished" content="2020-03-17T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2020-03-17T16:43:31&#43;08:00" />
+<meta itemprop="wordCount" content="803">
+
+
+
+<meta itemprop="keywords" content="telega,rime,emacs," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="给 telega 的聊天对话自动切换中英文输入"/>
+<meta name="twitter:description" content="现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">不一般的凡</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">全部文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">不一般的凡</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">全部文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">给 telega 的聊天对话自动切换中英文输入</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-17 </span>
+        
+          <span class="more-meta"> 约 803 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents"></nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不同的 buffer 里主动激活或关闭输入法，达到接近完美的自动切换功能。</p>
+<p>因此在之前给 telega 写了个 advice ，把需要指定中英文的 chatbuf 写在配置文件中，可以做到进不同的频道切换自动切换中英文。但这样做有一个缺点，就是如果中英文频道信息有变化（包括群组名称变化），则需要修改配置文件后重新加载才能生效。</p>
+<p>嗯，用群友的话说，这很不优雅。</p>
+<p>于是今天抽空把配置里的中英文 chatbuf 列表进行持久化保存，并且改为保存 chatid ，避免修改名称引起的切换失效。</p>
+<p>代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;;; cnsunyour/telega/+telega-auto-input-method.el -*- lexical-binding: t; -*-</span>
+
+
+<span class="p">(</span><span class="nb">defcustom</span> <span class="nv">+telega--chat-cn-list</span> <span class="no">nil</span>
+  <span class="s">&#34;</span><span class="ss">`telega&#39;</span><span class="s"> 里中文对话列表，用于自动切换到中文输入。&#34;</span>
+  <span class="nb">:type</span> <span class="ss">&#39;list</span>
+  <span class="nb">:group</span> <span class="ss">&#39;telega</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defcustom</span> <span class="nv">+telega--chat-en-list</span> <span class="no">nil</span>
+  <span class="s">&#34;</span><span class="ss">`telega&#39;</span><span class="s"> 里英文对话列表，用于自动切换到英文输入。&#34;</span>
+  <span class="nb">:type</span> <span class="ss">&#39;list</span>
+  <span class="nb">:group</span> <span class="ss">&#39;telega</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">+telega--save-encn-list</span> <span class="p">()</span>
+  <span class="s">&#34;保存中英文对话列表。&#34;</span>
+  <span class="p">(</span><span class="nv">customize-save-variable</span> <span class="ss">&#39;+telega--chat-cn-list</span> <span class="nv">+telega--chat-cn-list</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">customize-save-variable</span> <span class="ss">&#39;+telega--chat-en-list</span> <span class="nv">+telega--chat-en-list</span><span class="p">))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">+telega--add-cn-list</span> <span class="p">(</span><span class="nv">chat</span><span class="p">)</span>
+  <span class="s">&#34;将当前聊天对话加入到中文列表中，以自动激活中文输入法。&#34;</span>
+  <span class="p">(</span><span class="nb">interactive</span> <span class="p">(</span><span class="nf">list</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">telega-chatbuf--chat</span>
+                         <span class="nv">telega--chat</span>
+                         <span class="p">(</span><span class="nv">telega-chat-at</span> <span class="p">(</span><span class="nf">point</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">chatid</span> <span class="p">(</span><span class="nf">plist-get</span> <span class="nv">chat</span> <span class="nb">:id</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">cl-pushnew</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-cn-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">setq</span> <span class="nv">+telega--chat-en-list</span> <span class="p">(</span><span class="nv">cl-remove</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-en-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">+telega--save-encn-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;telega.el: Chat [\&#34;&#34;</span>
+                     <span class="p">(</span><span class="nv">telega-chat-title</span> <span class="nv">chat</span><span class="p">)</span>
+                     <span class="s">&#34;\&#34;] is added to CN chat list.&#34;</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">+telega--add-en-list</span> <span class="p">(</span><span class="nv">chat</span><span class="p">)</span>
+  <span class="s">&#34;将当前聊天对话加入到英文列表中，以自动关闭中文输入法。&#34;</span>
+  <span class="p">(</span><span class="nb">interactive</span> <span class="p">(</span><span class="nf">list</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">telega-chatbuf--chat</span>
+                         <span class="nv">telega--chat</span>
+                         <span class="p">(</span><span class="nv">telega-chat-at</span> <span class="p">(</span><span class="nf">point</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">chatid</span> <span class="p">(</span><span class="nf">plist-get</span> <span class="nv">chat</span> <span class="nb">:id</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">cl-pushnew</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-en-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">setq</span> <span class="nv">+telega--chat-cn-list</span> <span class="p">(</span><span class="nv">cl-remove</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-cn-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">+telega--save-encn-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;telega.el: Chat [\&#34;&#34;</span>
+                     <span class="p">(</span><span class="nv">telega-chat-title</span> <span class="nv">chat</span><span class="p">)</span>
+                     <span class="s">&#34;\&#34;] is added to EN chat list.&#34;</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">+telega--remove-from-list</span> <span class="p">(</span><span class="nv">chat</span><span class="p">)</span>
+  <span class="s">&#34;将当前聊天对话从中英文列表中删除，将根据对话名称自动切换中英文输入法。&#34;</span>
+  <span class="p">(</span><span class="nb">interactive</span> <span class="p">(</span><span class="nf">list</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">telega-chatbuf--chat</span>
+                         <span class="nv">telega--chat</span>
+                         <span class="p">(</span><span class="nv">telega-chat-at</span> <span class="p">(</span><span class="nf">point</span><span class="p">)))))</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">chatid</span> <span class="p">(</span><span class="nf">plist-get</span> <span class="nv">chat</span> <span class="nb">:id</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">setq</span> <span class="nv">+telega--chat-en-list</span> <span class="p">(</span><span class="nv">cl-remove</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-en-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="nb">setq</span> <span class="nv">+telega--chat-cn-list</span> <span class="p">(</span><span class="nv">cl-remove</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-cn-list</span><span class="p">))</span>
+    <span class="p">(</span><span class="nv">+telega--save-encn-list</span><span class="p">)</span>
+    <span class="p">(</span><span class="nf">message</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;telega.el: Chat [\&#34;&#34;</span>
+                     <span class="p">(</span><span class="nv">telega-chat-title</span> <span class="nv">chat</span><span class="p">)</span>
+                     <span class="s">&#34;\&#34;] is removed from EN/CN chat list.&#34;</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+toggle-input-method--telega-chat-mode-a</span> <span class="p">(</span><span class="nv">chat</span> <span class="kp">&amp;optional</span> <span class="nv">no-history-load</span><span class="p">)</span>
+  <span class="s">&#34;在 telega-chat-mode 里根据 chat 名称切换输入法，如果名称包含
+</span><span class="s">中文，则激活中文输入法，否则关闭中文输入法&#34;</span>
+  <span class="nb">:after</span> <span class="nf">#&#39;</span><span class="nv">telega-chat--pop-to-buffer</span>
+  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">input-method</span> <span class="nv">default-input-method</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">title</span> <span class="p">(</span><span class="nv">telega-chat-title</span> <span class="nv">chat</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">chatid</span> <span class="p">(</span><span class="nf">plist-get</span> <span class="nv">chat</span> <span class="nb">:id</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nf">member</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-cn-list</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">))</span>
+          <span class="p">((</span><span class="nf">member</span> <span class="nv">chatid</span> <span class="nv">+telega--chat-en-list</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">))</span>
+          <span class="p">((</span><span class="nf">string-match</span> <span class="s">&#34;\\cc&#34;</span> <span class="nv">title</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">))</span>
+          <span class="p">((</span><span class="nv">telega-chat-bot-p</span> <span class="nv">chat</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">))</span>
+          <span class="p">((</span><span class="nv">telega-chat-private-p</span> <span class="nv">chat</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">))</span>
+          <span class="p">(</span><span class="no">t</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">)))))</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">不一般的凡</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-03-17
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/telega/">telega</a>
+          <a href="/tags/rime/">rime</a>
+          <a href="/tags/emacs/">emacs</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">emacs 内置输入法正式改用 emacs-rime</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E5%9C%A8-macos-10-dot-14-plus-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/">
+            <span class="next-text nav-default">在 macos 上启动 dbus</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+    <script src="https://utteranc.es/client.js"
+            repo="cnsunyour/cnsunyour.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://github.com/cnsunyour" class="iconfont icon-github" title="github"></a>
+      <a href="https://gitlab.com/cnsunyour" class="iconfont icon-gitlab" title="gitlab"></a>
+  <a href="https://sunyour.org/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2015 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">凡(cnsunyour)</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+    <script type="text/javascript" src="/lib/timeago/timeago-3.0.2.min.js"></script>
+    <script type="text/javascript" src="/lib/timeago/timeago.locales-3.0.2.min.js"></script>
+  <script><!-- NOTE: timeago.js uses the language code format like "zh_CN" (underscore and case sensitive) -->
+    var languageCode = "zh-cn".replace(/-/g, '_').replace(/_(.*)/, function ($0, $1) {return $0.replace($1, $1.toUpperCase());});
+    timeago().render(document.querySelectorAll('.timeago'), languageCode);
+    timeago.cancel();  
+  </script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
