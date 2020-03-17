@@ -6,10 +6,19 @@
     <description>Recent content in emacs on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 22 Jan 2020 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Mar 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>emacs 内置输入法正式改用 emacs-rime</title>
+      <link>https://sunyour.org/post/emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/post/emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</guid>
+      <description>从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中</description>
+    </item>
     
     <item>
       <title>在 macos 上启动 dbus</title>

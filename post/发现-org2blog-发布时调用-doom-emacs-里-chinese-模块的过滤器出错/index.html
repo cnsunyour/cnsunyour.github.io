@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.67.1 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E5%8F%91%E7%8E%B0-org2blog-%E5%8F%91%E5%B8%83%E6%97%B6%E8%B0%83%E7%94%A8-doom-emacs-%E9%87%8C-chinese-%E6%A8%A1%E5%9D%97%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%87%BA%E9%94%99/" />
@@ -48,7 +48,7 @@
 <meta itemprop="description" content="今天发文一直发不出去，百思不得其解，打开 debug 跟踪一下，发现是调用了 doom-emacs 里 chinese 模块的过滤器出错，改用 spacemacs chinese layer 里的代码可以修复此问题（需要禁用 doom-emacs 里的 chinese m">
 <meta itemprop="datePublished" content="2019-08-01T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-08T03:25:29&#43;08:00" />
-<meta itemprop="wordCount" content="401">
+<meta itemprop="wordCount" content="404">
 
 
 
@@ -124,7 +124,7 @@
         <div class="post-category">
             <a href="/categories/computer/"> Computer </a>
             </div>
-          <span class="more-meta"> 约 401 字 </span>
+          <span class="more-meta"> 约 404 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -137,7 +137,7 @@
   </div>
 </div>
   <div class="post-outdated">
-    <div class="hint">
+    <div class="warn">
       <p>【注意】最后更新于 <span class="timeago" datetime="2019-09-08T03:25:29" title="September 8, 2019">September 8, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
     </div>
   </div>
@@ -160,15 +160,15 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nb">defadvice</span> <span class="nv">org-html-paragraph</span> <span class="p">(</span><span class="nv">before</span> <span class="nv">org-html-paragraph-advice</span>
                                       <span class="p">(</span><span class="nv">paragraph</span> <span class="nv">contents</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">activate</span><span class="p">)</span>
-  <span class="s">&#34;</span><span class="s">Join consecutive Chinese lines into a single long line without
-</span><span class="s">unwanted space when exporting org-mode to html.</span><span class="s">&#34;</span>
-  <span class="p">(</span><span class="nb">let*</span> <span class="p">(</span><span class="p">(</span><span class="nv">origin-contents</span> <span class="p">(</span><span class="nv">ad-get-arg</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span>
-         <span class="p">(</span><span class="nv">fix-regexp</span> <span class="s">&#34;</span><span class="s">[[:multibyte:]]</span><span class="s">&#34;</span><span class="p">)</span>
+  <span class="s">&#34;Join consecutive Chinese lines into a single long line without
+</span><span class="s">unwanted space when exporting org-mode to html.&#34;</span>
+  <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">origin-contents</span> <span class="p">(</span><span class="nv">ad-get-arg</span> <span class="mi">1</span><span class="p">))</span>
+         <span class="p">(</span><span class="nv">fix-regexp</span> <span class="s">&#34;[[:multibyte:]]&#34;</span><span class="p">)</span>
          <span class="p">(</span><span class="nv">fixed-contents</span>
           <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
            <span class="p">(</span><span class="nf">concat</span>
-            <span class="s">&#34;</span><span class="s">\\</span><span class="s">(</span><span class="s">&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">) *</span><span class="s">\n</span><span class="s"> *</span><span class="s">\\</span><span class="s">(</span><span class="s">&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">)</span><span class="s">&#34;</span><span class="p">)</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">1</span><span class="s">\\</span><span class="s">2</span><span class="s">&#34;</span> <span class="nv">origin-contents</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">ad-set-arg</span> <span class="mi">1</span> <span class="nv">fixed-contents</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+            <span class="s">&#34;\\(&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;\\) *\n *\\(&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;\\)&#34;</span><span class="p">)</span> <span class="s">&#34;\\1\\2&#34;</span> <span class="nv">origin-contents</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">ad-set-arg</span> <span class="mi">1</span> <span class="nv">fixed-contents</span><span class="p">)))</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>*<strong>*8 月 8 日更新**</strong> 使用如下代码彻底解决此问题：</p>
@@ -194,22 +194,22 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+chinese--org-html-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
-  <span class="s">&#34;</span><span class="s">Join consecutive Chinese lines into a single long line without
-</span><span class="s">unwanted space when exporting org-mode to html.</span><span class="s">&#34;</span>
+  <span class="s">&#34;Join consecutive Chinese lines into a single long line without
+</span><span class="s">unwanted space when exporting org-mode to html.&#34;</span>
   <span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-html-paragraph</span>
   <span class="p">(</span><span class="nb">cl-destructuring-bind</span> <span class="p">(</span><span class="nv">paragraph</span> <span class="nv">content</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">args</span>
-    <span class="p">(</span><span class="nb">let*</span> <span class="p">(</span><span class="p">(</span><span class="nv">fix-regexp</span> <span class="s">&#34;</span><span class="s">[[:multibyte:]a-zA-Z0-9]</span><span class="s">&#34;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">fix-regexp</span> <span class="s">&#34;[[:multibyte:]a-zA-Z0-9]&#34;</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">origin-contents</span> <span class="nv">content</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">fixed-contents</span>
             <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-             <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">(</span><span class="s">&#34;</span>
+             <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;\\(&#34;</span>
                      <span class="nv">fix-regexp</span>
-                     <span class="s">&#34;</span><span class="s">\\</span><span class="s">) *</span><span class="s">\\</span><span class="s">(&lt;[Bb][Rr] */&gt;</span><span class="s">\\</span><span class="s">)?</span><span class="s">\n</span><span class="s"> *</span><span class="s">\\</span><span class="s">(</span><span class="s">&#34;</span>
+                     <span class="s">&#34;\\) *\\(&lt;[Bb][Rr] */&gt;\\)?\n *\\(&#34;</span>
                      <span class="nv">fix-regexp</span>
-                     <span class="s">&#34;</span><span class="s">\\</span><span class="s">)</span><span class="s">&#34;</span><span class="p">)</span>
-             <span class="s">&#34;</span><span class="s">\\</span><span class="s">1</span><span class="s">\\</span><span class="s">3</span><span class="s">&#34;</span>
-             <span class="nv">origin-contents</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+                     <span class="s">&#34;\\)&#34;</span><span class="p">)</span>
+             <span class="s">&#34;\\1\\3&#34;</span>
+             <span class="nv">origin-contents</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">))))</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>*<strong>*8 月 31 日更新**</strong> 上述代码也有 Bug，也就是两边全是英文字符时有不能替换，更新 advice 代码（同时也向 doom-emacs 提交 PR）：</p>
@@ -235,22 +235,22 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+chinese--org-html-paragraph-a</span> <span class="p">(</span><span class="nv">args</span><span class="p">)</span>
-  <span class="s">&#34;</span><span class="s">Join consecutive Chinese lines into a single long line without
-</span><span class="s">unwanted space when exporting org-mode to html.</span><span class="s">&#34;</span>
+  <span class="s">&#34;Join consecutive Chinese lines into a single long line without
+</span><span class="s">unwanted space when exporting org-mode to html.&#34;</span>
   <span class="nb">:filter-args</span> <span class="nf">#&#39;</span><span class="nv">org-html-paragraph</span>
   <span class="p">(</span><span class="nb">cl-destructuring-bind</span> <span class="p">(</span><span class="nv">paragraph</span> <span class="nv">content</span> <span class="nv">info</span><span class="p">)</span> <span class="nv">args</span>
-    <span class="p">(</span><span class="nb">let*</span> <span class="p">(</span><span class="p">(</span><span class="nv">fix-regexp</span> <span class="s">&#34;</span><span class="s">[[:multibyte:]]</span><span class="s">&#34;</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">fix-regexp</span> <span class="s">&#34;[[:multibyte:]]&#34;</span><span class="p">)</span>
            <span class="p">(</span><span class="nv">origin-contents</span>
             <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-             <span class="s">&#34;</span><span class="s">&lt;[Bb][Rr] */&gt;</span><span class="s">&#34;</span>
-             <span class="s">&#34;</span><span class="s">&#34;</span>
-             <span class="nv">content</span><span class="p">)</span><span class="p">)</span>
+             <span class="s">&#34;&lt;[Bb][Rr] */&gt;&#34;</span>
+             <span class="s">&#34;&#34;</span>
+             <span class="nv">content</span><span class="p">))</span>
            <span class="p">(</span><span class="nv">fixed-contents</span>
             <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
-             <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">(</span><span class="s">&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">) *</span><span class="s">\n</span><span class="s"> *</span><span class="s">\\</span><span class="s">(</span><span class="s">&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">)</span><span class="s">&#34;</span><span class="p">)</span>
-             <span class="s">&#34;</span><span class="s">\\</span><span class="s">1</span><span class="s">\\</span><span class="s">2</span><span class="s">&#34;</span>
-             <span class="nv">origin-contents</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+             <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;\\(&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;\\) *\n *\\(&#34;</span> <span class="nv">fix-regexp</span> <span class="s">&#34;\\)&#34;</span><span class="p">)</span>
+             <span class="s">&#34;\\1\\2&#34;</span>
+             <span class="nv">origin-contents</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">list</span> <span class="nv">paragraph</span> <span class="nv">fixed-contents</span> <span class="nv">info</span><span class="p">))))</span>
 </code></pre></td></tr></table>
 </div>
 </div>

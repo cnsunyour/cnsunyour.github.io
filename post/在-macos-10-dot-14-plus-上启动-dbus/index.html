@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.67.1 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E5%9C%A8-macos-10-dot-14-plus-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/" />
@@ -48,7 +48,7 @@
 <meta itemprop="description" content="（ 注 ：竟然是误打误撞给蒙到了，把注释里的 10.4 看成了 10.14，以为是对 10.14&#43; 版本有效，看来是对老版本的兼容处理，但是不知道为什么我现在是 10.15 了，竟然">
 <meta itemprop="datePublished" content="2020-01-22T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-22T21:53:47&#43;08:00" />
-<meta itemprop="wordCount" content="240">
+<meta itemprop="wordCount" content="242">
 
 
 
@@ -124,7 +124,7 @@
         <div class="post-category">
             <a href="/categories/computer/"> Computer </a>
             </div>
-          <span class="more-meta"> 约 240 字 </span>
+          <span class="more-meta"> 约 242 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
         
       </div>
@@ -136,6 +136,11 @@
     <nav id="TableOfContents"></nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2020-01-22T21:53:47" title="January 22, 2020">January 22, 2020</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>（ <strong>注</strong> ：竟然是误打误撞给蒙到了，把注释里的 10.4 看成了 10.14，以为是对 10.14+ 版本有效，看来是对老版本的兼容处理，但是不知道为什么我现在是 10.15 了，竟然用这个方法解决了。）</p>
 <p>在 mac 上通过 brew install dbus 安装好 dbus 后，却无论如何无法启动，试过&ndash;HEAD 也是不行。后来看到源码包里的 &lsquo;org.freedesktop.dbus-session.plist.in&rsquo; 文件里有这么几行：</p>
@@ -148,11 +153,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">	<span class="c">&lt;!--</span><span class="c"> Please uncomment on 10.4; OnDemand doesn&#39;t work properly there. </span><span class="c">--&gt;</span>
-	<span class="c">&lt;!--</span><span class="c">
+<pre class="chroma"><code class="language-xml" data-lang="xml">	<span class="c">&lt;!-- Please uncomment on 10.4; OnDemand doesn&#39;t work properly there. --&gt;</span>
+	<span class="c">&lt;!--
 </span><span class="c">	&lt;key&gt;OnDemand&lt;/key&gt;
 </span><span class="c">	&lt;false /&gt;
-</span><span class="c">	</span><span class="c">--&gt;</span>
+</span><span class="c">	--&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>看说明，是要在 10.4 版加这一段，不知道我的系统是不是也一样，本着试一试的想法把</p>
@@ -162,8 +167,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;key</span><span class="nt">&gt;</span>OnDemand<span class="nt">&lt;/key&gt;</span>
-<span class="nt">&lt;false</span><span class="nt">/&gt;</span>
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;key&gt;</span>OnDemand<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;false/&gt;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>加到 &lsquo;/usr/local/Cellar/dbus/1.12.16/org.freedesktop.dbus-session.plist&rsquo; 里，然后重新执行</p>
@@ -200,7 +205,11 @@
           <a href="/tags/emacs/">Emacs</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/post/emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">emacs 内置输入法正式改用 emacs-rime</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         <a class="next" href="/post/telega-dot-el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/">
             <span class="next-text nav-default">telega.el阶段性配置小结</span>
             <span class="next-text nav-mobile">下一篇</span>

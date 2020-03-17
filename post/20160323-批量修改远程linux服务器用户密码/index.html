@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.67.1 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/20160323-%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E8%BF%9C%E7%A8%8Blinux%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81/" />
@@ -138,7 +138,7 @@
   </div>
 </div>
   <div class="post-outdated">
-    <div class="hint">
+    <div class="warn">
       <p>【注意】最后更新于 <span class="timeago" datetime="2019-09-08T03:12:16" title="September 8, 2019">September 8, 2019</span>，文中内容可能已过时，请谨慎使用。</p>
     </div>
   </div>
@@ -272,7 +272,7 @@ expect <span class="o">{</span>
     -re <span class="s2">&#34;Are you sure you want to continue connecting (yes/no)?&#34;</span> <span class="o">{</span>
         send <span class="s2">&#34;yes\r&#34;</span>
     <span class="o">}</span> -re <span class="s2">&#34;assword:&#34;</span> <span class="o">{</span>
-        send <span class="s2">&#34;</span><span class="nv">$loginpass</span><span class="s2">\r</span><span class="s2">&#34;</span>
+        send <span class="s2">&#34;</span><span class="nv">$loginpass</span><span class="s2">\r&#34;</span>
     <span class="o">}</span> -re <span class="s2">&#34;Permission denied, please try again.&#34;</span> <span class="o">{</span>
         <span class="nb">exit</span>
     <span class="o">}</span> -re <span class="s2">&#34;Connection refused&#34;</span> <span class="o">{</span>
@@ -287,19 +287,19 @@ expect <span class="o">{</span>
 <span class="o">}</span>
 
 <span class="c1">#-------------------------------------------修改密码</span>
-send <span class="s2">&#34;</span><span class="s2">sudo passwd </span><span class="nv">$passuser</span><span class="s2"> \r</span><span class="s2">&#34;</span><span class="p">;</span>
+send <span class="s2">&#34;sudo passwd </span><span class="nv">$passuser</span><span class="s2"> \r&#34;</span><span class="p">;</span>
 expect <span class="o">{</span>
-    <span class="s2">&#34;</span><span class="s2">password for </span><span class="nv">$loginuser</span><span class="s2">:</span><span class="s2">&#34;</span> <span class="o">{</span>
-        send <span class="s2">&#34;</span><span class="nv">$loginpass</span><span class="s2">\r</span><span class="s2">&#34;</span>
+    <span class="s2">&#34;password for </span><span class="nv">$loginuser</span><span class="s2">:&#34;</span> <span class="o">{</span>
+        send <span class="s2">&#34;</span><span class="nv">$loginpass</span><span class="s2">\r&#34;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 
 expect <span class="o">{</span>
     <span class="s2">&#34;New password:&#34;</span> <span class="o">{</span>
-        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r</span><span class="s2">&#34;</span>
+        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r&#34;</span>
     <span class="o">}</span>
     <span class="s2">&#34;新的 密码：&#34;</span> <span class="o">{</span>
-        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r</span><span class="s2">&#34;</span>
+        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r&#34;</span>
     <span class="o">}</span>
     <span class="s2">&#34;passwd: Only root can specify a user name.&#34;</span> <span class="o">{</span>
         <span class="nb">exit</span>
@@ -308,10 +308,10 @@ expect <span class="o">{</span>
 
 expect <span class="o">{</span>
     <span class="s2">&#34;Retype new password:&#34;</span> <span class="o">{</span>
-        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r</span><span class="s2">&#34;</span>
+        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r&#34;</span>
     <span class="o">}</span>
     <span class="s2">&#34;重新输入新的 密码：&#34;</span> <span class="o">{</span>
-        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r</span><span class="s2">&#34;</span>
+        send <span class="s2">&#34;</span><span class="nv">$newpass</span><span class="s2">\r&#34;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 

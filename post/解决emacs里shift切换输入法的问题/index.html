@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.67.1 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/" />
@@ -201,18 +201,18 @@
             <span class="nt">&#34;modifiers&#34;</span><span class="p">:</span> <span class="p">{</span>
               <span class="nt">&#34;optional&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;any&#34;</span><span class="p">]</span>
             <span class="p">}</span>
-          <span class="p">}</span><span class="p">,</span>
+          <span class="p">},</span>
           <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
               <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;left_shift&#34;</span>
             <span class="p">}</span>
-          <span class="p">]</span><span class="p">,</span>
+          <span class="p">],</span>
           <span class="nt">&#34;to_if_alone&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
               <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;backslash&#34;</span><span class="p">,</span>
               <span class="nt">&#34;modifiers&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;left_control&#34;</span><span class="p">]</span>
             <span class="p">}</span>
-          <span class="p">]</span><span class="p">,</span>
+          <span class="p">],</span>
           <span class="nt">&#34;conditions&#34;</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
               <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;frontmost_application_if&#34;</span><span class="p">,</span>
@@ -280,8 +280,8 @@
             <span class="nt">&#34;manipulators&#34;</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span>
                     <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;basic&#34;</span><span class="p">,</span>
-                    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="err">&lt;</span><span class="err">%</span><span class="err">=</span> <span class="err">f</span><span class="err">r</span><span class="err">o</span><span class="err">m</span><span class="err">(</span><span class="s2">&#34;left_shift&#34;</span><span class="p">,</span> <span class="err">[</span><span class="err">]</span><span class="err">,</span> <span class="err">[</span><span class="nt">&#34;any&#34;</span><span class="err">]</span><span class="err">)</span> <span class="err">%</span><span class="err">&gt;</span><span class="p">,</span>
-                    <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="err">&lt;</span><span class="err">%</span><span class="err">=</span> <span class="err">t</span><span class="err">o</span><span class="err">(</span><span class="p">[</span><span class="p">[</span><span class="s2">&#34;left_shift&#34;</span><span class="p">]</span><span class="p">]</span><span class="err">)</span> <span class="err">%</span><span class="err">&gt;</span><span class="p">,</span>
+                    <span class="nt">&#34;from&#34;</span><span class="p">:</span> <span class="err">&lt;%=</span> <span class="err">from(</span><span class="s2">&#34;left_shift&#34;</span><span class="p">,</span> <span class="err">[],</span> <span class="err">[</span><span class="nt">&#34;any&#34;</span><span class="err">])</span> <span class="err">%&gt;</span><span class="p">,</span>
+                    <span class="nt">&#34;to&#34;</span><span class="p">:</span> <span class="err">&lt;%=</span> <span class="err">to(</span><span class="p">[[</span><span class="s2">&#34;left_shift&#34;</span><span class="p">]]</span><span class="err">)</span> <span class="err">%&gt;</span><span class="p">,</span>
                     <span class="nt">&#34;to_if_alone&#34;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="p">{</span>
                             <span class="nt">&#34;key_code&#34;</span><span class="p">:</span> <span class="s2">&#34;backslash&#34;</span><span class="p">,</span>
@@ -289,7 +289,7 @@
                               <span class="s2">&#34;left_control&#34;</span>
                             <span class="p">]</span>
                         <span class="p">}</span>
-                    <span class="p">]</span><span class="p">,</span>
+                    <span class="p">],</span>
                     <span class="nt">&#34;conditions&#34;</span><span class="p">:</span> <span class="p">[</span>
                         <span class="p">{</span>
                             <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;frontmost_application_if&#34;</span><span class="p">,</span>

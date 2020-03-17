@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2 with theme even" />
+<meta name="generator" content="Hugo 0.67.1 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/telega-dot-el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/" />
@@ -137,6 +137,11 @@
     <nav id="TableOfContents"></nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2020-01-19T18:35:01" title="January 19, 2020">January 19, 2020</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>经过一段时间的调整，telega.el 的配置也基本固定了，都是一些细节上的小调整。另外自己加了个 advice，根据不同类型的 chatbuf 自动激活或关闭中文输入法，现在基本上做到进入 chatbuf 不需要切换输入法了。全部配置代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -216,73 +221,73 @@
 <pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nv">use-package!</span> <span class="nv">telega</span>
   <span class="nb">:commands</span> <span class="p">(</span><span class="nv">telega</span><span class="p">)</span>
   <span class="nb">:defer</span> <span class="no">t</span>
-  <span class="nb">:bind</span> <span class="p">(</span><span class="s">&#34;</span><span class="s">C-M-S-s-t</span><span class="s">&#34;</span> <span class="o">.</span> <span class="nf">#&#39;</span><span class="nv">telega</span><span class="p">)</span>
+  <span class="nb">:bind</span> <span class="p">(</span><span class="s">&#34;C-M-S-s-t&#34;</span> <span class="o">.</span> <span class="nf">#&#39;</span><span class="nv">telega</span><span class="p">)</span>
   <span class="nb">:init</span>
-  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">)</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">telega-use-images</span> <span class="no">nil</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">)</span> <span class="p">(</span><span class="nb">setq</span> <span class="nv">telega-use-images</span> <span class="no">nil</span><span class="p">))</span>
   <span class="nb">:hook</span>
   <span class="p">(</span><span class="ss">&#39;telega-chat-mode</span> <span class="o">.</span> <span class="nf">#&#39;</span><span class="nv">yas-minor-mode-on</span><span class="p">)</span>
-  <span class="p">(</span><span class="ss">&#39;telega-chat-mode</span> <span class="o">.</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
+  <span class="p">(</span><span class="ss">&#39;telega-chat-mode</span> <span class="o">.</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
                          <span class="p">(</span><span class="nv">set-company-backend!</span> <span class="ss">&#39;telega-chat-mode</span>
                            <span class="p">(</span><span class="nf">append</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-company-emoji</span>
                                      <span class="nv">telega-company-username</span>
                                      <span class="nv">telega-company-hashtag</span><span class="p">)</span>
                                    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">telega-chat-bot-p</span> <span class="nv">telega-chatbuf--chat</span><span class="p">)</span>
-                                     <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-company-botcmd</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+                                     <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-company-botcmd</span><span class="p">))))))</span>
   <span class="p">(</span><span class="ss">&#39;telega-chat-pre-message</span> <span class="o">.</span> <span class="nf">#&#39;</span><span class="nv">telega-msg-ignore-blocked-sender</span><span class="p">)</span>
   <span class="nb">:config</span>
   <span class="p">(</span><span class="nv">defadvice!</span> <span class="nv">+toggle-input-method--telega-chat-mode-a</span> <span class="p">(</span><span class="nv">chat</span><span class="p">)</span>
-    <span class="s">&#34;</span><span class="s">在 telega-chat-mode 里根据 chat 名称切换输入法，如果名称包含
-</span><span class="s">中文，则激活中文输入法，否则关闭中文输入法</span><span class="s">&#34;</span>
+    <span class="s">&#34;在 telega-chat-mode 里根据 chat 名称切换输入法，如果名称包含
+</span><span class="s">中文，则激活中文输入法，否则关闭中文输入法&#34;</span>
     <span class="nb">:after</span> <span class="nf">#&#39;</span><span class="nv">telega-chat--pop-to-buffer</span>
-    <span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="p">(</span><span class="nv">input-method</span> <span class="s">&#34;</span><span class="s">pyim</span><span class="s">&#34;</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">title</span> <span class="p">(</span><span class="nv">telega-chat-title</span> <span class="nv">chat</span><span class="p">)</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">cn-list</span> <span class="p">(</span><span class="nf">list</span> <span class="s">&#34;</span><span class="s">#archlinux-cn</span><span class="s">&#34;</span>
-                         <span class="s">&#34;</span><span class="s">wikipedia-zh</span><span class="s">&#34;</span>
-                         <span class="s">&#34;</span><span class="s">Jetbrains Agent</span><span class="s">&#34;</span>
-                         <span class="s">&#34;</span><span class="s">SCP-079-CHAT</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span>
-          <span class="p">(</span><span class="nv">en-list</span> <span class="p">(</span><span class="nf">list</span> <span class="s">&#34;</span><span class="s">telega.el</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-      <span class="p">(</span><span class="nb">cond</span> <span class="p">(</span><span class="p">(</span><span class="nf">member</span> <span class="nv">title</span> <span class="nv">cn-list</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">)</span><span class="p">)</span>
-            <span class="p">(</span><span class="p">(</span><span class="nf">member</span> <span class="nv">title</span> <span class="nv">en-list</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">)</span><span class="p">)</span>
-            <span class="p">(</span><span class="p">(</span><span class="nf">string-match</span> <span class="s">&#34;</span><span class="s">\\</span><span class="s">cc</span><span class="s">&#34;</span> <span class="nv">title</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">)</span><span class="p">)</span>
-            <span class="p">(</span><span class="p">(</span><span class="nv">telega-chat-bot-p</span> <span class="nv">chat</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">)</span><span class="p">)</span>
-            <span class="p">(</span><span class="p">(</span><span class="nv">telega-chat-private-p</span> <span class="nv">chat</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">)</span><span class="p">)</span>
-            <span class="p">(</span><span class="no">t</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">input-method</span> <span class="s">&#34;pyim&#34;</span><span class="p">)</span>
+          <span class="p">(</span><span class="nv">title</span> <span class="p">(</span><span class="nv">telega-chat-title</span> <span class="nv">chat</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">cn-list</span> <span class="p">(</span><span class="nf">list</span> <span class="s">&#34;#archlinux-cn&#34;</span>
+                         <span class="s">&#34;wikipedia-zh&#34;</span>
+                         <span class="s">&#34;Jetbrains Agent&#34;</span>
+                         <span class="s">&#34;SCP-079-CHAT&#34;</span><span class="p">))</span>
+          <span class="p">(</span><span class="nv">en-list</span> <span class="p">(</span><span class="nf">list</span> <span class="s">&#34;telega.el&#34;</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nb">cond</span> <span class="p">((</span><span class="nf">member</span> <span class="nv">title</span> <span class="nv">cn-list</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">))</span>
+            <span class="p">((</span><span class="nf">member</span> <span class="nv">title</span> <span class="nv">en-list</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">))</span>
+            <span class="p">((</span><span class="nf">string-match</span> <span class="s">&#34;\\cc&#34;</span> <span class="nv">title</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">))</span>
+            <span class="p">((</span><span class="nv">telega-chat-bot-p</span> <span class="nv">chat</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">))</span>
+            <span class="p">((</span><span class="nv">telega-chat-private-p</span> <span class="nv">chat</span><span class="p">)</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="nv">input-method</span><span class="p">))</span>
+            <span class="p">(</span><span class="no">t</span> <span class="p">(</span><span class="nv">activate-input-method</span> <span class="no">nil</span><span class="p">)))))</span>
 
   <span class="p">(</span><span class="nv">set-evil-initial-state!</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-root-mode</span> <span class="nv">telega-chat-mode</span><span class="p">)</span> <span class="ss">&#39;emacs</span><span class="p">)</span>
 
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">telega-proxies</span> <span class="p">(</span><span class="nf">list</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">:server</span> <span class="s">&#34;</span><span class="s">127.0.0.1</span><span class="s">&#34;</span> <span class="nb">:port</span> <span class="mi">1086</span> <span class="nb">:enable</span> <span class="no">t</span>
-                                       <span class="nb">:type</span> <span class="p">(</span><span class="nb">:@type</span> <span class="s">&#34;</span><span class="s">proxyTypeSocks5</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
-        <span class="nv">telega-chat-reply-prompt</span> <span class="s">&#34;</span><span class="s">&lt;&lt;&lt; </span><span class="s">&#34;</span>
-        <span class="nv">telega-chat-edit-prompt</span> <span class="s">&#34;</span><span class="s">+++ </span><span class="s">&#34;</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">telega-proxies</span> <span class="p">(</span><span class="nf">list</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">:server</span> <span class="s">&#34;127.0.0.1&#34;</span> <span class="nb">:port</span> <span class="mi">1086</span> <span class="nb">:enable</span> <span class="no">t</span>
+                                       <span class="nb">:type</span> <span class="p">(</span><span class="nb">:@type</span> <span class="s">&#34;proxyTypeSocks5&#34;</span><span class="p">)))</span>
+        <span class="nv">telega-chat-reply-prompt</span> <span class="s">&#34;&lt;&lt;&lt; &#34;</span>
+        <span class="nv">telega-chat-edit-prompt</span> <span class="s">&#34;+++ &#34;</span>
         <span class="nv">telega-chat-use-markdown-version</span> <span class="no">nil</span>
         <span class="nv">telega-animation-play-inline</span> <span class="no">t</span>
         <span class="nv">telega-emoji-use-images</span> <span class="no">nil</span>
         <span class="nv">telega-sticker-set-download</span> <span class="no">t</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">pushnew!</span> <span class="nv">telega-known-inline-bots</span>
-             <span class="s">&#34;</span><span class="s">@vid</span><span class="s">&#34;</span> <span class="s">&#34;</span><span class="s">@bing</span><span class="s">&#34;</span> <span class="s">&#34;</span><span class="s">@wiki</span><span class="s">&#34;</span> <span class="s">&#34;</span><span class="s">@imdb</span><span class="s">&#34;</span><span class="p">)</span>
+             <span class="s">&#34;@vid&#34;</span> <span class="s">&#34;@bing&#34;</span> <span class="s">&#34;@wiki&#34;</span> <span class="s">&#34;@imdb&#34;</span><span class="p">)</span>
 
   <span class="p">(</span><span class="nv">set-popup-rule!</span> <span class="p">(</span><span class="nf">regexp-quote</span> <span class="nv">telega-root-buffer-name</span><span class="p">)</span>
     <span class="nb">:side</span> <span class="ss">&#39;right</span> <span class="nb">:size</span> <span class="mi">100</span> <span class="nb">:quit</span> <span class="no">t</span> <span class="nb">:modeline</span> <span class="no">t</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">set-popup-rule!</span> <span class="s">&#34;</span><span class="s">^◀[[({&lt;].*[</span><span class="s">\]</span><span class="s">)}&gt;]$</span><span class="s">&#34;</span>
+  <span class="p">(</span><span class="nv">set-popup-rule!</span> <span class="s">&#34;^◀[[({&lt;].*[\])}&gt;]$&#34;</span>
     <span class="nb">:side</span> <span class="ss">&#39;right</span> <span class="nb">:size</span> <span class="mi">100</span> <span class="nb">:quit</span> <span class="no">t</span> <span class="nb">:modeline</span> <span class="no">t</span><span class="p">)</span>
 
   <span class="p">(</span><span class="nv">telega-mode-line-mode</span> <span class="mi">1</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">telega-url-shorten-mode</span> <span class="mi">1</span><span class="p">)</span>
 
   <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">featurep!</span> <span class="nb">:completion</span> <span class="nv">ivy</span><span class="p">)</span>
-    <span class="p">(</span><span class="nv">load!</span> <span class="s">&#34;</span><span class="s">+ivy-telega</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">load!</span> <span class="s">&#34;+ivy-telega&#34;</span><span class="p">))</span>
 
   <span class="p">(</span><span class="nv">after!</span> <span class="nv">all-the-icons</span>
     <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;all-the-icons-mode-icon-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-root-mode</span> <span class="nv">all-the-icons-fileicon</span> <span class="s">&#34;</span><span class="s">telegram</span><span class="s">&#34;</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-root-mode</span> <span class="nv">all-the-icons-fileicon</span> <span class="s">&#34;telegram&#34;</span>
                                     <span class="nb">:heigt</span> <span class="mf">1.0</span>
                                     <span class="nb">:v-adjust</span> <span class="mf">-0.2</span>
-                                    <span class="nb">:face</span> <span class="nv">all-the-icons-yellow</span><span class="p">)</span><span class="p">)</span>
+                                    <span class="nb">:face</span> <span class="nv">all-the-icons-yellow</span><span class="p">))</span>
     <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;all-the-icons-mode-icon-alist</span>
-                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-chat-mode</span> <span class="nv">all-the-icons-fileicon</span> <span class="s">&#34;</span><span class="s">telegram</span><span class="s">&#34;</span>
+                 <span class="o">&#39;</span><span class="p">(</span><span class="nv">telega-chat-mode</span> <span class="nv">all-the-icons-fileicon</span> <span class="s">&#34;telegram&#34;</span>
                                     <span class="nb">:heigt</span> <span class="mf">1.0</span>
                                     <span class="nb">:v-adjust</span> <span class="mf">-0.2</span>
-                                    <span class="nb">:face</span> <span class="nv">all-the-icons-blue</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+                                    <span class="nb">:face</span> <span class="nv">all-the-icons-blue</span><span class="p">))))</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>另外本人的 doom 私有配置在：<a href="https://github.com/cnsunyour/.doom.d">这里</a>，其中 master 分支稍微延后， develop 分支实时更新，有兴趣的同学可以浏览指导。</p>
