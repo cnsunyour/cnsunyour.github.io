@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 17 Mar 2020 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>&#34;emacs-rime断言/pyim探针“的两种应用方式</title>
+      <link>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80-pyim%E6%8E%A2%E9%92%88-%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</link>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80-pyim%E6%8E%A2%E9%92%88-%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</guid>
+      <description>在 emacs-rime 中的断言（pyim 中称为探针）是相当实用的功能，配置的好的话可以在输入过程中做到完全自动切换中英文。 我希望在配置中不同的 mode 中能有不同的断</description>
+    </item>
     
     <item>
       <title>emacs 内置输入法正式改用 emacs-rime</title>

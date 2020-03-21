@@ -6,15 +6,24 @@
     <description>Recent content in Tags on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 17 Mar 2020 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Mar 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>doom</title>
+      <link>https://sunyour.org/tags/doom/</link>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/tags/doom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>emacs</title>
       <link>https://sunyour.org/tags/emacs/</link>
-      <pubDate>Tue, 17 Mar 2020 00:00:00 +0800</pubDate>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0800</pubDate>
       
       <guid>https://sunyour.org/tags/emacs/</guid>
       <description></description>
@@ -23,7 +32,7 @@
     <item>
       <title>pyim</title>
       <link>https://sunyour.org/tags/pyim/</link>
-      <pubDate>Tue, 17 Mar 2020 00:00:00 +0800</pubDate>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0800</pubDate>
       
       <guid>https://sunyour.org/tags/pyim/</guid>
       <description></description>
@@ -32,9 +41,27 @@
     <item>
       <title>rime</title>
       <link>https://sunyour.org/tags/rime/</link>
-      <pubDate>Tue, 17 Mar 2020 00:00:00 +0800</pubDate>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0800</pubDate>
       
       <guid>https://sunyour.org/tags/rime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>探针</title>
+      <link>https://sunyour.org/tags/%E6%8E%A2%E9%92%88/</link>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/tags/%E6%8E%A2%E9%92%88/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>断言</title>
+      <link>https://sunyour.org/tags/%E6%96%AD%E8%A8%80/</link>
+      <pubDate>Sat, 21 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/tags/%E6%96%AD%E8%A8%80/</guid>
       <description></description>
     </item>
     
@@ -53,15 +80,6 @@
       <pubDate>Wed, 22 Jan 2020 00:00:00 +0800</pubDate>
       
       <guid>https://sunyour.org/tags/dbus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>doom</title>
-      <link>https://sunyour.org/tags/doom/</link>
-      <pubDate>Sun, 19 Jan 2020 00:00:00 +0800</pubDate>
-      
-      <guid>https://sunyour.org/tags/doom/</guid>
       <description></description>
     </item>
     
