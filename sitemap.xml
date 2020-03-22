@@ -10,7 +10,7 @@
   
   <url>
     <loc>https://sunyour.org/categories/</loc>
-    <lastmod>2020-03-21T12:29:52+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,14 +24,14 @@
   
   <url>
     <loc>https://sunyour.org/tags/emacs/</loc>
-    <lastmod>2020-03-21T12:29:52+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/post/</loc>
-    <lastmod>2020-03-21T12:29:52+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -52,28 +52,28 @@
   
   <url>
     <loc>https://sunyour.org/tags/pyim/</loc>
-    <lastmod>2020-03-21T12:29:52+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/tags/rime/</loc>
-    <lastmod>2020-03-21T12:29:52+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/tags/</loc>
-    <lastmod>2020-03-21T12:29:52+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/</loc>
-    <lastmod>2020-03-21T12:29:52+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -101,14 +101,7 @@
   
   <url>
     <loc>https://sunyour.org/categories/computer/</loc>
-    <lastmod>2020-03-17T13:06:46+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://sunyour.org/post/emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</loc>
-    <lastmod>2020-03-17T13:06:46+08:00</lastmod>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -116,6 +109,13 @@
   <url>
     <loc>https://sunyour.org/tags/telega/</loc>
     <lastmod>2020-03-18T05:44:33+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://sunyour.org/post/emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</loc>
+    <lastmod>2020-03-22T16:15:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
