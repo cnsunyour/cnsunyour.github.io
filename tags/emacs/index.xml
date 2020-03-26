@@ -6,10 +6,19 @@
     <description>Recent content in emacs on 不一般的凡 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 21 Mar 2020 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Mar 2020 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://sunyour.org/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>给 emacs-rime 增加类似 pyim 的转换当前英文字符串为中文的功能</title>
+      <link>https://sunyour.org/post/%E7%BB%99-emacs-rime-%E5%A2%9E%E5%8A%A0%E7%B1%BB%E4%BC%BC-pyim-%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%BD%93%E5%89%8D%E8%8B%B1%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%BA%E4%B8%AD%E6%96%87%E7%9A%84%E5%8A%9F%E8%83%BD/</link>
+      <pubDate>Thu, 26 Mar 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/post/%E7%BB%99-emacs-rime-%E5%A2%9E%E5%8A%A0%E7%B1%BB%E4%BC%BC-pyim-%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%BD%93%E5%89%8D%E8%8B%B1%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%BA%E4%B8%AD%E6%96%87%E7%9A%84%E5%8A%9F%E8%83%BD/</guid>
+      <description>这两天花了不少精力对 emacs-rime 优化配置和扩展功能，今天参考 pyim 的 pyim-convert-string-at-point 函数，实现了在 emacs-rime 下转换当前光标处字符串为中文的函数，并做了功能增强，针对 evil 和 emacs 两种 state</description>
+    </item>
     
     <item>
       <title>&#34;emacs-rime断言/pyim探针“的两种应用方式</title>
