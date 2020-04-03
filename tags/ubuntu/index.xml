@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on 不一般的凡 - 墩墩家的幸福生活</title>
+    <link>https://sunyour.org/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on 不一般的凡 - 墩墩家的幸福生活</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://sunyour.org/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>为安装 emacs-rime 而在 Debian/Ubuntu 中编译 librime 的新版本</title>
+      <link>https://sunyour.org/post/%E4%B8%BA%E5%AE%89%E8%A3%85-emacs-rime-%E8%80%8C%E5%9C%A8-debian-ubuntu-%E4%B8%AD%E7%BC%96%E8%AF%91-librime-%E7%9A%84%E6%96%B0%E7%89%88%E6%9C%AC/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0800</pubDate>
+      
+      <guid>https://sunyour.org/post/%E4%B8%BA%E5%AE%89%E8%A3%85-emacs-rime-%E8%80%8C%E5%9C%A8-debian-ubuntu-%E4%B8%AD%E7%BC%96%E8%AF%91-librime-%E7%9A%84%E6%96%B0%E7%89%88%E6%9C%AC/</guid>
+      <description>最近比较火爆的 emacs-rime 输入法，终于可以在 emacs 里有和系统 rime 输入法一样的输入体验了。 不过听说好多小伙伴在配置时遇到了困难，尤其是 Debian/Ubuntu 上，很多都遇到无法自动</description>
+    </item>
+    
+  </channel>
+</rss>
