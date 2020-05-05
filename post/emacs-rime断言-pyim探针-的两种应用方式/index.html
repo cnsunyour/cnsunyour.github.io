@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.69.1 with theme even" />
+<meta name="generator" content="Hugo 0.69.2 with theme even" />
 
 
 <link rel="canonical" href="https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80-pyim%E6%8E%A2%E9%92%88-%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/" />
@@ -136,6 +136,11 @@
     <nav id="TableOfContents"></nav>
   </div>
 </div>
+  <div class="post-outdated">
+    <div class="hint">
+      <p>【注意】最后更新于 <span class="timeago" datetime="2020-04-03T11:30:10" title="April 3, 2020">April 3, 2020</span>，文中内容可能已过时，请谨慎使用。</p>
+    </div>
+  </div>
     <div class="post-content">
       <p>在 <a href="https://github.com/DogLooksGood/emacs-rime">emacs-rime</a> 中的断言（<a href="https://github.com/tumashu/pyim">pyim</a> 中称为探针）是相当实用的功能，配置的好的话可以在输入过程中做到完全自动切换中英文。</p>
 <p>我希望在配置中不同的 mode 中能有不同的断言，因此写了个判断函数，根据不同的 mode 计算不同的断言函数的值，然后集中返回；另外还自定义了几种自己需要的断言，如：</p>
