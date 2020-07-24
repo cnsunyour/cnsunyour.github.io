@@ -3,21 +3,21 @@
   
   <url>
     <loc>https://sunyour.org/categories/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/categories/computer/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/tags/emacs/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -31,14 +31,14 @@
   
   <url>
     <loc>https://sunyour.org/post/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://sunyour.org/tags/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -52,7 +52,7 @@
   
   <url>
     <loc>https://sunyour.org/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -101,7 +101,7 @@
   
   <url>
     <loc>https://sunyour.org/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -122,7 +122,7 @@
   
   <url>
     <loc>https://sunyour.org/tags/doom/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -325,7 +325,7 @@
   
   <url>
     <loc>https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E6%8A%8A%E8%87%AA%E5%B7%B1%E7%9A%84doom-dot-d%E9%85%8D%E7%BD%AE%E5%85%AC%E5%BC%80%E4%BA%86/</loc>
-    <lastmod>2020-07-24T16:57:50+08:00</lastmod>
+    <lastmod>2020-07-24T16:59:50+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
