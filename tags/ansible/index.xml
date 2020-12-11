@@ -6,11 +6,7 @@
     <description>Recent content in ansible on 凡·记 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 23 Mar 2016 09:38:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://sunyour.org/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 23 Mar 2016 09:38:00 +0800</lastBuildDate><atom:link href="https://sunyour.org/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible还是SaltStack，这是个问题</title>
       <link>https://sunyour.org/post/2016-03-23-ansible%E8%BF%98%E6%98%AFsaltstack%E8%BF%99%E6%98%AF%E4%B8%AA%E9%97%AE%E9%A2%98/</link>

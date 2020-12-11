@@ -6,11 +6,7 @@
     <description>Recent content in backends on 凡·记 - 墩墩家的幸福生活</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 01 Nov 2019 00:00:00 +0800</lastBuildDate>
-    
-	<atom:link href="https://sunyour.org/tags/backends/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 01 Nov 2019 00:00:00 +0800</lastBuildDate><atom:link href="https://sunyour.org/tags/backends/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Doom Emacs里telega的配置</title>
       <link>https://sunyour.org/post/doom-emacs%E9%87%8Ctelega%E7%9A%84%E9%85%8D%E7%BD%AE/</link>
