@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>rime on 凡·记</title><link>https://sunyour.org/tags/rime/</link><description>Recent content in rime on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/rime/index.xml" rel="self" type="application/rss+xml"/><item><title>为安装 emacs-rime 而在 Debian/Ubuntu 中编译 librime 的新版本</title><link>https://sunyour.org/post/%E4%B8%BA%E5%AE%89%E8%A3%85-emacs-rime-%E8%80%8C%E5%9C%A8-debian/ubuntu-%E4%B8%AD%E7%BC%96%E8%AF%91-librime-%E7%9A%84%E6%96%B0%E7%89%88%E6%9C%AC/</link><pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E4%B8%BA%E5%AE%89%E8%A3%85-emacs-rime-%E8%80%8C%E5%9C%A8-debian/ubuntu-%E4%B8%AD%E7%BC%96%E8%AF%91-librime-%E7%9A%84%E6%96%B0%E7%89%88%E6%9C%AC/</guid><description>&lt;p>最近比较火爆的 emacs-rime 输入法，终于可以在 emacs 里有和系统 rime 输入法一样的输入体验了。&lt;/p>
+&lt;p>不过听说好多小伙伴在配置时遇到了困难，尤其是 Debian/Ubuntu 上，很多都遇到无法自动编译 module ，或编译成功了无法加载的情况。&lt;/p>
+&lt;p>其原因基本都是所依赖的 librime 版本太低所致。我正好有一台 VPS ，系统是 Debian10，于是上去搜索了一下，发现 Debian10 所带的 librime 的版本才是 1.4.0 ，可见更老一些的 debian/ubuntu 上的版本会更旧（听说有 ubuntu 上的 librime 才是 1.2.0 版） ，而 emacs-rime 需要 1.5.3 版本，所以只得自行编译安装 librime 了。&lt;/p>
+&lt;p>librime 依赖的库比较多，有的小伙伴就被卡在这里，只要把所有需要依赖的库和程序安装好就行了，用下面的命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt install git build-essential cmake libboost-all-dev libgoogle-glog-dev libleveldb-dev libmarisa-dev libopencc-dev libyaml-cpp-dev libgtest-dev
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后下载 librime 源码编译安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mkdir ~/repos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/repos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone https://github.com/rime/librime.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> librime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">make
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>OK 了，就这么简单。&lt;/p></description></item><item><title>给 emacs-rime 增加类似 pyim 的转换当前英文字符串为中文的功能</title><link>https://sunyour.org/post/%E7%BB%99-emacs-rime-%E5%A2%9E%E5%8A%A0%E7%B1%BB%E4%BC%BC-pyim-%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%BD%93%E5%89%8D%E8%8B%B1%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%BA%E4%B8%AD%E6%96%87%E7%9A%84%E5%8A%9F%E8%83%BD/</link><pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%99-emacs-rime-%E5%A2%9E%E5%8A%A0%E7%B1%BB%E4%BC%BC-pyim-%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%BD%93%E5%89%8D%E8%8B%B1%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%BA%E4%B8%AD%E6%96%87%E7%9A%84%E5%8A%9F%E8%83%BD/</guid><description>&lt;p>这两天花了不少精力对 emacs-rime 优化配置和扩展功能，今天参考 pyim 的 pyim-convert-string-at-point 函数，实现了在 emacs-rime 下转换当前光标处字符串为中文的函数，并做了功能增强，针对 evil 和 emacs 两种 state 进行了分别处理。代码如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-force-enable&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;强制 &lt;/span>&lt;span class="ss">`rime&amp;#39;&lt;/span>&lt;span class="s"> 使用中文输入状态.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">如果当前不是 &lt;/span>&lt;span class="ss">`rime&amp;#39;&lt;/span>&lt;span class="s"> 输入法，则先激活 &lt;/span>&lt;span class="ss">`rime&amp;#39;&lt;/span>&lt;span class="s"> 输入法。如果当前是
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">&lt;/span>&lt;span class="ss">`evil&amp;#39;&lt;/span>&lt;span class="s"> 的非编辑状态，则转为 &lt;/span>&lt;span class="ss">`evil-insert-state&amp;#39;&lt;/span>&lt;span class="s">。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">input-method&lt;/span> &lt;span class="s">&amp;#34;rime&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">unless&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">string=&lt;/span> &lt;span class="nv">current-input-method&lt;/span> &lt;span class="nv">input-method&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">activate-input-method&lt;/span> &lt;span class="nv">input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">+&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">line-end-position&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">evil-append&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">evil-insert&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-force-enable&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-convert-string-at-point&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kp">&amp;amp;optional&lt;/span> &lt;span class="nv">return-cregexp&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;将光标前的字符串转换为中文.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span> &lt;span class="s">&amp;#34;P&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-force-enable&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nf">string&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="nv">mark-active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">buffer-substring-no-properties&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">region-beginning&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">region-end&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">buffer-substring-no-properties&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">max&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">line-beginning-position&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">-&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="mi">80&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">code&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nf">length&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cond&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nf">string-match&lt;/span> &lt;span class="s">&amp;#34;\\([a-z&amp;#39;-]+\\|[[:punct:]]\\) *$&amp;#34;&lt;/span> &lt;span class="nf">string&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">code&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;^[-&amp;#39;]&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">match-string&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="nf">string&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nf">length&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">length&lt;/span> &lt;span class="nv">code&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">code&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span> &lt;span class="s">&amp;#34; +&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span> &lt;span class="nv">code&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="nv">mark-active&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">delete-region&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">region-beginning&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">region-end&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">&amp;gt;&lt;/span> &lt;span class="nf">length&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">delete-char&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">-&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="nf">length&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">&amp;gt;&lt;/span> &lt;span class="nf">length&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">unread-command-events&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">append&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">listify-key-sequence&lt;/span> &lt;span class="nv">code&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">unread-command-events&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="s">&amp;#34;&lt;/span>&lt;span class="ss">`+rime-convert-string-at-point&amp;#39;&lt;/span>&lt;span class="s"> did nothing.&amp;#34;&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>"emacs-rime断言/pyim探针“的两种应用方式</title><link>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</link><pubDate>Sat, 21 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</guid><description>&lt;p>在 &lt;a class="link" href="https://github.com/DogLooksGood/emacs-rime" target="_blank" rel="noopener"
+>emacs-rime&lt;/a> 中的断言（&lt;a class="link" href="https://github.com/tumashu/pyim" target="_blank" rel="noopener"
+>pyim&lt;/a> 中称为探针）是相当实用的功能，配置的好的话可以在输入过程中做到完全自动切换中英文。&lt;/p>
+&lt;p>我希望在配置中不同的 mode 中能有不同的断言，因此写了个判断函数，根据不同的 mode 计算不同的断言函数的值，然后集中返回；另外还自定义了几种自己需要的断言，如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Determines whether the point is a button.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">\&amp;#34;Button\&amp;#34; means that positon is not editable.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">button-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-predicate-beancount-p&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Predicate input state in &lt;/span>&lt;span class="ss">`beancount-mode.&amp;#39;&lt;/span>&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">Determines whether current buffer&amp;#39;s &lt;/span>&lt;span class="ss">`major-mode&amp;#39;&lt;/span>&lt;span class="s"> is
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">&lt;/span>&lt;span class="ss">`beancount-mode&amp;#39;&lt;/span>&lt;span class="s">, and the cursor is at the beginning of the
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">line.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;beancount-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">not&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">nth&lt;/span> &lt;span class="mi">3&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">syntax-ppss&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">nth&lt;/span> &lt;span class="mi">4&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">syntax-ppss&lt;/span>&lt;span class="p">))))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-predicate-multi-mode-english-p&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Using different predicates in different modes.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;telega-chat-mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;text-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-after-alphabet-char-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-prog-in-code-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-beancount-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">+rime-predicate-multi-mode-english-p&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>从中可以看到对 `telega-chat-mode` 和 `text-mode` 两种模式使用了不同的断言逻辑，实际应用满足了我的需求。&lt;/p>
+&lt;p>如果使用的 mode 很多，每种 mode 又需要不同的断言组合，那就需要对判断函数增加逻辑。可以预想，很有可能会发展成类似于&lt;/p>
+&lt;blockquote>
+&lt;p>(if 条件 1 (逻辑 1) (if 条件 2 (逻辑 2) (if 条件 3 (逻辑 3) (&amp;hellip;&amp;hellip;))))&lt;/p>
+&lt;/blockquote>
+&lt;p>的形式。&lt;/p>
+&lt;p>恰好这时在 &lt;a class="link" href="https://emacs-china.org/" target="_blank" rel="noopener"
+>Emacs China 论坛&lt;/a> 上看到关于 buffer-local 变量的帖子，以前对 `setq-default` 和 `setq-local` 一头雾水，这次经过回帖的解释，总算明白了 buffer-local 变量的用处。&lt;/p>
+&lt;p>对于我用断言的情况，不正是 buffer-local 变量的使用场景吗？把之前配置里 17 行以后的代码修改一下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq-default&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-after-alphabet-char-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-prog-in-code-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">+rime-predicate-beancount-p&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook&lt;/span> &lt;span class="ss">&amp;#39;telega-chat-mode-hook&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq-local&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook&lt;/span> &lt;span class="ss">&amp;#39;text-mode-hook&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq-local&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>也就是先用 `setq-default` 设置一个大部分 mode 都用的默认断言组合，其次对需要单独设置的 mode 用 `setq-local` 设置 buffer-local 断言组合，通过 `add-hook` 使其在进入对应 mode 时设置生效。&lt;/p>
+&lt;p>这种方式配置代码行数可能会增多，但是逻辑简单，无论多少个不同需求的 mode ，只需要依此类推逐个 `setq-loca` 设置就好了，不容易出错。&lt;/p>
+&lt;p>最后安利一下 `doom-emacs` ，提供了很多简化代码的宏，如上述两个 `setq-loca` 在 `doom-emacs` 里就可以写为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook!&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-mode&lt;/span> &lt;span class="nv">text-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq-local&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>搞定，简单吧？&lt;/p>
+&lt;p>&lt;strong>注： 最新的断言配置在 &lt;a class="link" href="https://github.com/cnsunyour/.doom.d/blob/develop/modules/cnsunyour/chinese/%2Brime-predicates.el" target="_blank" rel="noopener"
+>github 仓库&lt;/a> ，里面的逻辑稍微复杂点，谨供参考。&lt;/strong>&lt;/p></description></item><item><title>给 telega 的聊天对话自动切换中英文输入</title><link>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</guid><description>&lt;p>现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不同的 buffer 里主动激活或关闭输入法，达到接近完美的自动切换功能。&lt;/p>
+&lt;p>因此在之前给 telega 写了个 advice ，把需要指定中英文的 chatbuf 写在配置文件中，可以做到进不同的频道切换自动切换中英文。但这样做有一个缺点，就是如果中英文频道信息有变化（包括群组名称变化），则需要修改配置文件后重新加载才能生效。&lt;/p>
+&lt;p>嗯，用群友的话说，这很不优雅。&lt;/p>
+&lt;p>于是今天抽空把配置里的中英文 chatbuf 列表进行持久化保存，并且改为保存 chatid ，避免修改名称引起的切换失效。&lt;/p>
+&lt;p>代码如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;;; cnsunyour/telega/+telega-auto-input-method.el -*- lexical-binding: t; -*-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defcustom&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span> &lt;span class="no">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&lt;/span>&lt;span class="ss">`telega&amp;#39;&lt;/span>&lt;span class="s"> 里中文对话列表，用于自动切换到中文输入。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:type&lt;/span> &lt;span class="ss">&amp;#39;list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:group&lt;/span> &lt;span class="ss">&amp;#39;telega&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defcustom&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span> &lt;span class="no">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&lt;/span>&lt;span class="ss">`telega&amp;#39;&lt;/span>&lt;span class="s"> 里英文对话列表，用于自动切换到英文输入。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:type&lt;/span> &lt;span class="ss">&amp;#39;list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:group&lt;/span> &lt;span class="ss">&amp;#39;telega&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--save-encn-list&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;保存中英文对话列表。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">customize-save-variable&lt;/span> &lt;span class="ss">&amp;#39;+telega--chat-cn-list&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">customize-save-variable&lt;/span> &lt;span class="ss">&amp;#39;+telega--chat-en-list&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--add-cn-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;将当前聊天对话加入到中文列表中，以自动激活中文输入法。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">telega-chatbuf--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">telega--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-pushnew&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--save-encn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;telega.el: Chat [\&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\&amp;#34;] is added to CN chat list.&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--add-en-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;将当前聊天对话加入到英文列表中，以自动关闭中文输入法。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">telega-chatbuf--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">telega--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-pushnew&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--save-encn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;telega.el: Chat [\&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\&amp;#34;] is added to EN chat list.&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--remove-from-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;将当前聊天对话从中英文列表中删除，将根据对话名称自动切换中英文输入法。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">telega-chatbuf--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">telega--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--save-encn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;telega.el: Chat [\&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\&amp;#34;] is removed from EN/CN chat list.&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--active-input-method&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Active input method.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">activate-input-method&lt;/span> &lt;span class="nv">default-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--deactive-input-method&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Deactive input method&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">deactivate-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+toggle-input-method--telega-chat-mode-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span> &lt;span class="kp">&amp;amp;optional&lt;/span> &lt;span class="nv">no-history-load&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;在 telega-chat-mode 里根据 chat 名称切换输入法，如果名称包含
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">中文，则激活中文输入法，否则关闭中文输入法&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:after&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">telega-chat--pop-to-buffer&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">title&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cond&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nf">member&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--active-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nf">member&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--deactive-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nf">string-match&lt;/span> &lt;span class="s">&amp;#34;\\cc&amp;#34;&lt;/span> &lt;span class="nv">title&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--active-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nv">telega-chat-bot-p&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--deactive-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nv">telega-chat-private-p&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--active-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--deactive-input-method&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>我的 emacs 内置输入法正式改用 emacs-rime</title><link>https://sunyour.org/post/%E6%88%91%E7%9A%84-emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E6%88%91%E7%9A%84-emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</guid><description>&lt;p>从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中英文，几乎不用手工切换，打字真如行云流水一般。&lt;/p>
+&lt;p>pyim 是一款非常优秀的内置输入法，是它坚定了我从外置输入法转为内置输入法的决心。但是这是一款从拼音起家的输入法，虽然早已加入了对五笔等方案的支持，但对五笔远没有像拼音方案那样进行优化，所以用起来总感觉有点儿不尽如意。&lt;/p>
+&lt;p>我在系统中用的是 rime 输入法， pyim 也可以把 rime 作为后端进行调用，经过一段时间的试用，发现 pyim 对 rime 的调用不太完全，而且 pyim 用自家的缓存对 rime 取出的候选词进行干预，这样就无法保持与外置 rime 输入法的一致体验了。&lt;/p>
+&lt;p>正在此时， emacs-china 上有大佬发布了一新的内置输入法 emacs-rime 。严格的说，这不是一个输入法，而是相当于是 rime 输入法在 emacs 里的一个前端，所有的输入都原封不动的发送给 rime 后端，由 rime 处理完后把数据再返回并在 emacs 里展现。&lt;/p>
+&lt;p>经过几天的试用和调整，今天终于决定把输入法切换到 emacs-rime 了，理由有两点：&lt;/p>
+&lt;ol>
+&lt;li>几乎与外置输入法一致的输入体验；&lt;/li>
+&lt;li>谦虚而活跃的作者，作者曾经连续花几个小时和我一起定位一个 issue 。&lt;/li>
+&lt;/ol>
+&lt;p>配置如下 (doom-emacs 配置格式) ：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; packages.el&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">package!&lt;/span> &lt;span class="nv">liberime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:recipe&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">:host&lt;/span> &lt;span class="nv">github&lt;/span> &lt;span class="nb">:repo&lt;/span> &lt;span class="s">&amp;#34;DogLooksGood/liberime&amp;#34;&lt;/span> &lt;span class="nb">:files&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;CMakeLists.txt&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;Makefile&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;src&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;*.el&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">package!&lt;/span> &lt;span class="nv">rime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:recipe&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">:host&lt;/span> &lt;span class="nv">github&lt;/span> &lt;span class="nb">:repo&lt;/span> &lt;span class="s">&amp;#34;DogLooksGood/emacs-rime&amp;#34;&lt;/span> &lt;span class="nb">:files&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;rime.el&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; config.el&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">use-package!&lt;/span> &lt;span class="nv">liberime-config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:init&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">setenv&lt;/span> &lt;span class="s">&amp;#34;RIME_PATH&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;~/repos/librime&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">liberime-shared-data-dir&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">file-truename&lt;/span> &lt;span class="s">&amp;#34;~/Library/Rime&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">liberime-user-data-dir&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">file-truename&lt;/span> &lt;span class="s">&amp;#34;~/.local/liberime&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:hook&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="ss">&amp;#39;after-init&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">fboundp&lt;/span> &lt;span class="ss">&amp;#39;liberime-sync-user-data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">liberime-sync&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="ss">&amp;#39;liberime-after-start&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">liberime-select-schema&lt;/span> &lt;span class="s">&amp;#34;wubi86_jidian&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">use-package!&lt;/span> &lt;span class="nv">rime&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:after&lt;/span> &lt;span class="nv">liberime-config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:after-call&lt;/span> &lt;span class="nv">after-find-file&lt;/span> &lt;span class="nv">pre-command-hook&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:custom&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">default-input-method&lt;/span> &lt;span class="s">&amp;#34;rime&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-show-candidate&lt;/span> &lt;span class="ss">&amp;#39;posframe&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+rime--posframe-display-result-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;给 &lt;/span>&lt;span class="ss">`rime--posframe-display-result&amp;#39;&lt;/span>&lt;span class="s"> 传入的字符串加一个全角空
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">格，以解决 &lt;/span>&lt;span class="ss">`posframe&amp;#39;&lt;/span>&lt;span class="s"> 偶尔吃字的问题。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:filter-args&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">rime--posframe-display-result&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-destructuring-bind&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">result&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nv">args&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">newresult&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">string-blank-p&lt;/span> &lt;span class="nv">result&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">result&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="nv">result&lt;/span> &lt;span class="s">&amp;#34;　&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="nv">newresult&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">load!&lt;/span> &lt;span class="s">&amp;#34;+rime-probe-english&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>pyim 里的探针函数非常好用， emacs-rime 里也提供了几个，我从 pyim 里移植了一个觉得好用的，另外又写了两个自用的探针，代码如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;;; +rime-probe-english.el -*- lexical-binding: t; -*-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; Some functions copied from `pyim&amp;#39;, thanks for tumashu@github.com .&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime--char-before-to-string&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">num&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;得到光标前第 &lt;/span>&lt;span class="ss">`num&amp;#39;&lt;/span>&lt;span class="s"> 个字符，并将其转换为字符串。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let*&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nf">point&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">point-before&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">-&lt;/span> &lt;span class="nf">point&lt;/span> &lt;span class="nv">num&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">and&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">&amp;gt;&lt;/span> &lt;span class="nv">point-before&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">char-before&lt;/span> &lt;span class="nv">point-before&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">char-to-string&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">char-before&lt;/span> &lt;span class="nv">point-before&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime--string-match-p&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">regexp&lt;/span> &lt;span class="nf">string&lt;/span> &lt;span class="kp">&amp;amp;optional&lt;/span> &lt;span class="nv">start&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;与 &lt;/span>&lt;span class="ss">`string-match-p&amp;#39;&lt;/span>&lt;span class="s"> 类似，如果 REGEXP 和 STRING 是非字符串时，
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">不会报错。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">and&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">stringp&lt;/span> &lt;span class="nv">regexp&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">stringp&lt;/span> &lt;span class="nf">string&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">string-match-p&lt;/span> &lt;span class="nv">regexp&lt;/span> &lt;span class="nf">string&lt;/span> &lt;span class="nv">start&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime--probe-auto-english&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;激活这个探针函数后，使用下面的规则自动切换中英文输入：
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">1. 当前字符为英文字符（不包括空格）时，输入下一个字符为英文字符
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">2. 当前字符为中文字符或输入字符为行首字符时，输入的字符为中文字符
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">3. 以单个空格为界，自动切换中文和英文字符
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s"> 即，形如 `我使用 emacs 编辑此函数&amp;#39; 的句子全程自动切换中英输入法
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">str-before-1&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--char-before-to-string&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">str-before-2&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--char-before-to-string&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">unless&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">string=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">buffer-name&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="s">&amp;#34; *temp*&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">&amp;gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">save-excursion&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">back-to-indentation&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--string-match-p&lt;/span> &lt;span class="s">&amp;#34; &amp;#34;&lt;/span> &lt;span class="nv">str-before-1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--string-match-p&lt;/span> &lt;span class="s">&amp;#34;\\cc&amp;#34;&lt;/span> &lt;span class="nv">str-before-2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">not&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--string-match-p&lt;/span> &lt;span class="s">&amp;#34;\\cc&amp;#34;&lt;/span> &lt;span class="nv">str-before-1&lt;/span>&lt;span class="p">))))))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime--beancount-p&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;当前为&lt;/span>&lt;span class="ss">`beancount-mode&amp;#39;&lt;/span>&lt;span class="s">，且光标在注释或字符串当中。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;beancount-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">not&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">nth&lt;/span> &lt;span class="mi">3&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">syntax-ppss&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">nth&lt;/span> &lt;span class="mi">4&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">syntax-ppss&lt;/span>&lt;span class="p">))))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime--evil-mode-p&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;检测当前是否在 &lt;/span>&lt;span class="ss">`evil&amp;#39;&lt;/span>&lt;span class="s"> 模式下。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">evil-normal-state-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">evil-visual-state-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">evil-motion-state-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">evil-operator-state-p&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-english-prober&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;自定义英文输入探针函数，用于在不同mode下使用不同的探针列表&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">use-en&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">button-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--evil-mode-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;telega-chat-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">use-en&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">use-en&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--probe-auto-english&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;text-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">use-en&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">use-en&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--probe-auto-english&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;prog-mode&lt;/span> &lt;span class="ss">&amp;#39;conf-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">use-en&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">use-en&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime--after-alphabet-char-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">use-en&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">use-en&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime--prog-in-code-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime--beancount-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">use-en&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-english-prober&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>刚刚给作者提了点小建议，得到了非常积极的响应，非常感谢 &lt;a class="link" href="mailto:DogLooksGood@github.com" >DogLooksGood@github.com&lt;/a> 的贡献。 emacs-rime 还在不断完善中，希望 emacs-rime 越做越好，造福更多的 emacer 。&lt;/p>
+&lt;p>另外，再次感谢 pyim 和 posframe 的大神 &lt;a class="link" href="mailto:tumashu@github.com" >tumashu@github.com&lt;/a> ，造了那么多优秀的轮子。&lt;/p></description></item></channel></rss>

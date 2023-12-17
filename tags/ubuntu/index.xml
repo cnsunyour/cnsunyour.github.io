@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ubuntu on 凡·记</title><link>https://sunyour.org/tags/ubuntu/</link><description>Recent content in ubuntu on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/ubuntu/index.xml" rel="self" type="application/rss+xml"/><item><title>为安装 emacs-rime 而在 Debian/Ubuntu 中编译 librime 的新版本</title><link>https://sunyour.org/post/%E4%B8%BA%E5%AE%89%E8%A3%85-emacs-rime-%E8%80%8C%E5%9C%A8-debian/ubuntu-%E4%B8%AD%E7%BC%96%E8%AF%91-librime-%E7%9A%84%E6%96%B0%E7%89%88%E6%9C%AC/</link><pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E4%B8%BA%E5%AE%89%E8%A3%85-emacs-rime-%E8%80%8C%E5%9C%A8-debian/ubuntu-%E4%B8%AD%E7%BC%96%E8%AF%91-librime-%E7%9A%84%E6%96%B0%E7%89%88%E6%9C%AC/</guid><description>&lt;p>最近比较火爆的 emacs-rime 输入法，终于可以在 emacs 里有和系统 rime 输入法一样的输入体验了。&lt;/p>
+&lt;p>不过听说好多小伙伴在配置时遇到了困难，尤其是 Debian/Ubuntu 上，很多都遇到无法自动编译 module ，或编译成功了无法加载的情况。&lt;/p>
+&lt;p>其原因基本都是所依赖的 librime 版本太低所致。我正好有一台 VPS ，系统是 Debian10，于是上去搜索了一下，发现 Debian10 所带的 librime 的版本才是 1.4.0 ，可见更老一些的 debian/ubuntu 上的版本会更旧（听说有 ubuntu 上的 librime 才是 1.2.0 版） ，而 emacs-rime 需要 1.5.3 版本，所以只得自行编译安装 librime 了。&lt;/p>
+&lt;p>librime 依赖的库比较多，有的小伙伴就被卡在这里，只要把所有需要依赖的库和程序安装好就行了，用下面的命令：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt install git build-essential cmake libboost-all-dev libgoogle-glog-dev libleveldb-dev libmarisa-dev libopencc-dev libyaml-cpp-dev libgtest-dev
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后下载 librime 源码编译安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mkdir ~/repos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~/repos
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone https://github.com/rime/librime.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> librime
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">make
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo make install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>OK 了，就这么简单。&lt;/p></description></item></channel></rss>

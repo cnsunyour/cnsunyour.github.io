@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mode on 不一般的凡 - 墩墩家的幸福生活</title>
+    <link>https://cnsunyour.github.io/tags/mode/</link>
+    <description>Recent content in mode on 不一般的凡 - 墩墩家的幸福生活</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 18 Mar 2016 00:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://cnsunyour.github.io/tags/mode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>两个可以把 Mac 下应用程序的链接插入当前位置的插件</title>
+      <link>https://cnsunyour.github.io/post/%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%8A%8A-mac-%E4%B8%8B%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E6%8F%92%E5%85%A5%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%8F%92%E4%BB%B6/</link>
+      <pubDate>Fri, 18 Mar 2016 00:00:00 +0800</pubDate>
+      
+      <guid>https://cnsunyour.github.io/post/%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%8A%8A-mac-%E4%B8%8B%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%9A%84%E9%93%BE%E6%8E%A5%E6%8F%92%E5%85%A5%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%8F%92%E4%BB%B6/</guid>
+      <description>一个是xuchunyang/grab-mac-link.el: Grab link from Mac Apps and insert it into Emacs 另一个是org-mac-link.el – Grab links from open Mac applications Spacemacs 里集</description>
+    </item>
+    
+  </channel>
+</rss>

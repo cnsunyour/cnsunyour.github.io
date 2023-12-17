@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>org2blog on 凡·记</title><link>https://sunyour.org/tags/org2blog/</link><description>Recent content in org2blog on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 01 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/org2blog/index.xml" rel="self" type="application/rss+xml"/><item><title>发现 org2blog 发布时调用 doom-emacs 里 chinese 模块的过滤器出错</title><link>https://sunyour.org/post/%E5%8F%91%E7%8E%B0-org2blog-%E5%8F%91%E5%B8%83%E6%97%B6%E8%B0%83%E7%94%A8-doom-emacs-%E9%87%8C-chinese-%E6%A8%A1%E5%9D%97%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%87%BA%E9%94%99/</link><pubDate>Thu, 01 Aug 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%8F%91%E7%8E%B0-org2blog-%E5%8F%91%E5%B8%83%E6%97%B6%E8%B0%83%E7%94%A8-doom-emacs-%E9%87%8C-chinese-%E6%A8%A1%E5%9D%97%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E5%87%BA%E9%94%99/</guid><description>&lt;p>今天发文一直发不出去，百思不得其解，打开 debug 跟踪一下，发现是调用了 doom-emacs 里 chinese 模块的过滤器出错，改用 spacemacs chinese layer 里的代码可以修复此问题（需要禁用 doom-emacs 里的 chinese module）。当然只禁用掉 chinese module 也可以，不过这段代码是在转换为网页时，把自动换行的空白符去掉，这样发布后的网页不会多一些莫名奇妙的空格。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defadvice&lt;/span> &lt;span class="nv">org-html-paragraph&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">before&lt;/span> &lt;span class="nv">org-html-paragraph-advice&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">paragraph&lt;/span> &lt;span class="nv">contents&lt;/span> &lt;span class="nv">info&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nv">activate&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Join consecutive Chinese lines into a single long line without
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">unwanted space when exporting org-mode to html.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let*&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">origin-contents&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">ad-get-arg&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">fix-regexp&lt;/span> &lt;span class="s">&amp;#34;[[:multibyte:]]&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">fixed-contents&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\(&amp;#34;&lt;/span> &lt;span class="nv">fix-regexp&lt;/span> &lt;span class="s">&amp;#34;\\) *\n *\\(&amp;#34;&lt;/span> &lt;span class="nv">fix-regexp&lt;/span> &lt;span class="s">&amp;#34;\\)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="s">&amp;#34;\\1\\2&amp;#34;&lt;/span> &lt;span class="nv">origin-contents&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">ad-set-arg&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="nv">fixed-contents&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>*&lt;strong>*8 月 8 日更新**&lt;/strong> 使用如下代码彻底解决此问题：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+chinese--org-html-paragraph-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Join consecutive Chinese lines into a single long line without
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">unwanted space when exporting org-mode to html.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:filter-args&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">org-html-paragraph&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-destructuring-bind&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">paragraph&lt;/span> &lt;span class="nv">content&lt;/span> &lt;span class="nv">info&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nv">args&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let*&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">fix-regexp&lt;/span> &lt;span class="s">&amp;#34;[[:multibyte:]a-zA-Z0-9]&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">origin-contents&lt;/span> &lt;span class="nv">content&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">fixed-contents&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;\\(&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">fix-regexp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\) *\\(&amp;lt;[Bb][Rr] */&amp;gt;\\)?\n *\\(&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">fix-regexp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\1\\3&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">origin-contents&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="nv">paragraph&lt;/span> &lt;span class="nv">fixed-contents&lt;/span> &lt;span class="nv">info&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>*&lt;strong>*8 月 31 日更新**&lt;/strong> 上述代码也有 Bug，也就是两边全是英文字符时有不能替换，更新 advice 代码（同时也向 doom-emacs 提交 PR）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+chinese--org-html-paragraph-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Join consecutive Chinese lines into a single long line without
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">unwanted space when exporting org-mode to html.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:filter-args&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">org-html-paragraph&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-destructuring-bind&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">paragraph&lt;/span> &lt;span class="nv">content&lt;/span> &lt;span class="nv">info&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nv">args&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let*&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">fix-regexp&lt;/span> &lt;span class="s">&amp;#34;[[:multibyte:]]&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">origin-contents&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&amp;lt;[Bb][Rr] */&amp;gt;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">content&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">fixed-contents&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;\\(&amp;#34;&lt;/span> &lt;span class="nv">fix-regexp&lt;/span> &lt;span class="s">&amp;#34;\\) *\n *\\(&amp;#34;&lt;/span> &lt;span class="nv">fix-regexp&lt;/span> &lt;span class="s">&amp;#34;\\)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\1\\2&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">origin-contents&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="nv">paragraph&lt;/span> &lt;span class="nv">fixed-contents&lt;/span> &lt;span class="nv">info&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

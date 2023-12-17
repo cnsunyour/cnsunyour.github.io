@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>theme on 凡·记</title><link>https://sunyour.org/tags/theme/</link><description>Recent content in theme on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/theme/index.xml" rel="self" type="application/rss+xml"/><item><title>让 Emacs 在 macOS 上根据系统的 light/dark 模式切换对应主题</title><link>https://sunyour.org/post/%E8%AE%A9-emacs-%E5%9C%A8-macos-%E4%B8%8A%E6%A0%B9%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%9A%84-light/dark-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%AF%B9%E5%BA%94%E4%B8%BB%E9%A2%98/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%AE%A9-emacs-%E5%9C%A8-macos-%E4%B8%8A%E6%A0%B9%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%9A%84-light/dark-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%AF%B9%E5%BA%94%E4%B8%BB%E9%A2%98/</guid><description>&lt;p>之前一直是使用 &lt;code>theme-changer&lt;/code> 来根据日出日落时间自动切换 emacs 的主题的。但是有一个问题，因为 macOS 并不是完全按照计算出的日出日落时间去切换 light/dark 模式的，因此 emacs 的主题切换时间与 macOS 系统不同步。&lt;/p>
+&lt;p>我自己试了增加一个延时参数去尽量与系统切换时间保持接近，但几个月下来发现完全找不到一个相对合适的延迟时间， macOS 并不是固定给日出日落时间加一个延时，具体是什么逻辑到现在还没摸索出来。&lt;/p>
+&lt;p>如果能够读取 macOS 当前的 light/dark 模式就好了，这样就可以读取到的这个值自动切换主题了。&lt;/p>
+&lt;p>去 github 搜索了一下，竟然真的有人写了一个包，就是这个 &lt;a class="link" href="https://github.com/LionyxML/auto-dark-emacs" target="_blank" rel="noopener"
+>https://github.com/LionyxML/auto-dark-emacs&lt;/a> 。试用了一下，发现切换起来有问题，不能做到完全切换，还会遗留一些地方没切换成。于是我 fork 了一份，并进行了如下修改：&lt;/p>
+&lt;ul>
+&lt;li>修复了切换过程中的 bug ；&lt;/li>
+&lt;li>增加了可以设置为从主题列表中随机切换的功能，跟我以前的习惯一致；&lt;/li>
+&lt;li>优化了执行逻辑，大量减少循环次数，提升性能。&lt;/li>
+&lt;/ul>
+&lt;p>我 fork 的仓库地址在 &lt;a class="link" href="https://github.com/cnsunyour/auto-dark-emacs" target="_blank" rel="noopener"
+>https://github.com/cnsunyour/auto-dark-emacs&lt;/a> ， &lt;code>use-package&lt;/code> 调用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">use-package&lt;/span> &lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:straight&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:type&lt;/span> &lt;span class="nv">git&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:host&lt;/span> &lt;span class="nv">github&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:repo&lt;/span> &lt;span class="s">&amp;#34;cnsunyour/auto-dark-emacs&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">eq&lt;/span> &lt;span class="nv">system-type&lt;/span> &lt;span class="ss">&amp;#39;darwin&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:custom&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/light-theme&lt;/span> &lt;span class="nv">+list-light-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/dark-theme&lt;/span> &lt;span class="nv">+list-dark-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;auto-dark-emacs/check-and-set-dark-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我用的是 &lt;code>doom-emacs&lt;/code> ，调用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; packages.el&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="nv">IS-MAC&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">package!&lt;/span> &lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:recipe&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">:host&lt;/span> &lt;span class="nv">github&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:repo&lt;/span> &lt;span class="s">&amp;#34;LionyxML/auto-dark-emacs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:fork&lt;/span> &lt;span class="s">&amp;#34;cnsunyour/auto-dark-emacs&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; config.el&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">use-package!&lt;/span> &lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:when&lt;/span> &lt;span class="nv">IS-MAC&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:custom&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/light-theme&lt;/span> &lt;span class="nv">+list-light-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/dark-theme&lt;/span> &lt;span class="nv">+list-dark-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook!&lt;/span> &lt;span class="nv">doom-load-theme&lt;/span> &lt;span class="nb">:append&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">and&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">featurep&lt;/span> &lt;span class="ss">&amp;#39;solaire-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">not&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">string-prefix-p&lt;/span> &lt;span class="s">&amp;#34;doom-&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">symbol-name&lt;/span> &lt;span class="nv">doom-theme&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">set-face-background&lt;/span> &lt;span class="ss">&amp;#39;solaire-hl-line-face&lt;/span> &lt;span class="no">nil&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">set-face-background&lt;/span> &lt;span class="ss">&amp;#39;solaire-default-face&lt;/span> &lt;span class="no">nil&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook!&lt;/span> &lt;span class="nv">after-init&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">auto-dark-emacs/check-and-set-dark-mode&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>模块化拆分doom-private-config的收获</title><link>https://sunyour.org/post/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8B%86%E5%88%86doom-private-config%E7%9A%84%E6%94%B6%E8%8E%B7/</link><pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8B%86%E5%88%86doom-private-config%E7%9A%84%E6%94%B6%E8%8E%B7/</guid><description>&lt;p>这两天受到 &lt;a class="link" href="https://github.com/steamedfish" target="_blank" rel="noopener"
+>@SteamedFish&lt;/a> 和&lt;a class="link" href="https://github.com/locez" target="_blank" rel="noopener"
+>@Locez&lt;/a> 的鼓动，而且本人的 doom 配置也积累到一定程度了，是时候把自己的 doom-private-config 进行模块化拆分，以方便管理维护了。&lt;/p>
+&lt;p>本来预想是挺简单的事，把集中在一起的配置，按照不同的类型，新建对应的 module 目录，然后建立 config.el 和 packages.el，把配置代码对应部分剪切过来就行了。结果拆分完毕一启动，一堆报错信息。汗～&lt;/p>
+&lt;p>冷静，冷静。查看错误信息，发现都是无效函数和参数为空的信息。这就怪了，配置代码完全没变，只是放在了不同的位置。莫非……跟执行的顺序有关？尝试把所有与已有 package 有关的配置代码都用 after! 括起来，确保配置代码在对应的 package 加载之后才执行。再次重新启动，果然可以了！看来之前的 ~/.doom.d/config.el 文件里的代码是在各个 modules 加载之后才执行的。&lt;/p>
+&lt;p>至此以为，万事大吉。而且可喜的是， emacs 的启动时间竟然减少了 1 秒，真是意外的收获。可运行一段时间以后，总觉得有些不对劲，仔细观察发现是 theme 的部分颜色有异常，由于我是使用 &lt;a class="link" href="https://github.com/hadronzoo/theme-changer" target="_blank" rel="noopener"
+>theme-changer&lt;/a> 包根据日出日落时间自动切换 theme 的，已经在 use-package! 的 :after 中指定在 doom-themes 和 solaire-mode 之后加载了，怎么还会有问题呢？&lt;/p>
+&lt;p>没有出错提示，那就说明是正常执行了，还有异常说明有些配置被别的代码修改了，应该还是执行顺序的问题。我尝试让此 package 延迟 5 秒加载，发现问题依旧，那看来最后执行是不可以的，肯定在这之前 doom 有一些 ui 方面的处理。从 ~/.emacs.d/init.el 开始查找，在 core.el 里的 doom-initialize 函数中找到了说明， doom 的加载顺序为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> ~/.emacs.d/init.el
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ~/.emacs.d/core/core.el
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ~/.doom.d/init.el
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Module init.el files
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> `doom-before-init-modules-hook&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Module config.el files
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ~/.doom.d/config.el
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> `doom-init-modules-hook&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> `after-init-hook&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> `emacs-startup-hook&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> `doom-init-ui-hook&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> `window-setup-hook&amp;#39;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>果然发现有一个 doom-init-ui-hook，这个 hook 看名字就是和 ui 初始化有关，加上看到 ~/.doom.d/config.el 的次序也在它之前，八成是这样没跑了。最后选中 emacs-startup-hook 作为注入点，再次重新启动。&lt;/p>
+&lt;p>完美～&lt;/p>
+&lt;p>&lt;strong>[1 月 13 日更新]&lt;/strong>&lt;/p>
+&lt;p>无意中发现 tabnine 没生效，根据前一日的经验，应该也是执行顺序的事， tabnine 要修改 company-backends 的值，估计是 doom 里的 company 之后又有修改 company-backends 的操作，哪怕是在 tabnine 中指定 after company 也不行。依据前述办法，把增加 company-backends 操作加在后面次序的 hook 中，我选定的是 after-init-hook，重启后生效。最终 tabnine 的配置代码是：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-elisp" data-lang="elisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">use-package!&lt;/span> &lt;span class="nv">company-tabnine&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">featurep!&lt;/span> &lt;span class="nb">:completion&lt;/span> &lt;span class="nv">company&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:hook&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">kill-emacs&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="nv">company-tabnine-kill-process&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">lsp-after-open&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;company-transformers&lt;/span> &lt;span class="ss">&amp;#39;company//sort-by-tabnine&lt;/span> &lt;span class="no">t&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;company-backends&lt;/span> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">company-lsp&lt;/span> &lt;span class="nb">:with&lt;/span> &lt;span class="nv">company-tabnine&lt;/span> &lt;span class="nb">:separate&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">after-init&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;company-backends&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">company-tabnine&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">set-company-backend!&lt;/span> &lt;span class="ss">&amp;#39;text-mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;company-tabnine&lt;/span> &lt;span class="ss">&amp;#39;company-dabbrev&lt;/span> &lt;span class="ss">&amp;#39;company-yasnippet&lt;/span> &lt;span class="ss">&amp;#39;company-ispell&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">set-company-backend!&lt;/span> &lt;span class="ss">&amp;#39;conf-mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;company-tabnine&lt;/span> &lt;span class="ss">&amp;#39;company-capf&lt;/span> &lt;span class="ss">&amp;#39;company-dabbrev-code&lt;/span> &lt;span class="ss">&amp;#39;company-yasnippet&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">set-company-backend!&lt;/span> &lt;span class="ss">&amp;#39;prog-mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;company-tabnine&lt;/span> &lt;span class="ss">&amp;#39;company-capf&lt;/span> &lt;span class="ss">&amp;#39;company-yasnippet&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">set&lt;/span> &lt;span class="nv">company-idle-delay&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">map!&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">:leader&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:desc&lt;/span> &lt;span class="s">&amp;#34;Use company default backend&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;clo&amp;#34;&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">company-other-backend&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:desc&lt;/span> &lt;span class="s">&amp;#34;Use company tabnine backend&amp;#34;&lt;/span> &lt;span class="s">&amp;#34;clt&amp;#34;&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">company-tabnine&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">;; Integrate company-tabnine with lsp-mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">company//sort-by-tabnine&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">candidates&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">functionp&lt;/span> &lt;span class="nv">company-backend&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">not&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">and&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">listp&lt;/span> &lt;span class="nv">company-backend&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">memq&lt;/span> &lt;span class="ss">&amp;#39;company-tabnine&lt;/span> &lt;span class="nv">company-backend&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">candidates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">candidates-table&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">make-hash-table&lt;/span> &lt;span class="nb">:test&lt;/span> &lt;span class="nf">#&amp;#39;equal&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">candidates-lsp&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">candidates-tabnine&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">dolist&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">candidate&lt;/span> &lt;span class="nv">candidates&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">eq&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">get-text-property&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="ss">&amp;#39;company-backend&lt;/span> &lt;span class="nv">candidate&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;company-tabnine&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">unless&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">gethash&lt;/span> &lt;span class="nv">candidate&lt;/span> &lt;span class="nv">candidates-table&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">push&lt;/span> &lt;span class="nv">candidate&lt;/span> &lt;span class="nv">candidates-tabnine&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">push&lt;/span> &lt;span class="nv">candidate&lt;/span> &lt;span class="nv">candidates-lsp&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">puthash&lt;/span> &lt;span class="nv">candidate&lt;/span> &lt;span class="no">t&lt;/span> &lt;span class="nv">candidates-table&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">candidates-lsp&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">nreverse&lt;/span> &lt;span class="nv">candidates-lsp&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">candidates-tabnine&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">nreverse&lt;/span> &lt;span class="nv">candidates-tabnine&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">nconc&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">seq-take&lt;/span> &lt;span class="nv">candidates-tabnine&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">seq-take&lt;/span> &lt;span class="nv">candidates-lsp&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="p">))))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用的最多的 even 和 jane 两个主题更喜欢一些。&lt;/p>
+&lt;p>但没想到的是，改用这两个主题后，全部出现文章渲染失败的情况。看提示，是 author 属性的类型不是 string 类型，而是[]string 类型，看样子是类似数组或列表之类的类型。找一篇生成后的 md 文件查看，果然 author 属性的值是[不一般的凡]，外面被中括号括起来了。&lt;/p>
+&lt;p>心中很不理解为什么，查看 ox-hugo 文档，发现还真是特意这么做的，为的是处理多个:author:属性，也就是多作者的情况。ox-hugo 文档中还专门有一节写了这个情况：&lt;/p>
+&lt;p>Link: &lt;a class="link" href="https://ox-hugo.scripter.co/doc/author/" target="_blank" rel="noopener"
+>https://ox-hugo.scripter.co/doc/author/&lt;/a>&lt;/p>
+&lt;p>文中提到有两个解决办法，第一是禁止导出 author 参数，方法是在 org 文件头加上&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-org" data-lang="org">&lt;span class="line">&lt;span class="cl">&lt;span class="cs">#+options&lt;/span>&lt;span class="c">: author:nil&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或在 subtree 里加上属性：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-org" data-lang="org">&lt;span class="line">&lt;span class="cl">&lt;span class="c">:PROPERTIES:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&lt;/span>&lt;span class="cs">:EXPORT_OPTIONS: author:nil
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cs">&lt;/span>&lt;span class="c">:END:&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>第二个解决办法就是修改主题模板来支持[]string 形式的 list，也即在调用.Param.author 属性时使用如下代码段：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{ with .Params.author }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ $author_type := (printf &amp;#34;%T&amp;#34; .) }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ $author_is_slice := (eq &amp;#34;[]string&amp;#34; $author_type) }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ if $author_is_slice }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ delimit . &amp;#34;, &amp;#34; }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ else }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ . }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ end }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ end }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以 even 主题为例，需要修改的是两个文件，第一个是 layouts/partials/head.html 的第 13 行，原为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;meta name=&amp;#34;author&amp;#34; content=&amp;#34;{{ if .Params.author }}{{ .Params.author | safeHTML}}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;#34; /&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;meta name=&amp;#34;author&amp;#34; content=&amp;#34;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &amp;#34;%T&amp;#34; .) }}{{ $author_is_slice := (eq &amp;#34;[]string&amp;#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &amp;#34;, &amp;#34; | safeHTML }}{{ else }}{{ . | safeHTML}}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;#34; /&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>第二个文件是 layouts/partials/post/copyright.html 的第 4 行，原为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;span class=&amp;#34;item-content&amp;#34;&amp;gt;{{ if .Params.author }}{{ .Params.author | safeHTML }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;lt;/span&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>修改为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;span class=&amp;#34;item-content&amp;#34;&amp;gt;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &amp;#34;%T&amp;#34; .) }}{{ $author_is_slice := (eq &amp;#34;[]string&amp;#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &amp;#34;, &amp;#34; | safeHTML }}{{ else }}{{ . | safeHTML }}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;lt;/span&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>两个文件修改完成后重新启动 hugo server 渲染成功。&lt;/p>
+&lt;p>jane 主题类似，需要修改的文件是 layouts/partials/head.html 第 25 行至 30 行那一段，但是我对 hugo 的 template 语法不熟，这段不知道怎么改，请了解的同学做相应改动吧。&lt;/p>
+&lt;p>当然有可能考虑不周，even 主题我已经提交了 PR，jane 主题我提了 issue，不知会不会被接受。&lt;/p></description></item></channel></rss>

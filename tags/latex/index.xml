@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>latex on 凡·记</title><link>https://sunyour.org/tags/latex/</link><description>Recent content in latex on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 27 Mar 2016 00:00:00 +0800</lastBuildDate><atom:link href="https://sunyour.org/tags/latex/index.xml" rel="self" type="application/rss+xml"/><item><title>Emacs org to pdf (with LaTeX)设置</title><link>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</link><pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate><guid>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</guid><description>&lt;h2 id="如何能正确把中文导出成-pdf-如何能正确把中文导出成-pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}&lt;/h2>
+&lt;p>网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分：&lt;/p>
+&lt;h3 id="安装-latex-应用程序-安装-latex-应用程序">安装 LaTeX 应用程序 {#安装 latex 应用程序}&lt;/h3>
+&lt;p>我的电脑是 Mac，直接安装 MacTeX，就是有点大，安装包要 2.68G，听说 BasicTeX 要小的多，不知道能不能用，有兴趣的同学可以试试。&lt;/p>
+&lt;p>另外，如果系统是最新版的 OSX 10.11，那安装完 MacTeX 后一定要 update 到最新版，最主要解决的是在 OSX 10.11 下不能在/usr 目录下建 texbin 目录的问题，最新版会在/Library/Support 目录下也建一个 texbin 目录的符号链接，并加入到 PATH 环境变量中，供读取。&lt;/p>
+&lt;h3 id="调用-ctex-宏包-调用-ctex-宏包">调用 CTeX 宏包 {#调用 ctex 宏包}&lt;/h3>
+&lt;p>CTeX 是专为处理中文而定制的宏包，能够根据不同平台自动调用相应的中文字体，达到正常转换的目的。添加方法是在 org 文件头增加如下代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-org" data-lang="org">&lt;span class="line">&lt;span class="cl">&lt;span class="cs">#+LATEX_HEADER&lt;/span>&lt;span class="c">: \usepackage[UTF8]{ctex}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="使用-xelatex-程序进行编译转换-使用-xelatex-程序进行编译转换">使用 XeLaTeX 程序进行编译转换 {#使用 xelatex 程序进行编译转换}&lt;/h3>
+&lt;p>有两个方法，一是在 org 文件头进行指定，如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-org" data-lang="org">&lt;span class="line">&lt;span class="cl">&lt;span class="cs">#+LATEX_CMD&lt;/span>&lt;span class="c">: xelatex&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果不想每次都在 org 文件头指定，可以在 Emacs 配置文件中进行如下设定：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">org-latex-pdf-process&lt;/span> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;xelatex -interaction nonstopmode %f&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;xelatex -interaction nonstopmode %f&amp;#34;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="示例">示例&lt;/h3>
+&lt;p>本文按此方法生成的 PDF 文件在此：&lt;a class="link" href="https://sunyour.org/ox-hugo/20160327-emacs-org-to-pdf-with-latex.pdf" >emacs-org-to-pdf-with-latex.pdf&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>telega on 凡·记</title><link>https://sunyour.org/tags/telega/</link><description>Recent content in telega on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 17 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/telega/index.xml" rel="self" type="application/rss+xml"/><item><title>给 telega 的聊天对话自动切换中英文输入</title><link>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</guid><description>&lt;p>现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不同的 buffer 里主动激活或关闭输入法，达到接近完美的自动切换功能。&lt;/p>
+&lt;p>因此在之前给 telega 写了个 advice ，把需要指定中英文的 chatbuf 写在配置文件中，可以做到进不同的频道切换自动切换中英文。但这样做有一个缺点，就是如果中英文频道信息有变化（包括群组名称变化），则需要修改配置文件后重新加载才能生效。&lt;/p>
+&lt;p>嗯，用群友的话说，这很不优雅。&lt;/p>
+&lt;p>于是今天抽空把配置里的中英文 chatbuf 列表进行持久化保存，并且改为保存 chatid ，避免修改名称引起的切换失效。&lt;/p>
+&lt;p>代码如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;;; cnsunyour/telega/+telega-auto-input-method.el -*- lexical-binding: t; -*-&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defcustom&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span> &lt;span class="no">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&lt;/span>&lt;span class="ss">`telega&amp;#39;&lt;/span>&lt;span class="s"> 里中文对话列表，用于自动切换到中文输入。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:type&lt;/span> &lt;span class="ss">&amp;#39;list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:group&lt;/span> &lt;span class="ss">&amp;#39;telega&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defcustom&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span> &lt;span class="no">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&lt;/span>&lt;span class="ss">`telega&amp;#39;&lt;/span>&lt;span class="s"> 里英文对话列表，用于自动切换到英文输入。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:type&lt;/span> &lt;span class="ss">&amp;#39;list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:group&lt;/span> &lt;span class="ss">&amp;#39;telega&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--save-encn-list&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;保存中英文对话列表。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">customize-save-variable&lt;/span> &lt;span class="ss">&amp;#39;+telega--chat-cn-list&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">customize-save-variable&lt;/span> &lt;span class="ss">&amp;#39;+telega--chat-en-list&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--add-cn-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;将当前聊天对话加入到中文列表中，以自动激活中文输入法。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">telega-chatbuf--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">telega--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-pushnew&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--save-encn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;telega.el: Chat [\&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\&amp;#34;] is added to CN chat list.&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--add-en-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;将当前聊天对话加入到英文列表中，以自动关闭中文输入法。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">telega-chatbuf--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">telega--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-pushnew&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--save-encn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;telega.el: Chat [\&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\&amp;#34;] is added to EN chat list.&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--remove-from-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;将当前聊天对话从中英文列表中删除，将根据对话名称自动切换中英文输入法。&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">interactive&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="nv">telega-chatbuf--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">telega--chat&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">cl-remove&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--save-encn-list&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">concat&lt;/span> &lt;span class="s">&amp;#34;telega.el: Chat [\&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\&amp;#34;] is removed from EN/CN chat list.&amp;#34;&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--active-input-method&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Active input method.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">activate-input-method&lt;/span> &lt;span class="nv">default-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+telega--deactive-input-method&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Deactive input method&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">deactivate-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+toggle-input-method--telega-chat-mode-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">chat&lt;/span> &lt;span class="kp">&amp;amp;optional&lt;/span> &lt;span class="nv">no-history-load&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;在 telega-chat-mode 里根据 chat 名称切换输入法，如果名称包含
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">中文，则激活中文输入法，否则关闭中文输入法&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:after&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">telega-chat--pop-to-buffer&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">title&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-title&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">chatid&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">plist-get&lt;/span> &lt;span class="nv">chat&lt;/span> &lt;span class="nb">:id&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cond&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nf">member&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-cn-list&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--active-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nf">member&lt;/span> &lt;span class="nv">chatid&lt;/span> &lt;span class="nv">+telega--chat-en-list&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--deactive-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nf">string-match&lt;/span> &lt;span class="s">&amp;#34;\\cc&amp;#34;&lt;/span> &lt;span class="nv">title&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--active-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nv">telega-chat-bot-p&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--deactive-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">((&lt;/span>&lt;span class="nv">telega-chat-private-p&lt;/span> &lt;span class="nv">chat&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--active-input-method&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--deactive-input-method&lt;/span>&lt;span class="p">)))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

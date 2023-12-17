@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>macos on 凡·记</title><link>https://sunyour.org/tags/macos/</link><description>Recent content in macos on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 06 May 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>让 Emacs 在 macOS 上根据系统的 light/dark 模式切换对应主题</title><link>https://sunyour.org/post/%E8%AE%A9-emacs-%E5%9C%A8-macos-%E4%B8%8A%E6%A0%B9%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%9A%84-light/dark-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%AF%B9%E5%BA%94%E4%B8%BB%E9%A2%98/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%AE%A9-emacs-%E5%9C%A8-macos-%E4%B8%8A%E6%A0%B9%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%9A%84-light/dark-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%AF%B9%E5%BA%94%E4%B8%BB%E9%A2%98/</guid><description>&lt;p>之前一直是使用 &lt;code>theme-changer&lt;/code> 来根据日出日落时间自动切换 emacs 的主题的。但是有一个问题，因为 macOS 并不是完全按照计算出的日出日落时间去切换 light/dark 模式的，因此 emacs 的主题切换时间与 macOS 系统不同步。&lt;/p>
+&lt;p>我自己试了增加一个延时参数去尽量与系统切换时间保持接近，但几个月下来发现完全找不到一个相对合适的延迟时间， macOS 并不是固定给日出日落时间加一个延时，具体是什么逻辑到现在还没摸索出来。&lt;/p>
+&lt;p>如果能够读取 macOS 当前的 light/dark 模式就好了，这样就可以读取到的这个值自动切换主题了。&lt;/p>
+&lt;p>去 github 搜索了一下，竟然真的有人写了一个包，就是这个 &lt;a class="link" href="https://github.com/LionyxML/auto-dark-emacs" target="_blank" rel="noopener"
+>https://github.com/LionyxML/auto-dark-emacs&lt;/a> 。试用了一下，发现切换起来有问题，不能做到完全切换，还会遗留一些地方没切换成。于是我 fork 了一份，并进行了如下修改：&lt;/p>
+&lt;ul>
+&lt;li>修复了切换过程中的 bug ；&lt;/li>
+&lt;li>增加了可以设置为从主题列表中随机切换的功能，跟我以前的习惯一致；&lt;/li>
+&lt;li>优化了执行逻辑，大量减少循环次数，提升性能。&lt;/li>
+&lt;/ul>
+&lt;p>我 fork 的仓库地址在 &lt;a class="link" href="https://github.com/cnsunyour/auto-dark-emacs" target="_blank" rel="noopener"
+>https://github.com/cnsunyour/auto-dark-emacs&lt;/a> ， &lt;code>use-package&lt;/code> 调用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">use-package&lt;/span> &lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:straight&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:type&lt;/span> &lt;span class="nv">git&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:host&lt;/span> &lt;span class="nv">github&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:repo&lt;/span> &lt;span class="s">&amp;#34;cnsunyour/auto-dark-emacs&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">eq&lt;/span> &lt;span class="nv">system-type&lt;/span> &lt;span class="ss">&amp;#39;darwin&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:custom&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/light-theme&lt;/span> &lt;span class="nv">+list-light-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/dark-theme&lt;/span> &lt;span class="nv">+list-dark-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;auto-dark-emacs/check-and-set-dark-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我用的是 &lt;code>doom-emacs&lt;/code> ，调用方法如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; packages.el&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="nv">IS-MAC&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">package!&lt;/span> &lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:recipe&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">:host&lt;/span> &lt;span class="nv">github&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:repo&lt;/span> &lt;span class="s">&amp;#34;LionyxML/auto-dark-emacs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:fork&lt;/span> &lt;span class="s">&amp;#34;cnsunyour/auto-dark-emacs&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; config.el&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">use-package!&lt;/span> &lt;span class="nv">auto-dark-emacs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:when&lt;/span> &lt;span class="nv">IS-MAC&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:custom&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/light-theme&lt;/span> &lt;span class="nv">+list-light-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">auto-dark-emacs/dark-theme&lt;/span> &lt;span class="nv">+list-dark-themes&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook!&lt;/span> &lt;span class="nv">doom-load-theme&lt;/span> &lt;span class="nb">:append&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">and&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">featurep&lt;/span> &lt;span class="ss">&amp;#39;solaire-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">not&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">string-prefix-p&lt;/span> &lt;span class="s">&amp;#34;doom-&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">symbol-name&lt;/span> &lt;span class="nv">doom-theme&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">set-face-background&lt;/span> &lt;span class="ss">&amp;#39;solaire-hl-line-face&lt;/span> &lt;span class="no">nil&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">set-face-background&lt;/span> &lt;span class="ss">&amp;#39;solaire-default-face&lt;/span> &lt;span class="no">nil&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook!&lt;/span> &lt;span class="nv">after-init&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">auto-dark-emacs/check-and-set-dark-mode&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

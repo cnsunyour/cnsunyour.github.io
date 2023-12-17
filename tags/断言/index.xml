@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>断言 on 凡·记</title><link>https://sunyour.org/tags/%E6%96%AD%E8%A8%80/</link><description>Recent content in 断言 on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 21 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/%E6%96%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml"/><item><title>"emacs-rime断言/pyim探针“的两种应用方式</title><link>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</link><pubDate>Sat, 21 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</guid><description>&lt;p>在 &lt;a class="link" href="https://github.com/DogLooksGood/emacs-rime" target="_blank" rel="noopener"
+>emacs-rime&lt;/a> 中的断言（&lt;a class="link" href="https://github.com/tumashu/pyim" target="_blank" rel="noopener"
+>pyim&lt;/a> 中称为探针）是相当实用的功能，配置的好的话可以在输入过程中做到完全自动切换中英文。&lt;/p>
+&lt;p>我希望在配置中不同的 mode 中能有不同的断言，因此写了个判断函数，根据不同的 mode 计算不同的断言函数的值，然后集中返回；另外还自定义了几种自己需要的断言，如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Determines whether the point is a button.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">\&amp;#34;Button\&amp;#34; means that positon is not editable.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">button-at&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">point&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-predicate-beancount-p&lt;/span> &lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Predicate input state in &lt;/span>&lt;span class="ss">`beancount-mode.&amp;#39;&lt;/span>&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">Determines whether current buffer&amp;#39;s &lt;/span>&lt;span class="ss">`major-mode&amp;#39;&lt;/span>&lt;span class="s"> is
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">&lt;/span>&lt;span class="ss">`beancount-mode&amp;#39;&lt;/span>&lt;span class="s">, and the cursor is at the beginning of the
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">line.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;beancount-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">not&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">nth&lt;/span> &lt;span class="mi">3&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">syntax-ppss&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">nth&lt;/span> &lt;span class="mi">4&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">syntax-ppss&lt;/span>&lt;span class="p">))))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">+rime-predicate-multi-mode-english-p&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Using different predicates in different modes.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">derived-mode-p&lt;/span> &lt;span class="ss">&amp;#39;telega-chat-mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="ss">&amp;#39;text-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">or&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-after-alphabet-char-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-prog-in-code-p&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-beancount-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">+rime-predicate-multi-mode-english-p&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>从中可以看到对 `telega-chat-mode` 和 `text-mode` 两种模式使用了不同的断言逻辑，实际应用满足了我的需求。&lt;/p>
+&lt;p>如果使用的 mode 很多，每种 mode 又需要不同的断言组合，那就需要对判断函数增加逻辑。可以预想，很有可能会发展成类似于&lt;/p>
+&lt;blockquote>
+&lt;p>(if 条件 1 (逻辑 1) (if 条件 2 (逻辑 2) (if 条件 3 (逻辑 3) (&amp;hellip;&amp;hellip;))))&lt;/p>
+&lt;/blockquote>
+&lt;p>的形式。&lt;/p>
+&lt;p>恰好这时在 &lt;a class="link" href="https://emacs-china.org/" target="_blank" rel="noopener"
+>Emacs China 论坛&lt;/a> 上看到关于 buffer-local 变量的帖子，以前对 `setq-default` 和 `setq-local` 一头雾水，这次经过回帖的解释，总算明白了 buffer-local 变量的用处。&lt;/p>
+&lt;p>对于我用断言的情况，不正是 buffer-local 变量的使用场景吗？把之前配置里 17 行以后的代码修改一下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq-default&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-after-alphabet-char-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-prog-in-code-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">+rime-predicate-beancount-p&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook&lt;/span> &lt;span class="ss">&amp;#39;telega-chat-mode-hook&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq-local&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook&lt;/span> &lt;span class="ss">&amp;#39;text-mode-hook&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">lambda&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq-local&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>也就是先用 `setq-default` 设置一个大部分 mode 都用的默认断言组合，其次对需要单独设置的 mode 用 `setq-local` 设置 buffer-local 断言组合，通过 `add-hook` 使其在进入对应 mode 时设置生效。&lt;/p>
+&lt;p>这种方式配置代码行数可能会增多，但是逻辑简单，无论多少个不同需求的 mode ，只需要依此类推逐个 `setq-loca` 设置就好了，不容易出错。&lt;/p>
+&lt;p>最后安利一下 `doom-emacs` ，提供了很多简化代码的宏，如上述两个 `setq-loca` 在 `doom-emacs` 里就可以写为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">add-hook!&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-chat-mode&lt;/span> &lt;span class="nv">text-mode&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">setq-local&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-predicate-button-at-point-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-evil-mode-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-punctuation-line-begin-p&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">rime-predicate-auto-english-p&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>搞定，简单吧？&lt;/p>
+&lt;p>&lt;strong>注： 最新的断言配置在 &lt;a class="link" href="https://github.com/cnsunyour/.doom.d/blob/develop/modules/cnsunyour/chinese/%2Brime-predicates.el" target="_blank" rel="noopener"
+>github 仓库&lt;/a> ，里面的逻辑稍微复杂点，谨供参考。&lt;/strong>&lt;/p></description></item></channel></rss>

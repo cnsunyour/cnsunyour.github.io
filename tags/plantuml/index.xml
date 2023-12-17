@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>plantuml on 凡·记</title><link>https://sunyour.org/tags/plantuml/</link><description>Recent content in plantuml on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/plantuml/index.xml" rel="self" type="application/rss+xml"/><item><title>对doom-emacs里plantuml的改进</title><link>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</link><pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</guid><description>&lt;p>昨晚跟群友 SteamedFish 交流 plantuml，发现在 org-mode 里的 src-block 代码块中写 plantuml 代码时，不能写上“@”开头的语句，否则必报错。必须在“@”前面加上“\”或“,”才可以。后来经过多次尝试，发现在开头的@start 前面加上“\”就可以。于是想到写个 defadvice 处理一下。另外把 SteamedFish 兄弟写的自动加上“:cmdline -charset utf-8”的方法也加了进来。另外在我的 doom-emacs 里 exec-mode 只能设置为`executable`，否则 C-c C-c 时报错，不知为啥。(*&lt;strong>*10 月 26 日更新**&lt;/strong> doom 修复了此问题，现在不用设置为`executable`也可以了)&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-emacs-lisp" data-lang="emacs-lisp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; Change plantuml exec mode to `executable&amp;#39;, other mode execute error.&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">plantuml-default-exec-mode&lt;/span> &lt;span class="ss">&amp;#39;executable&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; Add `:cmdline -charset utf-8&amp;#39; to org-src-block:plantuml&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">;; Fix `@start&amp;#39; prefix execute error&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">use-package!&lt;/span> &lt;span class="nv">ob-plantuml&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:when&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">featurep!&lt;/span> &lt;span class="nb">:lang&lt;/span> &lt;span class="nv">plantuml&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:after&lt;/span> &lt;span class="nv">plantuml-mode&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:init&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+fixstart--org-babel-plantuml-make-body&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:filter-args&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">org-babel-execute:plantuml&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-destructuring-bind&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">body&lt;/span> &lt;span class="nv">params&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nv">args&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let*&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">origin-body&lt;/span> &lt;span class="nv">body&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">fix-body&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;^\\w*\\(@start\\)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\\\\\1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">origin-body&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="nv">fix-body&lt;/span> &lt;span class="nv">params&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:config&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;org-babel-default-header-args:plantuml&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">:cmdline&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s">&amp;#34;-charset utf-8&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>*&lt;strong>*9 月 8 日更新**&lt;/strong> 已把此代码向 doom-emacs 提交 PR 并收录，根据 Henrik 的编码规范建议改为如下形式：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-elisp" data-lang="elisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">after!&lt;/span> &lt;span class="nv">ob-plantuml&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+plantuml--fix-atstart-in-org-src-blocks-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:filter-args&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">org-babel-execute:plantuml&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-destructuring-bind&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">body&lt;/span> &lt;span class="nv">params&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nv">args&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let*&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">origin-body&lt;/span> &lt;span class="nv">body&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">fix-body&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;^[[:blank:]\n]*\\(@start\\)&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\\\\\1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">origin-body&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="nv">fix-body&lt;/span> &lt;span class="nv">params&lt;/span>&lt;span class="p">))))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">add-to-list&lt;/span> &lt;span class="ss">&amp;#39;org-babel-default-header-args:plantuml&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">:cmdline&lt;/span> &lt;span class="o">.&lt;/span> &lt;span class="s">&amp;#34;-charset utf-8&amp;#34;&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on 凡·记</title><link>https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>Beancount使用——卖出物品的记账</title><link>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</guid><description>&lt;p>在闲鱼上处理一些不用的东西，开始仅仅是记 Income:Sales 和 Assets:Alipay 这两个账户，当邮寄物品时再记 Expenses:ExpressFee 支出。但总是觉得有问题，一是有人购买时当时并没有收到货款，而是在支付宝中暂存着，只有买方确认收货后才能真正收到货款；二是收到的款项并不代表真实收入，而是包含着运费，不应该全部记为收入才对。&lt;/p>
+&lt;p>但是琢磨了半天也没想明白到底应该怎么记，最主要的是如何在发快递时平掉全部货款中的运费部分。因为在发快递时记：贷银行账户/借快递费两项，两项已经平了，没有其它账户去平收到款项中的运费了。&lt;/p>
+&lt;p>祭出搜索大法，了解了很多销售类公司垫付运费销售货物的记账方法，总算弄明白了。之前记账中有一个很大的误解，就是快递发货记支出，其实这里不应该记支出，因为是替买方应付的运费，所以应该记为贷其它应收。而在实际发货垫付运费时记为借其它应收，贷银行账户。&lt;/p>
+&lt;p>总体记账条目如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">;; 卖出时
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2019-11-01 * &amp;#34;闲鱼&amp;#34; &amp;#34;卖HHKB键帽&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:AccountsReceivable:Alipay 214.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Income:Sales -200.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:OtherReceivables:ExpressFee -14.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">;; 快递发出
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2019-11-02 * &amp;#34;快递&amp;#34; &amp;#34;闲鱼发货——卖HHKB键帽&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:Alipay:Saving -14.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:OtherReceivables:ExpressFee 14.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">;; 收到货款时
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2019-11-10 * &amp;#34;支付宝&amp;#34; &amp;#34;收到货款——卖HHKB键帽&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:Alipay:Saving 214.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:AccountsReceivable:Alipay -214.00 CNY
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>今天好好教训一下儿子</title><link>https://sunyour.org/post/%E4%BB%8A%E5%A4%A9%E5%A5%BD%E5%A5%BD%E6%95%99%E8%AE%AD%E4%B8%80%E4%B8%8B%E5%84%BF%E5%AD%90/</link><pubDate>Wed, 07 Aug 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E4%BB%8A%E5%A4%A9%E5%A5%BD%E5%A5%BD%E6%95%99%E8%AE%AD%E4%B8%80%E4%B8%8B%E5%84%BF%E5%AD%90/</guid><description>&lt;p>今天晚上孩子去剪发，回来手里拿着爷爷买的两块糖，我发现后，说了句“不能吃糖”，孩子立刻跟了句“可以吃”，我说咱们约定过，只有生日的时候可以吃糖，孩子不干了，一直说“不，就要现在吃”，我再接“不行”，没想到，孩子直接就哭了。这时爷爷马上过来哄孩子，并且把糖剥开给孩子吃。&lt;/p>
+&lt;p>我不生气，但很难过。难过的是努力坚持的事情不但得不到老人的支持，还完全起反面作用。没有老人的支持，管孩子真的太难太难了。&lt;/p>
+&lt;p>为了表明自己的态度，可能多少也包含点生气的意思吧，我没有吃晚饭，直接从爷爷家回到自己家了。给孩子妈妈发信息，让她早点回家，结果妈妈刚好已经回来了，正在爷爷家，两句话说明了一下情况，告诉妈妈配合自己，今天必须要严肃的对待孩子，否则孩子将来就没法管了。&lt;/p>
+&lt;p>可能我的提前离开已经让孩子意识到什么了，也可能妈妈跟孩子说了什么了。一会儿妈妈带孩子回来了，听到他们娘俩儿悄悄商量怎么找我谈话来着。一会儿孩子慢慢的走到我身后喊我，以下是两人对话：&lt;/p>
+&lt;ul>
+&lt;li>儿子：爸爸～～&lt;/li>
+&lt;li>我：怎么了？&lt;/li>
+&lt;li>儿子：对不起。&lt;/li>
+&lt;li>我：为什么对不起呀？&lt;/li>
+&lt;li>儿子：因为吃糖。&lt;/li>
+&lt;li>我：吃糖怎么不对？&lt;/li>
+&lt;li>儿子：吃糖蛀牙。&lt;/li>
+&lt;li>我：知道口香糖蛀牙，那为什么还吃呀？&lt;/li>
+&lt;li>儿子：……&lt;/li>
+&lt;li>我：你是不是跟爸爸妈妈约定过过生日的时候可以吃糖和零食，其它时间不吃啊？&lt;/li>
+&lt;li>儿子：嗯。&lt;/li>
+&lt;li>我：爸爸最难过的就是你答应爸爸妈妈的事情却不做到，你知道当你说我就要现在吃，然后还哇哇大哭让爷爷给你剥糖吃的时候，爸爸有多伤心。&lt;/li>
+&lt;li>儿子：……&lt;/li>
+&lt;li>我：那，爸爸希望这是最后一次，你能答应我吗？&lt;/li>
+&lt;li>儿子：能。&lt;/li>
+&lt;li>我：那好，那我们拉勾，好不好？&lt;/li>
+&lt;li>儿子：好&lt;/li>
+&lt;li>我：拉了勾，就一定要说话算数哦～&lt;/li>
+&lt;li>儿子：嗯（同时用力点了点头）&lt;/li>
+&lt;/ul></description></item><item><title>万分期待的《黑衣人》竟是万分失望</title><link>https://sunyour.org/post/%E4%B8%87%E5%88%86%E6%9C%9F%E5%BE%85%E7%9A%84%E9%BB%91%E8%A1%A3%E4%BA%BA%E7%AB%9F%E6%98%AF%E4%B8%87%E5%88%86%E5%A4%B1%E6%9C%9B/</link><pubDate>Fri, 21 Jun 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E4%B8%87%E5%88%86%E6%9C%9F%E5%BE%85%E7%9A%84%E9%BB%91%E8%A1%A3%E4%BA%BA%E7%AB%9F%E6%98%AF%E4%B8%87%E5%88%86%E5%A4%B1%E6%9C%9B/</guid><description>&lt;p>今天终于抽着空在白天跑去看《黑衣人：全球追缉》，结果看一半就恶心的想吐， 什么烂片，一点情节也没有，仅有的一点点特效也就比五毛多一点，再一次对进口 电影失望透顶。希望国产电影越来越好。&lt;/p></description></item><item><title>墩墩的作息日程表</title><link>https://sunyour.org/post/%E5%A2%A9%E5%A2%A9%E7%9A%84%E4%BD%9C%E6%81%AF%E6%97%A5%E7%A8%8B%E8%A1%A8/</link><pubDate>Sun, 16 Jun 2019 22:06:00 +0800</pubDate><guid>https://sunyour.org/post/%E5%A2%A9%E5%A2%A9%E7%9A%84%E4%BD%9C%E6%81%AF%E6%97%A5%E7%A8%8B%E8%A1%A8/</guid><description>&lt;p>我就想说一句，看着咋这么吓人？&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>每日时间&lt;/th>
+&lt;th>星期一&lt;/th>
+&lt;th>星期二&lt;/th>
+&lt;th>星期三&lt;/th>
+&lt;th>星期四&lt;/th>
+&lt;th>星期五&lt;/th>
+&lt;th>星期六&lt;/th>
+&lt;th>星期日&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>07:00-07:30&lt;/td>
+&lt;td>起床&lt;/td>
+&lt;td>起床&lt;/td>
+&lt;td>起床&lt;/td>
+&lt;td>起床&lt;/td>
+&lt;td>起床&lt;/td>
+&lt;td>起床&lt;/td>
+&lt;td>起床&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>07:30-08:00&lt;/td>
+&lt;td>早餐&lt;/td>
+&lt;td>早餐&lt;/td>
+&lt;td>早餐&lt;/td>
+&lt;td>早餐&lt;/td>
+&lt;td>早餐&lt;/td>
+&lt;td>早餐&lt;/td>
+&lt;td>早餐&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>08:00-08:30&lt;/td>
+&lt;td>识字&lt;/td>
+&lt;td>识字&lt;/td>
+&lt;td>拼音&lt;/td>
+&lt;td>识字&lt;/td>
+&lt;td>识字&lt;/td>
+&lt;td>拼音&lt;/td>
+&lt;td>出发&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>08:30-09:00&lt;/td>
+&lt;td>送园&lt;/td>
+&lt;td>送园&lt;/td>
+&lt;td>送园&lt;/td>
+&lt;td>送园&lt;/td>
+&lt;td>送园&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>篮球课&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>09:00-10:00&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>篮球课&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>10:00-12:00&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>休&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>12:00-13:30&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>午餐&lt;/td>
+&lt;td>午餐&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>13:30-16:45&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>幼儿园&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>玩轮滑&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>16:45-17:00&lt;/td>
+&lt;td>接园&lt;/td>
+&lt;td>接园&lt;/td>
+&lt;td>接园&lt;/td>
+&lt;td>接园&lt;/td>
+&lt;td>接园&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>休&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>17:00-17:30&lt;/td>
+&lt;td>蓝球&lt;/td>
+&lt;td>跳绳&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>蓝球&lt;/td>
+&lt;td>跳绳&lt;/td>
+&lt;td>晚餐&lt;/td>
+&lt;td>晚餐&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>17:30-20:00&lt;/td>
+&lt;td>美术课&lt;/td>
+&lt;td>轮滑课&lt;/td>
+&lt;td>武术课&lt;/td>
+&lt;td>围棋课&lt;/td>
+&lt;td>英语课&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>英语课&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>20:00-21:00&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>围棋&lt;/td>
+&lt;td>英语网课&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>围棋&lt;/td>
+&lt;td>休&lt;/td>
+&lt;td>围棋&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>21:00-21:15&lt;/td>
+&lt;td>洗漱&lt;/td>
+&lt;td>洗漱&lt;/td>
+&lt;td>洗漱&lt;/td>
+&lt;td>洗漱&lt;/td>
+&lt;td>洗漱&lt;/td>
+&lt;td>洗漱&lt;/td>
+&lt;td>洗漱&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>21:15-21:30&lt;/td>
+&lt;td>英语&lt;/td>
+&lt;td>英语&lt;/td>
+&lt;td>英语&lt;/td>
+&lt;td>英语&lt;/td>
+&lt;td>英语&lt;/td>
+&lt;td>英语&lt;/td>
+&lt;td>英语&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>21:30-21:45&lt;/td>
+&lt;td>讲绘本&lt;/td>
+&lt;td>讲绘本&lt;/td>
+&lt;td>讲绘本&lt;/td>
+&lt;td>讲绘本&lt;/td>
+&lt;td>讲绘本&lt;/td>
+&lt;td>讲绘本&lt;/td>
+&lt;td>讲绘本&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>21:45-22:00&lt;/td>
+&lt;td>听故事&lt;/td>
+&lt;td>听故事&lt;/td>
+&lt;td>听故事&lt;/td>
+&lt;td>听故事&lt;/td>
+&lt;td>听故事&lt;/td>
+&lt;td>听故事&lt;/td>
+&lt;td>听故事&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>22:00-07:00&lt;/td>
+&lt;td>睡觉&lt;/td>
+&lt;td>睡觉&lt;/td>
+&lt;td>睡觉&lt;/td>
+&lt;td>睡觉&lt;/td>
+&lt;td>睡觉&lt;/td>
+&lt;td>睡觉&lt;/td>
+&lt;td>睡觉&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>注：“休”为自由活动时间，其它时间完成指定任务即可自由活动。&lt;/p></description></item><item><title>带儿子外出的趣事</title><link>https://sunyour.org/post/%E5%B8%A6%E5%84%BF%E5%AD%90%E5%A4%96%E5%87%BA%E7%9A%84%E8%B6%A3%E4%BA%8B/</link><pubDate>Thu, 07 Apr 2016 15:41:00 +0800</pubDate><guid>https://sunyour.org/post/%E5%B8%A6%E5%84%BF%E5%AD%90%E5%A4%96%E5%87%BA%E7%9A%84%E8%B6%A3%E4%BA%8B/</guid><description>&lt;p>新办公室有块空地，几个人商量了一下，决定留下这块地，让家人有兴趣可以种点东西。回家跟孩他妈一提，也是兴奋的不行，本来她也在琢磨着的块地可以种点东西，正到处看地呢，这下倒也省了。&lt;/p>
+&lt;p>前两天从老家回来，决定带孩子去看看那块地，顺便整一下，也已经到了要下苗的季节了，再不整一整就来不及了。&lt;/p>
+&lt;p>下午 3 点，一家人浩浩荡荡的出发了，刚出地库 5 分钟，发现儿子在安全座椅上睡着了，也是奇了，儿子只要坐在安全座椅上，马上就能睡着，可能是车子多多少少的晃动的原因吧。半小时后，到达目的地，还没醒，大人看看地很满意，没想到前一天哥们儿一家已经把地全整过了，肥都埋了。得，又偷一把懒，等半个月一起开种。&lt;/p>
+&lt;p>回家吧，儿子还没醒，舍不得叫他，多睡会儿挺好，结果马上要到家了，正要进地库的时候，儿子醒了。&lt;/p>
+&lt;p>精彩的时刻来了：儿子茫然的看着地库入口，一脸懵圈的表情说：为啥我们刚出车库就又进来呢？一家子顿时笑的不行，停都停不下来了，哈哈哈哈 ^_^&lt;/p></description></item><item><title>对墩墩的第一次正式批评教育</title><link>https://sunyour.org/post/%E5%AF%B9%E5%A2%A9%E5%A2%A9%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%AD%A3%E5%BC%8F%E6%89%B9%E8%AF%84%E6%95%99%E8%82%B2/</link><pubDate>Fri, 04 Sep 2015 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%AF%B9%E5%A2%A9%E5%A2%A9%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%AD%A3%E5%BC%8F%E6%89%B9%E8%AF%84%E6%95%99%E8%82%B2/</guid><description>&lt;p>今天从早教班上完课回来，由于墩墩表现大赞，心情非常好。妈妈在厨房给墩墩切梨块，我担心他万一让厨房用具伤到，就叫他让他出来，没想到墩墩就跟没听到一样，结合以前也经常有类似的情况，当孩子的注意力在他感兴趣的事时，别人叫他基本就是无视。今天突然感觉到这样下去可能会成为一种很不好的行为，于是决定对他进行批评。&lt;/p>
+&lt;p>首先是重复几次叫他名字，仍然被无视。这时妈妈也提醒到爸爸在叫他，但完全没有任何反应，眼睛只盯着梨块。这时妈妈切好梨块，准备递给他。我果断拦住，然后以质问的语气问孩子：“爸爸叫你听到没有？”，结果是仍然没任何反应，只想上手去拿梨块，坚决制止之。这时孩子开始大喊大叫，再次制止他拿梨块，孩子开始大哭，妈妈已经不忍心了，想把梨块递给孩子，再次坚决制止。反复几次，孩子哭的不停，终于在妈妈抱起来的时候哭着答应了一声“哎～～”，妈妈立刻把梨块给了孩子，我也不再板着脸，对孩子相对温柔的表达了“在别人叫你时，如果不答应是不礼貌的行为，会没有朋友”的意思，然后做自己的事。&lt;/p>
+&lt;p>没想到的是，吃完梨块以后，墩墩主动过来向我示好，真的是受宠若惊，以前从来没有这样过，想起吃午饭时孩子主动从远处把玉米拿过来喂给我，真是眼泪都要掉下来了。赶紧专心致志地陪墩墩玩了两个多小时。孩子看起来也非常开心，完全没有受批评后可能的负面反应。&lt;/p>
+&lt;p>感触：批评孩子要有度，之前都是很粗暴的吼孩子，发现结果是孩子明显和自己疏远了，而且胆子变得很小，想玩什么都会提前看家长。今天晚上的批评教育感觉上是恰到好处，既达到批评的目的，又没有别的负作用。&lt;/p></description></item><item><title>连续两天了，墩墩半夜12点仍然不愿意回屋睡觉</title><link>https://sunyour.org/post/%E8%BF%9E%E7%BB%AD%E4%B8%A4%E5%A4%A9%E4%BA%86%E5%A2%A9%E5%A2%A9%E5%8D%8A%E5%A4%9C12%E7%82%B9%E4%BB%8D%E7%84%B6%E4%B8%8D%E6%84%BF%E6%84%8F%E5%9B%9E%E5%B1%8B%E7%9D%A1%E8%A7%89/</link><pubDate>Thu, 03 Sep 2015 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%BF%9E%E7%BB%AD%E4%B8%A4%E5%A4%A9%E4%BA%86%E5%A2%A9%E5%A2%A9%E5%8D%8A%E5%A4%9C12%E7%82%B9%E4%BB%8D%E7%84%B6%E4%B8%8D%E6%84%BF%E6%84%8F%E5%9B%9E%E5%B1%8B%E7%9D%A1%E8%A7%89/</guid><description>&lt;p>最后是在客厅哄着了才抱进去的，开始还没睡实，往床上放的时候醒了，哭的哗哗的，死活不进屋，最后又在客厅哄着才行。这几天情况都不对劲，不知道为什么。&lt;/p></description></item><item><title>墩墩快2岁了，早教班升班两周，状态不错</title><link>https://sunyour.org/post/%E5%A2%A9%E5%A2%A9%E5%BF%AB2%E5%B2%81%E4%BA%86%E6%97%A9%E6%95%99%E7%8F%AD%E5%8D%87%E7%8F%AD%E4%B8%A4%E5%91%A8%E7%8A%B6%E6%80%81%E4%B8%8D%E9%94%99/</link><pubDate>Wed, 02 Sep 2015 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%A2%A9%E5%A2%A9%E5%BF%AB2%E5%B2%81%E4%BA%86%E6%97%A9%E6%95%99%E7%8F%AD%E5%8D%87%E7%8F%AD%E4%B8%A4%E5%91%A8%E7%8A%B6%E6%80%81%E4%B8%8D%E9%94%99/</guid><description>&lt;p>在同班孩子中表现中上（当然也可能是个人感觉），身高到 93cm 了，体重 14.375kg，要给儿子好好过 2 周岁生日:)&lt;/p></description></item></channel></rss>

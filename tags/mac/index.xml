@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mac on 凡·记</title><link>https://sunyour.org/tags/mac/</link><description>Recent content in Mac on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/mac/index.xml" rel="self" type="application/rss+xml"/><item><title>我的Karabiner-Elements规则设置</title><link>https://sunyour.org/post/%E6%88%91%E7%9A%84karabiner-elements%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE/</link><pubDate>Mon, 04 Nov 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E6%88%91%E7%9A%84karabiner-elements%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE/</guid><description>&lt;p>记录一下留存备忘（这是.json.erb 文件，需要生成对应的 json 文件才可用）。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;span class="lnt">71
+&lt;/span>&lt;span class="lnt">72
+&lt;/span>&lt;span class="lnt">73
+&lt;/span>&lt;span class="lnt">74
+&lt;/span>&lt;span class="lnt">75
+&lt;/span>&lt;span class="lnt">76
+&lt;/span>&lt;span class="lnt">77
+&lt;/span>&lt;span class="lnt">78
+&lt;/span>&lt;span class="lnt">79
+&lt;/span>&lt;span class="lnt">80
+&lt;/span>&lt;span class="lnt">81
+&lt;/span>&lt;span class="lnt">82
+&lt;/span>&lt;span class="lnt">83
+&lt;/span>&lt;span class="lnt">84
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;title&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Sunn Yao&amp;#39;s Personal Configurations&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;rules&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;description&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Change enter to control if pressed with other keys&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;manipulators&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;basic&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">from(&lt;/span>&lt;span class="s2">&amp;#34;return_or_enter&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[],&lt;/span> &lt;span class="err">[&lt;/span>&lt;span class="nt">&amp;#34;any&amp;#34;&lt;/span>&lt;span class="err">])&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;right_control&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to_if_alone&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;return_or_enter&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;description&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Change caps_lock to control if pressed with other keys, to escape if pressed alone.&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;manipulators&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;basic&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">from(&lt;/span>&lt;span class="s2">&amp;#34;caps_lock&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[],&lt;/span> &lt;span class="err">[&lt;/span>&lt;span class="nt">&amp;#34;any&amp;#34;&lt;/span>&lt;span class="err">])&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;left_control&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to_if_alone&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;escape&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;description&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Post escape if left_control is pressed alone.&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;manipulators&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;basic&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">from(&lt;/span>&lt;span class="s2">&amp;#34;left_control&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[],&lt;/span> &lt;span class="err">[&lt;/span>&lt;span class="nt">&amp;#34;any&amp;#34;&lt;/span>&lt;span class="err">])&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;left_control&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to_if_alone&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;escape&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;description&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Change left_shift to Ctrl-\\ if pressed alone in Emacs&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;manipulators&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;basic&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">from(&lt;/span>&lt;span class="s2">&amp;#34;left_shift&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[],&lt;/span> &lt;span class="err">[])&lt;/span> &lt;span class="err">%&amp;gt;,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;left_shift&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to_if_alone&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;backslash&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;left_control&amp;#34;&lt;/span>&lt;span class="p">]]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;conditions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">frontmost_application_if(&lt;/span>&lt;span class="s2">&amp;#34;emacs&amp;#34;&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;description&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Change right_shift to Ctrl-\\ if pressed alone in Emacs&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;manipulators&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;basic&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">from(&lt;/span>&lt;span class="s2">&amp;#34;right_shift&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[],&lt;/span> &lt;span class="err">[])&lt;/span> &lt;span class="err">%&amp;gt;,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;right_shift&amp;#34;&lt;/span>&lt;span class="p">]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to_if_alone&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;backslash&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;left_control&amp;#34;&lt;/span>&lt;span class="p">]],]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;conditions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">frontmost_application_if(&lt;/span>&lt;span class="s2">&amp;#34;emacs&amp;#34;&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;description&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Change left_gui+spacebar to left_alt+spacebar in Emacs&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;manipulators&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;basic&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">from(&lt;/span>&lt;span class="s2">&amp;#34;spacebar&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[&lt;/span>&lt;span class="nt">&amp;#34;left_gui&amp;#34;&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[])&lt;/span> &lt;span class="err">%&amp;gt;,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;spacebar&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;left_alt&amp;#34;&lt;/span>&lt;span class="p">]]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;conditions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">frontmost_application_if(&lt;/span>&lt;span class="s2">&amp;#34;emacs&amp;#34;&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;description&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;Change left_gui+x to left_alt+x in Emacs&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;manipulators&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;basic&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">from(&lt;/span>&lt;span class="s2">&amp;#34;x&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[&lt;/span>&lt;span class="nt">&amp;#34;left_gui&amp;#34;&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="err">[])&lt;/span> &lt;span class="err">%&amp;gt;,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">to(&lt;/span>&lt;span class="p">[[&lt;/span>&lt;span class="s2">&amp;#34;x&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;left_alt&amp;#34;&lt;/span>&lt;span class="p">]]]&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;conditions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="err">&amp;lt;%=&lt;/span> &lt;span class="err">frontmost_application_if(&lt;/span>&lt;span class="s2">&amp;#34;emacs&amp;#34;&lt;/span>&lt;span class="err">)&lt;/span> &lt;span class="err">%&amp;gt;&lt;/span> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>工行和中行网银全部顺利支持Mac平台</title><link>https://sunyour.org/post/%E5%B7%A5%E8%A1%8C%E5%92%8C%E4%B8%AD%E8%A1%8C%E7%BD%91%E9%93%B6%E5%85%A8%E9%83%A8%E9%A1%BA%E5%88%A9%E6%94%AF%E6%8C%81mac%E5%B9%B3%E5%8F%B0/</link><pubDate>Wed, 30 Mar 2016 18:26:00 +0800</pubDate><guid>https://sunyour.org/post/%E5%B7%A5%E8%A1%8C%E5%92%8C%E4%B8%AD%E8%A1%8C%E7%BD%91%E9%93%B6%E5%85%A8%E9%83%A8%E9%A1%BA%E5%88%A9%E6%94%AF%E6%8C%81mac%E5%B9%B3%E5%8F%B0/</guid><description>&lt;p>终于把 MBP 上的 Windows 删了，现在几乎所有工作都可以在 Mac 下完成，除了一样：网上银行。无奈再装个虚拟机好了，而在试验工行登录时，无意中发现有提示信息，有 Mac 下的 UsbKey 工具，转而登录中行时，竟也发现有 Mac 版 UsbKey 工具，赶紧安装上试验下，结果是：完全没问题！！！这下最后一点保留 Windows 的理由也没有了。这个世界终于清静了……&lt;/p></description></item></channel></rss>

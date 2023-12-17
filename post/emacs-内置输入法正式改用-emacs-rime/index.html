@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+    
+  <title>我的 emacs 内置输入法正式改用 emacs-rime | 凡·记</title>
+  <meta name="author" content="凡">
+  <meta name="description" content="从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中">
+  <meta name="keywords" content="blog,developer,personal">
+
+  <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="我的 emacs 内置输入法正式改用 emacs-rime"/>
+<meta name="twitter:description" content="从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中"/>
+<meta name="twitter:site" content="@cnsunyour"/>
+
+  <meta property="og:title" content="我的 emacs 内置输入法正式改用 emacs-rime" />
+<meta property="og:description" content="从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sunyour.org/post/emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-11T10:31:24+08:00" />
+
+
+  <link rel="stylesheet" href="/css/bootstrap.min.css"  crossorigin="anonymous">
+  
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="/sass/main.css">
+
+  <link rel="stylesheet" href="/zoomjs/zoom.min.css">
+
+  <script src=/js/lazysizes.min.js></script>
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  
+
+</head>
+
+
+
+<body ontouchstart="">
+  <nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
+  <div class="container-fluid">
+    
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://sunyour.org/">凡·记</a>
+    </div>
+    
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          <li><a href="/" title="首页">首页</a></li>
+          
+          <li><a href="/post/" title="文章">文章</a></li>
+          
+          <li><a href="/tags/" title="标签">标签</a></li>
+          
+          <li><a href="/categories/" title="分类">分类</a></li>
+          
+
+          <li class="search-icon">
+            <a href="javascript:void(0)">
+              <i class="fa fa-search"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+  
+</nav>
+<script>
+  
+  
+  
+  var $body = document.body;
+  var $toggle = document.querySelector(".navbar-toggle");
+  var $navbar = document.querySelector("#huxblog_navbar");
+  var $collapse = document.querySelector(".navbar-collapse");
+
+  var __HuxNav__ = {
+    close: function () {
+      $navbar.className = " ";
+      
+      setTimeout(function () {
+        
+        if ($navbar.className.indexOf("in") < 0) {
+          $collapse.style.height = "0px";
+        }
+      }, 400);
+    },
+    open: function () {
+      $collapse.style.height = "auto";
+      $navbar.className += " in";
+    },
+  };
+
+  
+  $toggle.addEventListener("click", function (e) {
+    if ($navbar.className.indexOf("in") > 0) {
+      __HuxNav__.close();
+    } else {
+      __HuxNav__.open();
+    }
+  });
+
+  
+
+  document.addEventListener("click", function (e) {
+    if (e.target == $toggle) return;
+    if (e.target.className == "icon-bar") return;
+    __HuxNav__.close();
+  });
+</script>
+  
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  
+
+
+<style type="text/css">
+  header.intro-header {
+    position: relative;
+    background-image: url('');
+  }
+</style>
+
+<header class="intro-header style-text">
+
+  <div class="header-mask"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-heading">
+          <div class="tags">
+            
+            <a class="tag" href="/tags/emacs/" title="emacs">emacs</a>
+            
+            <a class="tag" href="/tags/pyim/" title="pyim">pyim</a>
+            
+            <a class="tag" href="/tags/rime/" title="rime">rime</a>
+            
+          </div>
+          <h1>我的 emacs 内置输入法正式改用 emacs-rime</h1>
+          <h2 class="subheading"></h2>
+          <span class="meta">
+            Posted by  [凡 (Sunn Yao)] 
+            on Tue, Mar 17, 2020
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+
+
+<article>
+  <div class="container">
+    <div class="row">
+
+      
+      <div class="
+              col-lg-8 col-lg-offset-2
+              col-md-10 col-md-offset-1
+              post-container">
+        <p>从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中英文，几乎不用手工切换，打字真如行云流水一般。</p>
+<p>pyim 是一款非常优秀的内置输入法，是它坚定了我从外置输入法转为内置输入法的决心。但是这是一款从拼音起家的输入法，虽然早已加入了对五笔等方案的支持，但对五笔远没有像拼音方案那样进行优化，所以用起来总感觉有点儿不尽如意。</p>
+<p>我在系统中用的是 rime 输入法， pyim 也可以把 rime 作为后端进行调用，经过一段时间的试用，发现 pyim 对 rime 的调用不太完全，而且 pyim 用自家的缓存对 rime 取出的候选词进行干预，这样就无法保持与外置 rime 输入法的一致体验了。</p>
+<p>正在此时， emacs-china 上有大佬发布了一新的内置输入法 emacs-rime 。严格的说，这不是一个输入法，而是相当于是 rime 输入法在 emacs 里的一个前端，所有的输入都原封不动的发送给 rime 后端，由 rime 处理完后把数据再返回并在 emacs 里展现。</p>
+<p>经过几天的试用和调整，今天终于决定把输入法切换到 emacs-rime 了，理由有两点：</p>
+<ol>
+<li>几乎与外置输入法一致的输入体验；</li>
+<li>谦虚而活跃的作者，作者曾经连续花几个小时和我一起定位一个 issue 。</li>
+</ol>
+<p>配置如下 (doom-emacs 配置格式) ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">;; packages.el</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>(<span style="color:#8be9fd;font-style:italic">package!</span> <span style="color:#8be9fd;font-style:italic">liberime</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>  <span style="color:#8be9fd;font-style:italic">:recipe</span> (<span style="color:#8be9fd;font-style:italic">:host</span> <span style="color:#8be9fd;font-style:italic">github</span> <span style="color:#8be9fd;font-style:italic">:repo</span> <span style="color:#f1fa8c">&#34;DogLooksGood/liberime&#34;</span> <span style="color:#8be9fd;font-style:italic">:files</span> (<span style="color:#f1fa8c">&#34;CMakeLists.txt&#34;</span> <span style="color:#f1fa8c">&#34;Makefile&#34;</span> <span style="color:#f1fa8c">&#34;src&#34;</span> <span style="color:#f1fa8c">&#34;*.el&#34;</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>(<span style="color:#8be9fd;font-style:italic">package!</span> <span style="color:#8be9fd;font-style:italic">rime</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>  <span style="color:#8be9fd;font-style:italic">:recipe</span> (<span style="color:#8be9fd;font-style:italic">:host</span> <span style="color:#8be9fd;font-style:italic">github</span> <span style="color:#8be9fd;font-style:italic">:repo</span> <span style="color:#f1fa8c">&#34;DogLooksGood/emacs-rime&#34;</span> <span style="color:#8be9fd;font-style:italic">:files</span> (<span style="color:#f1fa8c">&#34;rime.el&#34;</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4">;; config.el</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>(<span style="color:#8be9fd;font-style:italic">use-package!</span> <span style="color:#8be9fd;font-style:italic">liberime-config</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  <span style="color:#8be9fd;font-style:italic">:init</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  (<span style="color:#8be9fd;font-style:italic">setenv</span> <span style="color:#f1fa8c">&#34;RIME_PATH&#34;</span> <span style="color:#f1fa8c">&#34;~/repos/librime&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>  (<span style="color:#8be9fd;font-style:italic">setq</span> <span style="color:#8be9fd;font-style:italic">liberime-shared-data-dir</span> (<span style="color:#8be9fd;font-style:italic">file-truename</span> <span style="color:#f1fa8c">&#34;~/Library/Rime&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        <span style="color:#8be9fd;font-style:italic">liberime-user-data-dir</span> (<span style="color:#8be9fd;font-style:italic">file-truename</span> <span style="color:#f1fa8c">&#34;~/.local/liberime&#34;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>  <span style="color:#8be9fd;font-style:italic">:hook</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>  (<span style="color:#f1fa8c">&#39;after-init</span> <span style="color:#ff79c6">.</span> (<span style="color:#8be9fd;font-style:italic">lambda</span> ()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>                   (<span style="color:#8be9fd;font-style:italic">when</span> (<span style="color:#50fa7b">fboundp</span> <span style="color:#f1fa8c">&#39;liberime-sync-user-data</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>                     (<span style="color:#8be9fd;font-style:italic">liberime-sync</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  (<span style="color:#f1fa8c">&#39;liberime-after-start</span> <span style="color:#ff79c6">.</span> (<span style="color:#8be9fd;font-style:italic">lambda</span> ()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>                            (<span style="color:#8be9fd;font-style:italic">liberime-select-schema</span> <span style="color:#f1fa8c">&#34;wubi86_jidian&#34;</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>(<span style="color:#8be9fd;font-style:italic">use-package!</span> <span style="color:#8be9fd;font-style:italic">rime</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>  <span style="color:#8be9fd;font-style:italic">:after</span> <span style="color:#8be9fd;font-style:italic">liberime-config</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>  <span style="color:#8be9fd;font-style:italic">:after-call</span> <span style="color:#8be9fd;font-style:italic">after-find-file</span> <span style="color:#8be9fd;font-style:italic">pre-command-hook</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>  <span style="color:#8be9fd;font-style:italic">:custom</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>  (<span style="color:#8be9fd;font-style:italic">default-input-method</span> <span style="color:#f1fa8c">&#34;rime&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>  (<span style="color:#8be9fd;font-style:italic">rime-show-candidate</span> <span style="color:#f1fa8c">&#39;posframe</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>  <span style="color:#8be9fd;font-style:italic">:config</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>  (<span style="color:#8be9fd;font-style:italic">defadvice!</span> <span style="color:#8be9fd;font-style:italic">+rime--posframe-display-result-a</span> (<span style="color:#8be9fd;font-style:italic">args</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>    <span style="color:#f1fa8c">&#34;给 </span><span style="color:#f1fa8c">`rime--posframe-display-result&#39;</span><span style="color:#f1fa8c"> 传入的字符串加一个全角空
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span><span style="color:#f1fa8c">格，以解决 </span><span style="color:#f1fa8c">`posframe&#39;</span><span style="color:#f1fa8c"> 偶尔吃字的问题。&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>    <span style="color:#8be9fd;font-style:italic">:filter-args</span> <span style="color:#50fa7b">#&#39;</span><span style="color:#8be9fd;font-style:italic">rime--posframe-display-result</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>    (<span style="color:#8be9fd;font-style:italic">cl-destructuring-bind</span> (<span style="color:#8be9fd;font-style:italic">result</span>) <span style="color:#8be9fd;font-style:italic">args</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>      (<span style="color:#8be9fd;font-style:italic">let</span> ((<span style="color:#8be9fd;font-style:italic">newresult</span> (<span style="color:#8be9fd;font-style:italic">if</span> (<span style="color:#8be9fd;font-style:italic">string-blank-p</span> <span style="color:#8be9fd;font-style:italic">result</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>                           <span style="color:#8be9fd;font-style:italic">result</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>                         (<span style="color:#50fa7b">concat</span> <span style="color:#8be9fd;font-style:italic">result</span> <span style="color:#f1fa8c">&#34;　&#34;</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>        (<span style="color:#50fa7b">list</span> <span style="color:#8be9fd;font-style:italic">newresult</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>  (<span style="color:#8be9fd;font-style:italic">load!</span> <span style="color:#f1fa8c">&#34;+rime-probe-english&#34;</span>))
+</span></span></code></pre></div><p>pyim 里的探针函数非常好用， emacs-rime 里也提供了几个，我从 pyim 里移植了一个觉得好用的，另外又写了两个自用的探针，代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">;;; +rime-probe-english.el -*- lexical-binding: t; -*-</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#6272a4">;;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#6272a4">;; Some functions copied from `pyim&#39;, thanks for tumashu@github.com .</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#6272a4">;;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>(<span style="color:#8be9fd;font-style:italic">defun</span> <span style="color:#8be9fd;font-style:italic">+rime--char-before-to-string</span> (<span style="color:#8be9fd;font-style:italic">num</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  <span style="color:#f1fa8c">&#34;得到光标前第 </span><span style="color:#f1fa8c">`num&#39;</span><span style="color:#f1fa8c"> 个字符，并将其转换为字符串。&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>  (<span style="color:#8be9fd;font-style:italic">let*</span> ((<span style="color:#50fa7b">point</span> (<span style="color:#50fa7b">point</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>         (<span style="color:#8be9fd;font-style:italic">point-before</span> (<span style="color:#50fa7b">-</span> <span style="color:#50fa7b">point</span> <span style="color:#8be9fd;font-style:italic">num</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    (<span style="color:#8be9fd;font-style:italic">when</span> (<span style="color:#8be9fd;font-style:italic">and</span> (<span style="color:#50fa7b">&gt;</span> <span style="color:#8be9fd;font-style:italic">point-before</span> <span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>               (<span style="color:#50fa7b">char-before</span> <span style="color:#8be9fd;font-style:italic">point-before</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>      (<span style="color:#50fa7b">char-to-string</span> (<span style="color:#50fa7b">char-before</span> <span style="color:#8be9fd;font-style:italic">point-before</span>)))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>(<span style="color:#8be9fd;font-style:italic">defun</span> <span style="color:#8be9fd;font-style:italic">+rime--string-match-p</span> (<span style="color:#8be9fd;font-style:italic">regexp</span> <span style="color:#50fa7b">string</span> <span style="color:#ff79c6">&amp;optional</span> <span style="color:#8be9fd;font-style:italic">start</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  <span style="color:#f1fa8c">&#34;与 </span><span style="color:#f1fa8c">`string-match-p&#39;</span><span style="color:#f1fa8c"> 类似，如果 REGEXP 和 STRING 是非字符串时，
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#f1fa8c">不会报错。&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>  (<span style="color:#8be9fd;font-style:italic">and</span> (<span style="color:#50fa7b">stringp</span> <span style="color:#8be9fd;font-style:italic">regexp</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>       (<span style="color:#50fa7b">stringp</span> <span style="color:#50fa7b">string</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>       (<span style="color:#8be9fd;font-style:italic">string-match-p</span> <span style="color:#8be9fd;font-style:italic">regexp</span> <span style="color:#50fa7b">string</span> <span style="color:#8be9fd;font-style:italic">start</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>(<span style="color:#8be9fd;font-style:italic">defun</span> <span style="color:#8be9fd;font-style:italic">+rime--probe-auto-english</span> ()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>  <span style="color:#f1fa8c">&#34;激活这个探针函数后，使用下面的规则自动切换中英文输入：
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#f1fa8c">1. 当前字符为英文字符（不包括空格）时，输入下一个字符为英文字符
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#f1fa8c">2. 当前字符为中文字符或输入字符为行首字符时，输入的字符为中文字符
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#f1fa8c">3. 以单个空格为界，自动切换中文和英文字符
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#f1fa8c">   即，形如 `我使用 emacs 编辑此函数&#39; 的句子全程自动切换中英输入法
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>  (<span style="color:#8be9fd;font-style:italic">let</span> ((<span style="color:#8be9fd;font-style:italic">str-before-1</span> (<span style="color:#8be9fd;font-style:italic">+rime--char-before-to-string</span> <span style="color:#bd93f9">0</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>        (<span style="color:#8be9fd;font-style:italic">str-before-2</span> (<span style="color:#8be9fd;font-style:italic">+rime--char-before-to-string</span> <span style="color:#bd93f9">1</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>    (<span style="color:#8be9fd;font-style:italic">unless</span> (<span style="color:#8be9fd;font-style:italic">string=</span> (<span style="color:#50fa7b">buffer-name</span>) <span style="color:#f1fa8c">&#34; *temp*&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>      (<span style="color:#8be9fd;font-style:italic">if</span> (<span style="color:#50fa7b">&gt;</span> (<span style="color:#50fa7b">point</span>) (<span style="color:#8be9fd;font-style:italic">save-excursion</span> (<span style="color:#8be9fd;font-style:italic">back-to-indentation</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>                                     (<span style="color:#50fa7b">point</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>          (<span style="color:#8be9fd;font-style:italic">or</span> (<span style="color:#8be9fd;font-style:italic">if</span> (<span style="color:#8be9fd;font-style:italic">+rime--string-match-p</span> <span style="color:#f1fa8c">&#34; &#34;</span> <span style="color:#8be9fd;font-style:italic">str-before-1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>                  (<span style="color:#8be9fd;font-style:italic">+rime--string-match-p</span> <span style="color:#f1fa8c">&#34;\\cc&#34;</span> <span style="color:#8be9fd;font-style:italic">str-before-2</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>                (<span style="color:#8be9fd;font-style:italic">not</span> (<span style="color:#8be9fd;font-style:italic">+rime--string-match-p</span> <span style="color:#f1fa8c">&#34;\\cc&#34;</span> <span style="color:#8be9fd;font-style:italic">str-before-1</span>))))))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>(<span style="color:#8be9fd;font-style:italic">defun</span> <span style="color:#8be9fd;font-style:italic">+rime--beancount-p</span> ()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>  <span style="color:#f1fa8c">&#34;当前为</span><span style="color:#f1fa8c">`beancount-mode&#39;</span><span style="color:#f1fa8c">，且光标在注释或字符串当中。&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>  (<span style="color:#8be9fd;font-style:italic">when</span> (<span style="color:#8be9fd;font-style:italic">derived-mode-p</span> <span style="color:#f1fa8c">&#39;beancount-mode</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>    (<span style="color:#8be9fd;font-style:italic">not</span> (<span style="color:#8be9fd;font-style:italic">or</span> (<span style="color:#50fa7b">nth</span> <span style="color:#bd93f9">3</span> (<span style="color:#8be9fd;font-style:italic">syntax-ppss</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>             (<span style="color:#50fa7b">nth</span> <span style="color:#bd93f9">4</span> (<span style="color:#8be9fd;font-style:italic">syntax-ppss</span>))))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>(<span style="color:#8be9fd;font-style:italic">defun</span> <span style="color:#8be9fd;font-style:italic">+rime--evil-mode-p</span> ()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>  <span style="color:#f1fa8c">&#34;检测当前是否在 </span><span style="color:#f1fa8c">`evil&#39;</span><span style="color:#f1fa8c"> 模式下。&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>  (<span style="color:#8be9fd;font-style:italic">or</span> (<span style="color:#8be9fd;font-style:italic">evil-normal-state-p</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>      (<span style="color:#8be9fd;font-style:italic">evil-visual-state-p</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span>      (<span style="color:#8be9fd;font-style:italic">evil-motion-state-p</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>      (<span style="color:#8be9fd;font-style:italic">evil-operator-state-p</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span>(<span style="color:#8be9fd;font-style:italic">defun</span> <span style="color:#8be9fd;font-style:italic">+rime-english-prober</span>()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span><span>  <span style="color:#f1fa8c">&#34;自定义英文输入探针函数，用于在不同mode下使用不同的探针列表&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span><span>  (<span style="color:#8be9fd;font-style:italic">let</span> ((<span style="color:#8be9fd;font-style:italic">use-en</span> (<span style="color:#8be9fd;font-style:italic">or</span> (<span style="color:#8be9fd;font-style:italic">button-at</span> (<span style="color:#50fa7b">point</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54</span><span>                    (<span style="color:#8be9fd;font-style:italic">+rime--evil-mode-p</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55</span><span>    (<span style="color:#8be9fd;font-style:italic">if</span> (<span style="color:#8be9fd;font-style:italic">derived-mode-p</span> <span style="color:#f1fa8c">&#39;telega-chat-mode</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56</span><span>        (<span style="color:#8be9fd;font-style:italic">setq</span> <span style="color:#8be9fd;font-style:italic">use-en</span> (<span style="color:#8be9fd;font-style:italic">or</span> <span style="color:#8be9fd;font-style:italic">use-en</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57</span><span>                         (<span style="color:#8be9fd;font-style:italic">+rime--probe-auto-english</span>)))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58</span><span>      (<span style="color:#8be9fd;font-style:italic">when</span> (<span style="color:#8be9fd;font-style:italic">derived-mode-p</span> <span style="color:#f1fa8c">&#39;text-mode</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59</span><span>        (<span style="color:#8be9fd;font-style:italic">setq</span> <span style="color:#8be9fd;font-style:italic">use-en</span> (<span style="color:#8be9fd;font-style:italic">or</span> <span style="color:#8be9fd;font-style:italic">use-en</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60</span><span>                         (<span style="color:#8be9fd;font-style:italic">+rime--probe-auto-english</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61</span><span>      (<span style="color:#8be9fd;font-style:italic">when</span> (<span style="color:#8be9fd;font-style:italic">derived-mode-p</span> <span style="color:#f1fa8c">&#39;prog-mode</span> <span style="color:#f1fa8c">&#39;conf-mode</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62</span><span>        (<span style="color:#8be9fd;font-style:italic">setq</span> <span style="color:#8be9fd;font-style:italic">use-en</span> (<span style="color:#8be9fd;font-style:italic">or</span> <span style="color:#8be9fd;font-style:italic">use-en</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63</span><span>                         (<span style="color:#8be9fd;font-style:italic">rime--after-alphabet-char-p</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64</span><span>      (<span style="color:#8be9fd;font-style:italic">setq</span> <span style="color:#8be9fd;font-style:italic">use-en</span> (<span style="color:#8be9fd;font-style:italic">or</span> <span style="color:#8be9fd;font-style:italic">use-en</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65</span><span>                       (<span style="color:#8be9fd;font-style:italic">rime--prog-in-code-p</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66</span><span>                       (<span style="color:#8be9fd;font-style:italic">+rime--beancount-p</span>))))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67</span><span>    <span style="color:#8be9fd;font-style:italic">use-en</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69</span><span>(<span style="color:#8be9fd;font-style:italic">setq</span> <span style="color:#8be9fd;font-style:italic">rime-disable-predicates</span> <span style="color:#ff79c6">&#39;</span>(<span style="color:#8be9fd;font-style:italic">+rime-english-prober</span>))
+</span></span></code></pre></div><p>刚刚给作者提了点小建议，得到了非常积极的响应，非常感谢 <a href="mailto:DogLooksGood@github.com">DogLooksGood@github.com</a> 的贡献。 emacs-rime 还在不断完善中，希望 emacs-rime 越做越好，造福更多的 emacer 。</p>
+<p>另外，再次感谢 pyim 和 posframe 的大神 <a href="mailto:tumashu@github.com">tumashu@github.com</a> ，造了那么多优秀的轮子。</p>
+
+
+        <hr style="visibility: hidden;" />
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/post/%E5%9C%A8-macos-10-dot-14-plus-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/" data-toggle="tooltip" data-placement="top" title="在 macos 上启动 dbus">
+              Previous<br>
+              <span>在 macos 上启动 dbus</span>
+            </a>
+          </li>
+          
+          
+          <li class="next">
+            <a href="/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/" data-toggle="tooltip" data-placement="top" title="给 telega 的聊天对话自动切换中英文输入">
+              Next<br>
+              <span>给 telega 的聊天对话自动切换中英文输入</span>
+            </a>
+          </li>
+          
+        </ul>
+        <hr style="visibility: hidden;" />
+
+        
+        
+
+
+
+<div class="giscus" id="comments"></div>
+<script src="https://giscus.app/client.js" 
+  data-repo="cnsunyour/cnsunyour.github.io" 
+  data-repo-id="MDEwOlJlcG9zaXRvcnkyMDY3MTYwOTA="
+  data-category="General"
+  data-category-id="DIC_kwDODFI8us4CbzqH"
+  data-mapping="pathname"
+  data-strict="0" 
+  data-reactions-enabled="1" 
+  data-emit-metadata="0" 
+  data-input-position="top"
+  data-theme="light_tritanopia"
+  data-lang="zh-cn"
+  crossorigin="anonymous"
+  async>
+  </script>
+
+
+
+
+      </div>
+
+      
+      
+      
+      
+      <div class="
+              col-lg-8 col-lg-offset-2
+              col-md-10 col-md-offset-1
+              sidebar-container">
+
+        
+        
+        <section>
+  
+  
+  <hr class="hidden-sm hidden-xs">
+  
+  <h5>FEATURED TAGS</h5>
+  <div class="tags">
+    
+    <a href="/tags/ansible/">ansible</a>
+    
+    <a href="/tags/backends/">backends</a>
+    
+    <a href="/tags/beancount/">beancount</a>
+    
+    <a href="/tags/chrome/">chrome</a>
+    
+    <a href="/tags/company/">company</a>
+    
+    <a href="/tags/ctex/">ctex</a>
+    
+    <a href="/tags/dbus/">dbus</a>
+    
+    <a href="/tags/debian/">debian</a>
+    
+    <a href="/tags/doom/">doom</a>
+    
+    <a href="/tags/duckduckgo/">duckduckgo</a>
+    
+    <a href="/tags/elements/">Elements</a>
+    
+    <a href="/tags/emacs/">emacs</a>
+    
+    <a href="/tags/even/">even</a>
+    
+    <a href="/tags/google/">google</a>
+    
+    <a href="/tags/home/">Home</a>
+    
+    <a href="/tags/hugo/">hugo</a>
+    
+    <a href="/tags/irony/">irony</a>
+    
+    <a href="/tags/jane/">jane</a>
+    
+    <a href="/tags/json/">json</a>
+    
+    <a href="/tags/karabiner/">Karabiner</a>
+    
+    <a href="/tags/latex/">latex</a>
+    
+    <a href="/tags/linux/">linux</a>
+    
+    <a href="/tags/mac/">Mac</a>
+    
+    <a href="/tags/macos/">macos</a>
+    
+    <a href="/tags/org/">org</a>
+    
+    <a href="/tags/org2blog/">org2blog</a>
+    
+    <a href="/tags/ox/">ox</a>
+    
+    <a href="/tags/pdf/">pdf</a>
+    
+    <a href="/tags/plantuml/">plantuml</a>
+    
+    <a href="/tags/predicate/">predicate</a>
+    
+    <a href="/tags/probe/">probe</a>
+    
+    <a href="/tags/projectile/">projectile</a>
+    
+    <a href="/tags/pyim/">pyim</a>
+    
+    <a href="/tags/pytest/">pytest</a>
+    
+    <a href="/tags/python/">python</a>
+    
+    <a href="/tags/qutebrowser/">qutebrowser</a>
+    
+    <a href="/tags/regexp/">regexp</a>
+    
+    <a href="/tags/rime/">rime</a>
+    
+    <a href="/tags/saltstack/">saltstack</a>
+    
+    <a href="/tags/spacemacs/">spacemacs</a>
+    
+    <a href="/tags/tabnine/">tabnine</a>
+    
+    <a href="/tags/telega/">telega</a>
+    
+    <a href="/tags/theme/">theme</a>
+    
+    <a href="/tags/ubuntu/">ubuntu</a>
+    
+    <a href="/tags/u%E7%9B%BE/">U盾</a>
+    
+    <a href="/tags/%E4%BD%9C%E6%81%AF/">作息</a>
+    
+    <a href="/tags/%E5%A2%A9%E5%A2%A9/">墩墩</a>
+    
+    <a href="/tags/%E6%8E%A2%E9%92%88/">探针</a>
+    
+    <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">搜索引擎</a>
+    
+    <a href="/tags/%E6%95%99%E8%82%B2/">教育</a>
+    
+    <a href="/tags/%E6%96%AD%E8%A8%80/">断言</a>
+    
+    <a href="/tags/%E6%97%A5%E7%A8%8B/">日程</a>
+    
+    <a href="/tags/%E6%97%B6%E9%97%B4/">时间</a>
+    
+    <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+    
+    <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
+    
+    <a href="/tags/%E7%94%9F%E6%B4%BB/">生活</a>
+    
+    <a href="/tags/%E7%94%B5%E5%BD%B1/">电影</a>
+    
+    <a href="/tags/%E7%BD%91%E9%93%B6/">网银</a>
+    
+    <a href="/tags/%E8%BE%93%E5%85%A5%E6%B3%95/">输入法</a>
+    
+    <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+    
+  </div>
+</section>
+
+        
+        
+
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://steamedfish.org" target="_blank">SteamedFish</a></li>
+  
+</ul>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+  
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <ul class="list-inline text-center">
+
+<li>
+  <a href="https://github.com/cnsunyour" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://twitter.com/cnsunyour" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://facebook.com/cnsunyour" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://gitlab.com/cnsunyour" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-gitlab fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+<li>
+  <a href="https://mastodon.social/cnsunyour" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fab fa-mastodon fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li>
+
+
+<li>
+  <a href="/index.xml" target="_blank">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+</li></ul>
+
+        <p class="copyright text-muted">
+          Copyright &copy; 凡·记 2023  
+          <br>
+          Powered by <a href="https://gohugo.io">Hugo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src=/js/jquery.min.js></script>
+<script src=/js/bootstrap.min.js crossorigin="anonymous"></script>
+
+
+
+<script src="/js/hux-blog.min.c4ea77041cd3edbfc8b2622cd887a9a5d8760a4162d14489e36d2a3fa4c90172.js"></script>
+
+
+<script src=/js/simple-jekyll-search.min.js></script>
+
+
+<script src="/js/search.min.53bce5da475b4d362500e5ce5dddfa22e20e1b9018777411d2020b4b839c9310.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/zoomjs/zoom.min.js"></script>
+
+</body>
+
+</html>
