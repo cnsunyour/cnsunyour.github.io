@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git on 凡·记</title><link>https://sunyour.org/tags/git/</link><description>Recent content in git on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 24 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/git/index.xml" rel="self" type="application/rss+xml"/><item><title>git-messenger ：显示 git commit 信息</title><link>https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/</link><pubDate>Sun, 24 Dec 2023 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/</guid><description>&lt;p>群友提到一个包 git-messenger ，以 popup 方式显示当前行的 git commit 信息，用了下还挺方便的。如下图： ![](.attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20231224_102404截屏2023-12-24 10.23.43.png)&lt;/p>
+&lt;p>不过这个包似乎很长时间没维护了，用起来有几个问题：&lt;/p>
+&lt;ul>
+&lt;li>没有过滤带有 gpg 签名的信息，影响观感&lt;/li>
+&lt;li>show-parent 只能显示简单信息，不能显示详细信息&lt;/li>
+&lt;li>在切换到其它 repo 后，再调用此包，直接会报错。&lt;/li>
+&lt;/ul>
+&lt;p>于是 fork 了一份，进行了下修复，同时向原 repo 提交了 pr 。不知原作者能否看到合并，大家也可以下载我 forked 的版本 &lt;a class="link" href="https://github.com/cnsunyour/git-messenger" target="_blank" rel="noopener"
+>git-messenger&lt;/a>&lt;/p></description></item></channel></rss>
