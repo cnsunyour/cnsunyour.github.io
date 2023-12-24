@@ -62,8 +62,8 @@
 &lt;/div>
 &lt;/div>&lt;p>用起来也还好，但是每次都要手动执行一次总是不太方便，而且 ~/hugo 目录也是用 git 做版本管理的，利用 github 的 action 功能进行自动发布岂不是更好？&lt;/p>
 &lt;p>找了一圈，发现两个比较好用的 github actions ，可以直接借用，配置写起来要简单的多。 &lt;a class="link" href="https://github.com/peaceiris/actions-hugo" target="_blank" rel="noopener"
->https://github.com/peaceiris/actions-hugo&lt;/a> &lt;a class="link" href="https://github.com/peaceiris/actions-gh-pages" target="_blank" rel="noopener"
->https://github.com/peaceiris/actions-gh-pages&lt;/a>&lt;/p>
+>actions-hugo&lt;/a> &lt;a class="link" href="https://github.com/peaceiris/actions-gh-pages" target="_blank" rel="noopener"
+>actions-gh-pages&lt;/a>&lt;/p>
 &lt;p>建立配置文件 .github/workflows/hugo.yaml&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
