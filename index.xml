@@ -191,6 +191,24 @@ data-flex-basis="492px"
 &lt;/div>
 &lt;/div>&lt;p>actions-hugo 的一个特点是可以安装最新版的 hugo ，而不用设置具体的版本号，对于我这个更新强迫症非常友好。&lt;/p>
 &lt;p>actions-gh-pages 的功能比较多，可以向本仓库或其它仓库，或者其它网站框架进行发布，具体可以看仓库上的示例。我这里用到的是发布在另一个仓库的配置，并且用 cname 参数指定了 gh-pages 用的自定义域名。&lt;/p>
+&lt;p>DEPLOY_PRIVATE_KEY 是个 secrets 变量，存储的是可以访问公有仓库的 client secret ，在仓库所有者的 Settings -&amp;gt; Developer Settings -&amp;gt; Oauth Apps 里新建一个 App ，然后在新建的 App 里生成一个 client secret 。 &lt;img src="https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/attach/c1/306352-27bf-47ee-af92-04b910d2f72e/_20231226_180257screenshot.png"
+width="1238"
+height="219"
+srcset="https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/attach/c1/306352-27bf-47ee-af92-04b910d2f72e/_20231226_180257screenshot_hua4ad67560a88ba76540c645bdc3bd4c1_34255_480x0_resize_box_3.png 480w, https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/attach/c1/306352-27bf-47ee-af92-04b910d2f72e/_20231226_180257screenshot_hua4ad67560a88ba76540c645bdc3bd4c1_34255_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="565"
+data-flex-basis="1356px"
+>&lt;/p>
+&lt;p>然后在私有仓库的 Settings -&amp;gt; Secrets and variables -&amp;gt; Actions 里点击 New respository secret ，name 填 DEPLOY_PRIVATE_KEY （与 workflow 中的键值一致即可）， secret 把上一步生成的 client secret 填进去。 &lt;img src="https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/attach/c1/306352-27bf-47ee-af92-04b910d2f72e/_20231226_161148screenshot.png"
+width="1155"
+height="779"
+srcset="https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/attach/c1/306352-27bf-47ee-af92-04b910d2f72e/_20231226_161148screenshot_hu65a3bb57e26aabd8e2119e6843fd2409_123163_480x0_resize_box_3.png 480w, https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/attach/c1/306352-27bf-47ee-af92-04b910d2f72e/_20231226_161148screenshot_hu65a3bb57e26aabd8e2119e6843fd2409_123163_1024x0_resize_box_3.png 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="148"
+data-flex-basis="355px"
+>&lt;/p>
 &lt;p>在 gh-pages 所在仓库配置好 pages 相关设置后。就可以在对私有仓库 push 的同时自动向 gh-pages 仓库发布生成新的站点内容了。&lt;/p></description></item><item><title>一晃就是三年多</title><link>https://sunyour.org/post/%E4%B8%80%E6%99%83%E5%B0%B1%E6%98%AF%E4%B8%89%E5%B9%B4%E5%A4%9A/</link><pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E4%B8%80%E6%99%83%E5%B0%B1%E6%98%AF%E4%B8%89%E5%B9%B4%E5%A4%9A/</guid><description>&lt;p>事业崩塌，疫情爆发，赋闲在家，一晃竟是三年多过去了。发现 blog 也停了三年多，果然是不能犯懒的。&lt;/p>
 &lt;p>之前用的主题是 even ，一直对 ox-hugo 生成的文章有兼容性问题，提了 pr 也一直没人处理，似乎是不维护了。&lt;/p>
 &lt;p>顺便换个主题，最终选定的是 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
