@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Finance on 凡·记</title><link>https://sunyour.org/tags/finance/</link><description>Recent content in Finance on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 02 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/finance/index.xml" rel="self" type="application/rss+xml"/><item><title>Beancount使用——卖出物品的记账</title><link>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</link><pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/beancount%E4%BD%BF%E7%94%A8%E5%8D%96%E5%87%BA%E7%89%A9%E5%93%81%E7%9A%84%E8%AE%B0%E8%B4%A6/</guid><description>&lt;p>　在闲鱼上处理一些不用的东西，开始仅仅是记Income:Sales和Assets:Alipay这两个账户，当邮寄物品时再记Expenses:ExpressFee支出。但总是觉得有问题，一是有人购买时当时并没有收到货款，而是在支付宝中暂存着，只有买方确认收货后才能真正收到货款；二是收到的款项并不代表真实收入，而是包含着运费，不应该全部记为收入才对。&lt;/p>
+&lt;p>但是琢磨了半天也没想明白到底应该怎么记，最主要的是如何在发快递时平掉全部货款中的运费部分。因为在发快递时记：贷银行账户/借快递费两项，两项已经平了，没有其它账户去平收到款项中的运费了。&lt;/p>
+&lt;p>祭出搜索大法，了解了很多销售类公司垫付运费销售货物的记账方法，总算弄明白了。之前记账中有一个很大的误解，就是快递发货记支出，其实这里不应该记支出，因为是替买方应付的运费，所以应该记为贷其它应收。而在实际发货垫付运费时记为借其它应收，贷银行账户。&lt;/p>
+&lt;p>总体记账条目如下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">;; 卖出时
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2019-11-01 * &amp;#34;闲鱼&amp;#34; &amp;#34;卖HHKB键帽&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:AccountsReceivable:Alipay 214.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Income:Sales -200.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:OtherReceivables:ExpressFee -14.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">;; 快递发出
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2019-11-02 * &amp;#34;快递&amp;#34; &amp;#34;闲鱼发货——卖HHKB键帽&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:Alipay:Saving -14.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:OtherReceivables:ExpressFee 14.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">;; 收到货款时
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2019-11-10 * &amp;#34;支付宝&amp;#34; &amp;#34;收到货款——卖HHKB键帽&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:Alipay:Saving 214.00 CNY
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Assets:AccountsReceivable:Alipay -214.00 CNY
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>

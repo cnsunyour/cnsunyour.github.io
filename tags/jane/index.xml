@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jane on 凡·记</title><link>https://sunyour.org/tags/jane/</link><description>Recent content in jane on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/jane/index.xml" rel="self" type="application/rss+xml"/><item><title>解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用的最多的 even 和 jane 两个主题更喜欢一些。&lt;/p>
-&lt;p>但没想到的是，改用这两个主题后，全部出现文章渲染失败的情况。看提示，是 author 属性的类型不是 string 类型，而是[]string 类型，看样子是类似数组或列表之类的类型。找一篇生成后的 md 文件查看，果然 author 属性的值是[不一般的凡]，外面被中括号括起来了。&lt;/p>
-&lt;p>心中很不理解为什么，查看 ox-hugo 文档，发现还真是特意这么做的，为的是处理多个:author:属性，也就是多作者的情况。ox-hugo 文档中还专门有一节写了这个情况：&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jane on 凡·记</title><link>https://sunyour.org/tags/jane/</link><description>Recent content in jane on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 09 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/jane/index.xml" rel="self" type="application/rss+xml"/><item><title>解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>　把仅有的没有什么价值的20几篇短文迁移到ox-hugo后，开始使用hugo-primer主题没有什么问题，后来还是对hugo-primer不太喜欢，浏览了几十个主题demo后，发现还是论坛和群里人们用的最多的even和jane两个主题更喜欢一些。&lt;/p>
+&lt;p>　但没想到的是，改用这两个主题后，全部出现文章渲染失败的情况。看提示，是author属性的类型不是string类型，而是[]string类型，看样子是类似数组或列表之类的类型。找一篇生成后的md文件查看，果然author属性的值是[不一般的凡]，外面被中括号括起来了。&lt;/p>
+&lt;p>　心中很不理解为什么，查看ox-hugo文档，发现还真是特意这么做的，为的是处理多个:author:属性，也就是多作者的情况。ox-hugo文档中还专门有一节写了这个情况：&lt;/p>
 &lt;p>Link: &lt;a class="link" href="https://ox-hugo.scripter.co/doc/author/" target="_blank" rel="noopener"
 >https://ox-hugo.scripter.co/doc/author/&lt;/a>&lt;/p>
-&lt;p>文中提到有两个解决办法，第一是禁止导出 author 参数，方法是在 org 文件头加上&lt;/p>
+&lt;p>　文中提到有两个解决办法，第一是禁止导出author参数，方法是在org文件头加上&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -12,7 +12,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-org" data-lang="org">&lt;span class="line">&lt;span class="cl">&lt;span class="cs">#+options&lt;/span>&lt;span class="c">: author:nil&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>或在 subtree 里加上属性：&lt;/p>
+&lt;/div>&lt;p>或在subtree里加上属性：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -25,7 +25,7 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cs">&lt;/span>&lt;span class="c">:END:&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>第二个解决办法就是修改主题模板来支持[]string 形式的 list，也即在调用.Param.author 属性时使用如下代码段：&lt;/p>
+&lt;/div>&lt;p>第二个解决办法就是修改主题模板来支持[]string形式的list，也即在调用.Param.author 属性时使用如下代码段：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -50,7 +50,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ end }}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以 even 主题为例，需要修改的是两个文件，第一个是 layouts/partials/head.html 的第 13 行，原为：&lt;/p>
+&lt;/div>&lt;p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以even主题为例，需要修改的是两个文件，第一个是layouts/partials/head.html的第13行，原为：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -68,7 +68,7 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;meta name=&amp;#34;author&amp;#34; content=&amp;#34;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &amp;#34;%T&amp;#34; .) }}{{ $author_is_slice := (eq &amp;#34;[]string&amp;#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &amp;#34;, &amp;#34; | safeHTML }}{{ else }}{{ . | safeHTML}}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;#34; /&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>第二个文件是 layouts/partials/post/copyright.html 的第 4 行，原为：&lt;/p>
+&lt;/div>&lt;p>第二个文件是layouts/partials/post/copyright.html的第4行，原为：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -86,6 +86,6 @@
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;span class=&amp;#34;item-content&amp;#34;&amp;gt;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &amp;#34;%T&amp;#34; .) }}{{ $author_is_slice := (eq &amp;#34;[]string&amp;#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &amp;#34;, &amp;#34; | safeHTML }}{{ else }}{{ . | safeHTML }}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;lt;/span&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>两个文件修改完成后重新启动 hugo server 渲染成功。&lt;/p>
-&lt;p>jane 主题类似，需要修改的文件是 layouts/partials/head.html 第 25 行至 30 行那一段，但是我对 hugo 的 template 语法不熟，这段不知道怎么改，请了解的同学做相应改动吧。&lt;/p>
-&lt;p>当然有可能考虑不周，even 主题我已经提交了 PR，jane 主题我提了 issue，不知会不会被接受。&lt;/p></description></item></channel></rss>
+&lt;/div>&lt;p>两个文件修改完成后重新启动hugo server渲染成功。&lt;/p>
+&lt;p>jane主题类似，需要修改的文件是layouts/partials/head.html第25行至30行那一段，但是我对hugo的template语法不熟，这段不知道怎么改，请了解的同学做相应改动吧。&lt;/p>
+&lt;p>当然有可能考虑不周，even主题我已经提交了PR，jane主题我提了issue，不知会不会被接受。&lt;/p></description></item></channel></rss>

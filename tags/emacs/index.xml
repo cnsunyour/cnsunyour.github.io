@@ -243,10 +243,10 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="s">&amp;#34;&lt;/span>&lt;span class="ss">`+rime-convert-string-at-point&amp;#39;&lt;/span>&lt;span class="s"> did nothing.&amp;#34;&lt;/span>&lt;span class="p">)))))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>"emacs-rime断言/pyim探针“的两种应用方式</title><link>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</link><pubDate>Sat, 21 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</guid><description>&lt;p>在 &lt;a class="link" href="https://github.com/DogLooksGood/emacs-rime" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title> "emacs-rime断言/pyim探针“的两种应用方式</title><link>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</link><pubDate>Sat, 21 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</guid><description>&lt;p>在 &lt;a class="link" href="https://github.com/DogLooksGood/emacs-rime" target="_blank" rel="noopener"
 >emacs-rime&lt;/a> 中的断言（&lt;a class="link" href="https://github.com/tumashu/pyim" target="_blank" rel="noopener"
 >pyim&lt;/a> 中称为探针）是相当实用的功能，配置的好的话可以在输入过程中做到完全自动切换中英文。&lt;/p>
-&lt;p>我希望在配置中不同的 mode 中能有不同的断言，因此写了个判断函数，根据不同的 mode 计算不同的断言函数的值，然后集中返回；另外还自定义了几种自己需要的断言，如：&lt;/p>
+&lt;p>我希望在配置中不同的 mode 中能有不同的断言，因此写了个判断函数，根据不同的mode 计算不同的断言函数的值，然后集中返回；另外还自定义了几种自己需要的断言，如：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -314,7 +314,7 @@ data-flex-basis="492px"
 &lt;/div>&lt;p>从中可以看到对 `telega-chat-mode` 和 `text-mode` 两种模式使用了不同的断言逻辑，实际应用满足了我的需求。&lt;/p>
 &lt;p>如果使用的 mode 很多，每种 mode 又需要不同的断言组合，那就需要对判断函数增加逻辑。可以预想，很有可能会发展成类似于&lt;/p>
 &lt;blockquote>
-&lt;p>(if 条件 1 (逻辑 1) (if 条件 2 (逻辑 2) (if 条件 3 (逻辑 3) (&amp;hellip;&amp;hellip;))))&lt;/p>
+&lt;p>(if 条件1 (逻辑1) (if 条件2 (逻辑2) (if 条件3 (逻辑3) (&amp;hellip;&amp;hellip;))))&lt;/p>
 &lt;/blockquote>
 &lt;p>的形式。&lt;/p>
 &lt;p>恰好这时在 &lt;a class="link" href="https://emacs-china.org/" target="_blank" rel="noopener"
@@ -391,7 +391,7 @@ data-flex-basis="492px"
 &lt;/div>
 &lt;/div>&lt;p>搞定，简单吧？&lt;/p>
 &lt;p>&lt;strong>注： 最新的断言配置在 &lt;a class="link" href="https://github.com/cnsunyour/.doom.d/blob/develop/modules/cnsunyour/chinese/%2Brime-predicates.el" target="_blank" rel="noopener"
->github 仓库&lt;/a> ，里面的逻辑稍微复杂点，谨供参考。&lt;/strong>&lt;/p></description></item><item><title>给 telega 的聊天对话自动切换中英文输入</title><link>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</guid><description>&lt;p>现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不同的 buffer 里主动激活或关闭输入法，达到接近完美的自动切换功能。&lt;/p>
+>github仓库&lt;/a> ，里面的逻辑稍微复杂点，谨供参考。&lt;/strong>&lt;/p></description></item><item><title>给 telega 的聊天对话自动切换中英文输入</title><link>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</guid><description>&lt;p>现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不同的 buffer 里主动激活或关闭输入法，达到接近完美的自动切换功能。&lt;/p>
 &lt;p>因此在之前给 telega 写了个 advice ，把需要指定中英文的 chatbuf 写在配置文件中，可以做到进不同的频道切换自动切换中英文。但这样做有一个缺点，就是如果中英文频道信息有变化（包括群组名称变化），则需要修改配置文件后重新加载才能生效。&lt;/p>
 &lt;p>嗯，用群友的话说，这很不优雅。&lt;/p>
 &lt;p>于是今天抽空把配置里的中英文 chatbuf 列表进行持久化保存，并且改为保存 chatid ，避免修改名称引起的切换失效。&lt;/p>
@@ -830,7 +830,7 @@ data-flex-basis="492px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">brew services stop dbus &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> brew services start dbus
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>竟然真的可以了，特此记录，以备后查。&lt;/p></description></item><item><title>telega.el阶段性配置小结</title><link>https://sunyour.org/post/telega.el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</link><pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/telega.el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</guid><description>&lt;p>经过一段时间的调整，telega.el 的配置也基本固定了，都是一些细节上的小调整。另外自己加了个 advice，根据不同类型的 chatbuf 自动激活或关闭中文输入法，现在基本上做到进入 chatbuf 不需要切换输入法了。全部配置代码如下：&lt;/p>
+&lt;/div>&lt;p>竟然真的可以了，特此记录，以备后查。&lt;/p></description></item><item><title>telega.el阶段性配置小结</title><link>https://sunyour.org/post/telega.el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</link><pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/telega.el%E9%98%B6%E6%AE%B5%E6%80%A7%E9%85%8D%E7%BD%AE%E5%B0%8F%E7%BB%93/</guid><description>&lt;p>　经过一段时间的调整，telega.el 的配置也基本固定了，都是一些细节上的小调整。另外自己加了个 advice，根据不同类型的 chatbuf 自动激活或关闭中文输入法，现在基本上做到进入 chatbuf 不需要切换输入法了。全部配置代码如下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -978,9 +978,9 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>另外本人的 doom 私有配置在：&lt;a class="link" href="https://github.com/cnsunyour/.doom.d" target="_blank" rel="noopener"
->这里&lt;/a>，其中 master 分支稍微延后， develop 分支实时更新，有兴趣的同学可以浏览指导。&lt;/p></description></item><item><title>模块化拆分doom-private-config的收获</title><link>https://sunyour.org/post/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8B%86%E5%88%86doom-private-config%E7%9A%84%E6%94%B6%E8%8E%B7/</link><pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8B%86%E5%88%86doom-private-config%E7%9A%84%E6%94%B6%E8%8E%B7/</guid><description>&lt;p>这两天受到 &lt;a class="link" href="https://github.com/steamedfish" target="_blank" rel="noopener"
+>这里&lt;/a>，其中 master 分支稍微延后， develop 分支实时更新，有兴趣的同学可以浏览指导。&lt;/p></description></item><item><title>模块化拆分doom-private-config的收获</title><link>https://sunyour.org/post/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8B%86%E5%88%86doom-private-config%E7%9A%84%E6%94%B6%E8%8E%B7/</link><pubDate>Sun, 12 Jan 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%8B%86%E5%88%86doom-private-config%E7%9A%84%E6%94%B6%E8%8E%B7/</guid><description>&lt;p>　这两天受到 &lt;a class="link" href="https://github.com/steamedfish" target="_blank" rel="noopener"
 >@SteamedFish&lt;/a> 和&lt;a class="link" href="https://github.com/locez" target="_blank" rel="noopener"
->@Locez&lt;/a> 的鼓动，而且本人的 doom 配置也积累到一定程度了，是时候把自己的 doom-private-config 进行模块化拆分，以方便管理维护了。&lt;/p>
+>@Locez&lt;/a> 的鼓动，而且本人的 doom 配置也积累到一定程度了，是时候把自己的 doom-private-config进行模块化拆分，以方便管理维护了。&lt;/p>
 &lt;p>本来预想是挺简单的事，把集中在一起的配置，按照不同的类型，新建对应的 module 目录，然后建立 config.el 和 packages.el，把配置代码对应部分剪切过来就行了。结果拆分完毕一启动，一堆报错信息。汗～&lt;/p>
 &lt;p>冷静，冷静。查看错误信息，发现都是无效函数和参数为空的信息。这就怪了，配置代码完全没变，只是放在了不同的位置。莫非……跟执行的顺序有关？尝试把所有与已有 package 有关的配置代码都用 after! 括起来，确保配置代码在对应的 package 加载之后才执行。再次重新启动，果然可以了！看来之前的 ~/.doom.d/config.el 文件里的代码是在各个 modules 加载之后才执行的。&lt;/p>
 &lt;p>至此以为，万事大吉。而且可喜的是， emacs 的启动时间竟然减少了 1 秒，真是意外的收获。可运行一段时间以后，总觉得有些不对劲，仔细观察发现是 theme 的部分颜色有异常，由于我是使用 &lt;a class="link" href="https://github.com/hadronzoo/theme-changer" target="_blank" rel="noopener"
@@ -1018,8 +1018,8 @@ data-flex-basis="492px"
 &lt;/div>
 &lt;/div>&lt;p>果然发现有一个 doom-init-ui-hook，这个 hook 看名字就是和 ui 初始化有关，加上看到 ~/.doom.d/config.el 的次序也在它之前，八成是这样没跑了。最后选中 emacs-startup-hook 作为注入点，再次重新启动。&lt;/p>
 &lt;p>完美～&lt;/p>
-&lt;p>&lt;strong>[1 月 13 日更新]&lt;/strong>&lt;/p>
-&lt;p>无意中发现 tabnine 没生效，根据前一日的经验，应该也是执行顺序的事， tabnine 要修改 company-backends 的值，估计是 doom 里的 company 之后又有修改 company-backends 的操作，哪怕是在 tabnine 中指定 after company 也不行。依据前述办法，把增加 company-backends 操作加在后面次序的 hook 中，我选定的是 after-init-hook，重启后生效。最终 tabnine 的配置代码是：&lt;/p>
+&lt;p>&lt;strong>[1月13日更新]&lt;/strong>&lt;/p>
+&lt;p>无意中发现 tabnine 没生效，根据前一日的经验，应该也是执行顺序的事， tabnine 要修改 company-backends 的值，估计是 doom 里的 company 之后又有修改company-backends 的操作，哪怕是在 tabnine 中指定 after company 也不行。依据前述办法，把增加 company-backends 操作加在后面次序的 hook 中，我选定的是after-init-hook，重启后生效。最终 tabnine 的配置代码是：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1104,7 +1104,7 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">seq-take&lt;/span> &lt;span class="nv">candidates-lsp&lt;/span> &lt;span class="mi">6&lt;/span>&lt;span class="p">))))))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>Doom Emacs里telega的配置</title><link>https://sunyour.org/post/doom-emacs%E9%87%8Ctelega%E7%9A%84%E9%85%8D%E7%BD%AE/</link><pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/doom-emacs%E9%87%8Ctelega%E7%9A%84%E9%85%8D%E7%BD%AE/</guid><description>&lt;p>最近一直跟随大佬们在 Emacs 里用 telega，也逐渐开始喜欢在 emacs 里集中做事的方式。我用的是 doom-emacs，跟其它的 emacs 配置版本有些不同。一是像 spacemacs 一样，doom-emacs 也是全局使用 evil 包，这样对于类似我这样的 vim 党比较容易适应；二是 doom-emacs 里进行了比较深的封装，导致有些个性化配置不能生效。比如我想在 telega 里使用 telega-company-emoji 包进行表情补全，却发现按照官网的示例无论如何都不能生效，最后发现还是 doom-emacs 对 company-backends 的特殊处理造成的。因此对配置进行了一些修改，总算能正常使用了，现在贴出最终配置（11 月 21 日更新，注意在 packages.el 里加上 telega 包）：&lt;/p>
+&lt;/div></description></item><item><title>Doom Emacs里telega的配置</title><link>https://sunyour.org/post/doom-emacs%E9%87%8Ctelega%E7%9A%84%E9%85%8D%E7%BD%AE/</link><pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/doom-emacs%E9%87%8Ctelega%E7%9A%84%E9%85%8D%E7%BD%AE/</guid><description>&lt;p>　最近一直跟随大佬们在Emacs里用telega，也逐渐开始喜欢在emacs里集中做事的方式。我用的是doom-emacs，跟其它的emacs配置版本有些不同。一是像spacemacs一样，doom-emacs 也是全局使用evil包，这样对于类似我这样的vim党比较容易适应；二是doom-emacs里进行了比较深的封装，导致有些个性化配置不能生效。比如我想在telega里使用 telega-company-emoji包进行表情补全，却发现按照官网的示例无论如何都不能生效，最后发现还是doom-emacs对company-backends的特殊处理造成的。因此对配置进行了一些修改，总算能正常使用了，现在贴出最终配置（11月21日更新，注意在packages.el里加上telega 包）：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1169,11 +1169,11 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">telega-mode-line-mode&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>解决Emacs里Shift切换输入法的问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>Emacs 里使用 pyim 输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断的按 Ctrl-\切换，而这个组合键按起来就不是很方便了。如果能像外部输入法那样用 Shift 切换就好了，但是在 Emacs 里是不能把 Shift 键设成快捷键的，所以这个问题就一直放着了。&lt;/p>
-&lt;p>后来有人提出，可以把 Shift 映射成一个 Fn（比如 F19)，再在 Emacs 里绑定切换输入法的快捷键，以此达到可以快捷切换的效果。我想，既然可以把 Shift 映射到 F&lt;n>，那干嘛不干脆把 Shift 映射到 Ctrl-\岂不是更好，还省得多占一个快捷键。&lt;/p>
-&lt;p>说干就干，达到目标是单独按 Shift 键，系统输出 Ctrl-\快捷键，而 Shift 和其它键一起按时，还是输出 Shift 本身，另外最好这个映射只在 Emacs 里有效，这样就不会影响其它程序，避免出现意想不到的问题。&lt;/p>
-&lt;p>基于这样的原则，在键盘层面进行编程映射就不合适了，因为它无法区分不同程序。MacOS 里有一款软件堪称神器，这就是 Karabiner-Elements，用它可以实现各种各样的键盘映射，而且完全免费。Karabiner-Elements 的安装使用此处省略，请自行搜索安装，这里只介绍一下如何自定义映射规则。&lt;/p>
-&lt;p>映射规则理论上可以直接写 json 文件直接使用，比如我自己的 json 文件是：&lt;/p>
+&lt;/div></description></item><item><title>解决Emacs里Shift切换输入法的问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3emacs%E9%87%8Cshift%E5%88%87%E6%8D%A2%E8%BE%93%E5%85%A5%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>　Emacs里使用pyim输入中文还是挺方便的，尤其是可以根据不同状态自动切换输入法，非常方便。但平常工作中经常遇到需要中英文混合输入的情况，这时就只能不断的按Ctrl-\切换，而这个组合键按起来就不是很方便了。如果能像外部输入法那样用Shift切换就好了，但是在Emacs里是不能把Shift键设成快捷键的，所以这个问题就一直放着了。&lt;/p>
+&lt;p>后来有人提出，可以把Shift映射成一个Fn（比如F19)，再在Emacs里绑定切换输入法的快捷键，以此达到可以快捷切换的效果。我想，既然可以把Shift映射到F&amp;lt;n&amp;gt;，那干嘛不干脆把 Shift映射到Ctrl-\岂不是更好，还省得多占一个快捷键。&lt;/p>
+&lt;p>说干就干，达到目标是单独按Shift键，系统输出Ctrl-\快捷键，而Shift和其它键一起按时，还是输出Shift本身，另外最好这个映射只在Emacs里有效，这样就不会影响其它程序，避免出现意想不到的问题。&lt;/p>
+&lt;p>基于这样的原则，在键盘层面进行编程映射就不合适了，因为它无法区分不同程序。MacOS里有一款软件堪称神器，这就是Karabiner-Elements，用它可以实现各种各样的键盘映射，而且完全免费。Karabiner-Elements的安装使用此处省略，请自行搜索安装，这里只介绍一下如何自定义映射规则。&lt;/p>
+&lt;p>映射规则理论上可以直接写json文件直接使用，比如我自己的json文件是：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1212,6 +1212,12 @@ data-flex-basis="492px"
 &lt;/span>&lt;span class="lnt">34
 &lt;/span>&lt;span class="lnt">35
 &lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
@@ -1225,7 +1231,9 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;from&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;key_code&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;left_shift&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;modifiers&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;optional&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;any&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;optional&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;any&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
@@ -1236,13 +1244,17 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;to_if_alone&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;key_code&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;backslash&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;modifiers&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;left_control&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;modifiers&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;left_control&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">],&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;conditions&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;type&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;frontmost_application_if&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;bundle_identifiers&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;^org\\.gnu\\.Emacs$&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;bundle_identifiers&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;^org\\.gnu\\.Emacs$&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
@@ -1252,8 +1264,8 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>但我多次尝试直接编写 json 文件都无法成功添加，最后发现是文件换行格式的问题，因此实际的作法是编写 erb 文件，然后用 KE-complex_modifications 进行生成，这样生成的 json 文件格式就完全没问题了。&lt;/p>
-&lt;p>先从 github 下 clone 下来 KE-complex_modifications 代码：&lt;/p>
+&lt;/div>&lt;p>但我多次尝试直接编写json文件都无法成功添加，最后发现是文件换行格式的问题，因此实际的作法是编写erb文件，然后用KE-complex_modifications进行生成，这样生成的json文件格式就完全没问题了。&lt;/p>
+&lt;p>先从github下clone下来KE-complex_modifications代码：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1262,7 +1274,7 @@ data-flex-basis="492px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">git clone https://github.com/pqrs-org/KE-complex_modifications
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>然后进入 KE-complex_modifications 目录，并在 src/json 目录下新建一个后缀为.json.erb 的文件，如 yh-shift.json.erb，内容如下：&lt;/p>
+&lt;/div>&lt;p>然后进入KE-complex_modifications目录，并在src/json目录下新建一个后缀为.json.erb 的文件，如yh-shift.json.erb，内容如下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1331,7 +1343,7 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>然后编辑 docs/groups.json 文件，里面在比照已有代码在任意一个组内增加一段代码，指定 json 文件名称（注意后面没有.erb 后缀，注意前后的逗号分隔）：&lt;/p>
+&lt;/div>&lt;p>然后编辑docs/groups.json文件，里面在比照已有代码在任意一个组内增加一段代码，指定 json文件名称（注意后面没有.erb后缀，注意前后的逗号分隔）：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1339,12 +1351,12 @@ data-flex-basis="492px"
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-json" data-lang="json">&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;#34;path&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s2">&amp;#34;json/yh-shift.json&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这时执行 make，如果文件没有错误的话，就会在 docs/json/目录下生成 yh-shift.json。把这个文件拷贝到 Karabiner-Elements 的配置目录下：&lt;/p>
+&lt;/div>&lt;p>这时执行make，如果文件没有错误的话，就会在docs/json/目录下生成yh-shift.json。把这个文件拷贝到Karabiner-Elements的配置目录下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1353,15 +1365,15 @@ data-flex-basis="492px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cp docs/json/yh-shift.json ~/.config/karabiner/assets/complex_modifications/
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>这时就可以在 karabiner-Elements 设置里导入这项规则了。菜单项是：Karabiner-Elements Preferences &amp;gt; Complex Modifications &amp;gt; Rules &amp;gt; Add rule&lt;/p>
-&lt;p>大功告成。&lt;/p></description></item><item><title>终于把自己的doom.d配置公开了</title><link>https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E6%8A%8A%E8%87%AA%E5%B7%B1%E7%9A%84doom.d%E9%85%8D%E7%BD%AE%E5%85%AC%E5%BC%80%E4%BA%86/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E6%8A%8A%E8%87%AA%E5%B7%B1%E7%9A%84doom.d%E9%85%8D%E7%BD%AE%E5%85%AC%E5%BC%80%E4%BA%86/</guid><description>&lt;p>在蒸鱼大佬的鼓励下，终于把自己的 doom.d 配置公开了出来。今天蒸鱼大佬回复说用到了一部分，我心情老好了^_^，一直以来都是一个学生的身份，从没想过自己的东西能对别人有小小帮助，今天能得到哪怕是一点点认可，也还是非常开心，嘿。&lt;/p>
+&lt;/div>&lt;p>这时就可以在karabiner-Elements设置里导入这项规则了。菜单项是：Karabiner-Elements Preferences &amp;gt; Complex Modifications &amp;gt; Rules &amp;gt; Add rule&lt;/p>
+&lt;p>大功告成。&lt;/p></description></item><item><title>终于把自己的doom.d配置公开了</title><link>https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E6%8A%8A%E8%87%AA%E5%B7%B1%E7%9A%84doom.d%E9%85%8D%E7%BD%AE%E5%85%AC%E5%BC%80%E4%BA%86/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%88%E4%BA%8E%E6%8A%8A%E8%87%AA%E5%B7%B1%E7%9A%84doom.d%E9%85%8D%E7%BD%AE%E5%85%AC%E5%BC%80%E4%BA%86/</guid><description>&lt;p>　在蒸鱼大佬的鼓励下，终于把自己的doom.d配置公开了出来。今天蒸鱼大佬回复说用到了一部分，我心情老好了^_^，一直以来都是一个学生的身份，从没想过自己的东西能对别人有小小帮助，今天能得到哪怕是一点点认可，也还是非常开心，嘿。&lt;/p>
 &lt;p>贴一下配置地址： &lt;a class="link" href="https://github.com/cnsunyour/.doom.d" target="_blank" rel="noopener"
->https://github.com/cnsunyour/.doom.d&lt;/a>&lt;/p></description></item><item><title>解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>把仅有的没有什么价值的 20 几篇短文迁移到 ox-hugo 后，开始使用 hugo-primer 主题没有什么问题，后来还是对 hugo-primer 不太喜欢，浏览了几十个主题 demo 后，发现还是论坛和群里人们用的最多的 even 和 jane 两个主题更喜欢一些。&lt;/p>
-&lt;p>但没想到的是，改用这两个主题后，全部出现文章渲染失败的情况。看提示，是 author 属性的类型不是 string 类型，而是[]string 类型，看样子是类似数组或列表之类的类型。找一篇生成后的 md 文件查看，果然 author 属性的值是[不一般的凡]，外面被中括号括起来了。&lt;/p>
-&lt;p>心中很不理解为什么，查看 ox-hugo 文档，发现还真是特意这么做的，为的是处理多个:author:属性，也就是多作者的情况。ox-hugo 文档中还专门有一节写了这个情况：&lt;/p>
+>https://github.com/cnsunyour/.doom.d&lt;/a>&lt;/p></description></item><item><title>解决ox-hugo导出带有:author:属性的文件后hugo even和jane主题渲染失败的问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 09 Sep 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%9C%89author%E5%B1%9E%E6%80%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8Ehugo-even%E5%92%8Cjane%E4%B8%BB%E9%A2%98%E6%B8%B2%E6%9F%93%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</guid><description>&lt;p>　把仅有的没有什么价值的20几篇短文迁移到ox-hugo后，开始使用hugo-primer主题没有什么问题，后来还是对hugo-primer不太喜欢，浏览了几十个主题demo后，发现还是论坛和群里人们用的最多的even和jane两个主题更喜欢一些。&lt;/p>
+&lt;p>　但没想到的是，改用这两个主题后，全部出现文章渲染失败的情况。看提示，是author属性的类型不是string类型，而是[]string类型，看样子是类似数组或列表之类的类型。找一篇生成后的md文件查看，果然author属性的值是[不一般的凡]，外面被中括号括起来了。&lt;/p>
+&lt;p>　心中很不理解为什么，查看ox-hugo文档，发现还真是特意这么做的，为的是处理多个:author:属性，也就是多作者的情况。ox-hugo文档中还专门有一节写了这个情况：&lt;/p>
 &lt;p>Link: &lt;a class="link" href="https://ox-hugo.scripter.co/doc/author/" target="_blank" rel="noopener"
 >https://ox-hugo.scripter.co/doc/author/&lt;/a>&lt;/p>
-&lt;p>文中提到有两个解决办法，第一是禁止导出 author 参数，方法是在 org 文件头加上&lt;/p>
+&lt;p>　文中提到有两个解决办法，第一是禁止导出author参数，方法是在org文件头加上&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1370,7 +1382,7 @@ data-flex-basis="492px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-org" data-lang="org">&lt;span class="line">&lt;span class="cl">&lt;span class="cs">#+options&lt;/span>&lt;span class="c">: author:nil&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>或在 subtree 里加上属性：&lt;/p>
+&lt;/div>&lt;p>或在subtree里加上属性：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1383,7 +1395,7 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cs">&lt;/span>&lt;span class="c">:END:&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>第二个解决办法就是修改主题模板来支持[]string 形式的 list，也即在调用.Param.author 属性时使用如下代码段：&lt;/p>
+&lt;/div>&lt;p>第二个解决办法就是修改主题模板来支持[]string形式的list，也即在调用.Param.author 属性时使用如下代码段：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1408,7 +1420,7 @@ data-flex-basis="492px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ end }}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以 even 主题为例，需要修改的是两个文件，第一个是 layouts/partials/head.html 的第 13 行，原为：&lt;/p>
+&lt;/div>&lt;p>我还是觉得应该从主题这里下手，经过搜索对比，对两个主题做了一些修改，以even主题为例，需要修改的是两个文件，第一个是layouts/partials/head.html的第13行，原为：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1426,7 +1438,7 @@ data-flex-basis="492px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;meta name=&amp;#34;author&amp;#34; content=&amp;#34;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &amp;#34;%T&amp;#34; .) }}{{ $author_is_slice := (eq &amp;#34;[]string&amp;#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &amp;#34;, &amp;#34; | safeHTML }}{{ else }}{{ . | safeHTML}}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;#34; /&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>第二个文件是 layouts/partials/post/copyright.html 的第 4 行，原为：&lt;/p>
+&lt;/div>&lt;p>第二个文件是layouts/partials/post/copyright.html的第4行，原为：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -1444,79 +1456,9 @@ data-flex-basis="492px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">&amp;lt;span class=&amp;#34;item-content&amp;#34;&amp;gt;{{ if .Params.author }}{{ with .Params.author }}{{ $author_type := (printf &amp;#34;%T&amp;#34; .) }}{{ $author_is_slice := (eq &amp;#34;[]string&amp;#34; $author_type) }}{{ if $author_is_slice }}{{ delimit . &amp;#34;, &amp;#34; | safeHTML }}{{ else }}{{ . | safeHTML }}{{ end }}{{ end }}{{ else }}{{ .Site.Author.name | safeHTML }}{{ end }}&amp;lt;/span&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>两个文件修改完成后重新启动 hugo server 渲染成功。&lt;/p>
-&lt;p>jane 主题类似，需要修改的文件是 layouts/partials/head.html 第 25 行至 30 行那一段，但是我对 hugo 的 template 语法不熟，这段不知道怎么改，请了解的同学做相应改动吧。&lt;/p>
-&lt;p>当然有可能考虑不周，even 主题我已经提交了 PR，jane 主题我提了 issue，不知会不会被接受。&lt;/p></description></item><item><title>解决ox-hugo导出到md文件时的换行问题</title><link>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%88%B0md%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/</link><pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%A7%A3%E5%86%B3ox-hugo%E5%AF%BC%E5%87%BA%E5%88%B0md%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/</guid><description>&lt;p>在用 ox-hugo 导出到 markdown 文件时，发现也会出现类似 org2blog 发布文章时的文字换行问题，也就是在 org 文件中的换行符没有自动清除掉。不一样的是，中文之间的换行符已经清除了，但是有英文之间或中英混合文字之间有换行符时就不会清除，这样在最后生成的 html 页面中就会转换成&amp;lt;br /&amp;gt;，所以必须要处理一下。&lt;/p>
-&lt;p>类似于 org-html-paragraph，我给 org-hugo-paragraph 也增加一个 advice，处理方法与 org-html-paragraph 的完全一样，代码完全可以复用。&lt;/p>
-&lt;p>另外，对原先的代码也进行了一下升级，对中英文混合之间的换行符进行清除，对两个英文之间的换行符替换为空格。&lt;/p>
-&lt;p>更新后的完整代码如下：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-elisp" data-lang="elisp">&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+chinese--org-html-paragraph-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Join consecutive Chinese lines into a single long line without
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">unwanted space when exporting org-mode to html.&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:filter-args&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">org-html-paragraph&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">++chinese--org-paragraph-a&lt;/span> &lt;span class="nv">args&lt;/span>&lt;span class="p">))&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nv">defadvice!&lt;/span> &lt;span class="nv">+chinese--org-hugo-paragraph-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;Join consecutive Chinese lines into a single long line without
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s">unwanted space when exporting org-mode to hugo markdown.&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">:filter-args&lt;/span> &lt;span class="nf">#&amp;#39;&lt;/span>&lt;span class="nv">org-hugo-paragraph&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">++chinese--org-paragraph-a&lt;/span> &lt;span class="nv">args&lt;/span>&lt;span class="p">))&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">defun&lt;/span> &lt;span class="nv">++chinese--org-paragraph-a&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">args&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">cl-destructuring-bind&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">paragraph&lt;/span> &lt;span class="nv">content&lt;/span> &lt;span class="nv">info&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="nv">args&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nb">let*&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="nv">origin-contents&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&amp;lt;[Bb][Rr][\t ]*/&amp;gt;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">content&lt;/span>&lt;span class="p">))&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">origin-contents&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\([[:multibyte:]]\\)[\t ]*\n[\t ]*\\([[:multibyte:]]\\)&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\1\\2&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">origin-contents&lt;/span>&lt;span class="p">))&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">fixed-contents&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nv">replace-regexp-in-string&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\([^\t ]\\)[\t ]*\n[\t ]*\\([^\t ]\\)&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s">&amp;#34;\\1 \\2&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nv">origin-contents&lt;/span>&lt;span class="p">)))&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nf">list&lt;/span> &lt;span class="nv">paragraph&lt;/span> &lt;span class="nv">fixed-contents&lt;/span> &lt;span class="nv">info&lt;/span>&lt;span class="p">))))&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>对doom-emacs里plantuml的改进</title><link>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</link><pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</guid><description>&lt;p>昨晚跟群友 SteamedFish 交流 plantuml，发现在 org-mode 里的 src-block 代码块中写 plantuml 代码时，不能写上“@”开头的语句，否则必报错。必须在“@”前面加上“\”或“,”才可以。后来经过多次尝试，发现在开头的@start 前面加上“\”就可以。于是想到写个 defadvice 处理一下。另外把 SteamedFish 兄弟写的自动加上“:cmdline -charset utf-8”的方法也加了进来。另外在我的 doom-emacs 里 exec-mode 只能设置为`executable`，否则 C-c C-c 时报错，不知为啥。(*&lt;strong>*10 月 26 日更新**&lt;/strong> doom 修复了此问题，现在不用设置为`executable`也可以了)&lt;/p>
+&lt;/div>&lt;p>两个文件修改完成后重新启动hugo server渲染成功。&lt;/p>
+&lt;p>jane主题类似，需要修改的文件是layouts/partials/head.html第25行至30行那一段，但是我对hugo的template语法不熟，这段不知道怎么改，请了解的同学做相应改动吧。&lt;/p>
+&lt;p>当然有可能考虑不周，even主题我已经提交了PR，jane主题我提了issue，不知会不会被接受。&lt;/p></description></item><item><title>对doom-emacs里plantuml的改进</title><link>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</link><pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%AF%B9doom-emacs%E9%87%8Cplantuml%E7%9A%84%E6%94%B9%E8%BF%9B/</guid><description>&lt;p>昨晚跟群友 SteamedFish 交流 plantuml，发现在 org-mode 里的 src-block 代码块中写 plantuml 代码时，不能写上“@”开头的语句，否则必报错。必须在“@”前面加上“\”或“,”才可以。后来经过多次尝试，发现在开头的@start 前面加上“\”就可以。于是想到写个 defadvice 处理一下。另外把 SteamedFish 兄弟写的自动加上“:cmdline -charset utf-8”的方法也加了进来。另外在我的 doom-emacs 里 exec-mode 只能设置为`executable`，否则 C-c C-c 时报错，不知为啥。(*&lt;strong>*10 月 26 日更新**&lt;/strong> doom 修复了此问题，现在不用设置为`executable`也可以了)&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1826,168 +1768,7 @@ data-flex-basis="492px"
 &lt;p>实在是没什么办法了，突然想到论坛上大佬们写的插件别人用着出问题时，大佬们通常都让抓个报错信息参考下。也就想试一试，反正也是没其它办法，死马当活马医呗。&lt;/p>
 &lt;p>执行 M-x toggle-debug-on-err，然后再操作一次，果然出错，然后输出一堆错误信息，貌似是从发起指令开始，一直到出错位置，所有的调用信息都有，慢慢从后往前看。竟然真的发现一点端倪，发现 file-remote-p 接收到 nil 参数是因为之前调用的函数里给传的是 project-root 变量，而 project-root 变量在这里是 nil，再继续看，发现如果 project-root 是从 projectile-project-root 赋值来的，而 projectile-project-root 怎么来呢？&lt;/p>
 &lt;p>不懂问 google，继续搜索，终于在一篇介绍 projectile 的文章里发现，在项目根目录里建一个空的.projectile 文件，即可让 projectile 认为当前目录为项目根目录，马上着手 touch 一个。再执行，成功！&lt;/p>
-&lt;p>我去，原来这么简单。导致出现问题的原因 python-pytest 包调用了 projectile 包，而 projectile 包的所有操作都是基于有 project-root 的前提下，所以设定当前项目根目录是非常必要的。解决手段虽然简单，可也让自己多了解了一点 projectile 的相关知识，也是一大收获啊。至此对 emacs 的兴趣又加深了几分。&lt;/p></description></item><item><title>Mac 上安装 irony-server 步骤二</title><link>https://sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</link><pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</guid><description>&lt;p>昨天写了一篇 Mac 上为 doom-emacs 安装 irone-server 的详细步骤，随着后来对配置的逐渐了解，发现不用那么麻烦，只要把环境变量设置好就可以成功编译。首先安装好 cmake 和 llvm（llvm 非常大，且要编译，时间非常长，耐心等候^_^）：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install cmake llvm
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>在 doom-emacs 里执行 M-x irony-install-server，会提示执行命令（各有路径有所区别）：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>我们在 cmake 后面加上环境变量&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/usr/local/opt/llvm
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/lib/libclang.dylib
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>完成后的编译命令为：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/usr/local/opt/llvm
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/lib/libclang.dylib
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>即可正常编译。&lt;/p>
-&lt;p>另外，也可以用 xcode 的 libclang.dylib，编译命令为：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON -DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>*&lt;strong>*注意：这里为了展示效果，把命令进行了换行，在实际执行时要在一行内。**&lt;/strong>&lt;/p></description></item><item><title>从spacemacs迁移到doom-emacs</title><link>https://sunyour.org/post/%E4%BB%8Espacemacs%E8%BF%81%E7%A7%BB%E5%88%B0doom-emacs/</link><pubDate>Sat, 06 Jul 2019 08:21:00 +0800</pubDate><guid>https://sunyour.org/post/%E4%BB%8Espacemacs%E8%BF%81%E7%A7%BB%E5%88%B0doom-emacs/</guid><description>&lt;p>用了半天时间把 Emacs 从 spacemacs 迁移到了 doom-emacs，严格的说，应该是复制，现在两个配置可以随时切换，以进行比较，此文是在 doom-emacs 上编辑发布，以资纪念。&lt;/p></description></item><item><title>在 Mac 上 doom-emacs 安装 irony-server 详细步骤</title><link>https://sunyour.org/post/%E5%9C%A8-mac-%E4%B8%8A-doom-emacs-%E5%AE%89%E8%A3%85-irony-server-%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</link><pubDate>Sat, 06 Jul 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%9C%A8-mac-%E4%B8%8A-doom-emacs-%E5%AE%89%E8%A3%85-irony-server-%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</guid><description>&lt;p>Mac 上的 doom-emacs 不能直接通过 M-x irony-install-server 成功安装 irony-server，需要手工安装，下面把详细步骤纪录下来，以备后来查询。&lt;/p>
-&lt;ol>
-&lt;li>下载 llvm 预编译软件包&lt;/li>
-&lt;/ol>
-&lt;!--listend-->
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol>
-&lt;li>解压到临时目录（如/tmp）&lt;/li>
-&lt;/ol>
-&lt;!--listend-->
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">x clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol>
-&lt;li>准备编译环境&lt;/li>
-&lt;/ol>
-&lt;!--listend-->
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install cmake
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone https://github.com/Sarcasm/irony-mode irony-mode
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir irony-mode/server/build
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">pushd&lt;/span> irony-mode/server/build
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol>
-&lt;li>开始编译&lt;/li>
-&lt;/ol>
-&lt;!--listend-->
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">DEST&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.emacs.d/.local/etc/irony-server/&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$DEST&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> -DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/tmp/clang+llvm-8.0.0-x86_64-apple-darwin ../
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cmake --build . --use-stderr --config Release --target install
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">install_name_tool -change @rpath/libclang.dylib /usr/local/opt/llvm/lib/libclang.dylib &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$DEST&lt;/span>&lt;span class="s2">/bin/irony-server&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;ol>
-&lt;li>清理&lt;/li>
-&lt;/ol>
-&lt;!--listend-->
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">popd&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf irony-mode
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf clang+llvm-8.0.0-x86_64-apple-darwin
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description></item><item><title>Emacs org to pdf (with LaTeX)设置</title><link>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</link><pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate><guid>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</guid><description>&lt;h2 id="如何能正确把中文导出成-pdf-如何能正确把中文导出成-pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}&lt;/h2>
+&lt;p>我去，原来这么简单。导致出现问题的原因 python-pytest 包调用了 projectile 包，而 projectile 包的所有操作都是基于有 project-root 的前提下，所以设定当前项目根目录是非常必要的。解决手段虽然简单，可也让自己多了解了一点 projectile 的相关知识，也是一大收获啊。至此对 emacs 的兴趣又加深了几分。&lt;/p></description></item><item><title>从spacemacs迁移到doom-emacs</title><link>https://sunyour.org/post/%E4%BB%8Espacemacs%E8%BF%81%E7%A7%BB%E5%88%B0doom-emacs/</link><pubDate>Sat, 06 Jul 2019 08:21:00 +0800</pubDate><guid>https://sunyour.org/post/%E4%BB%8Espacemacs%E8%BF%81%E7%A7%BB%E5%88%B0doom-emacs/</guid><description>&lt;p>用了半天时间把 Emacs 从 spacemacs 迁移到了 doom-emacs，严格的说，应该是复制，现在两个配置可以随时切换，以进行比较，此文是在 doom-emacs 上编辑发布，以资纪念。&lt;/p></description></item><item><title>Emacs org to pdf (with LaTeX)设置</title><link>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</link><pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate><guid>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</guid><description>&lt;h2 id="如何能正确把中文导出成-pdf-如何能正确把中文导出成-pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}&lt;/h2>
 &lt;p>网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分：&lt;/p>
 &lt;h3 id="安装-latex-应用程序-安装-latex-应用程序">安装 LaTeX 应用程序 {#安装 latex 应用程序}&lt;/h3>
 &lt;p>我的电脑是 Mac，直接安装 MacTeX，就是有点大，安装包要 2.68G，听说 BasicTeX 要小的多，不知道能不能用，有兴趣的同学可以试试。&lt;/p>

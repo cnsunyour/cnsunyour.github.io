@@ -136,10 +136,10 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nf">message&lt;/span> &lt;span class="s">&amp;#34;&lt;/span>&lt;span class="ss">`+rime-convert-string-at-point&amp;#39;&lt;/span>&lt;span class="s"> did nothing.&amp;#34;&lt;/span>&lt;span class="p">)))))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>"emacs-rime断言/pyim探针“的两种应用方式</title><link>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</link><pubDate>Sat, 21 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</guid><description>&lt;p>在 &lt;a class="link" href="https://github.com/DogLooksGood/emacs-rime" target="_blank" rel="noopener"
+&lt;/div></description></item><item><title> "emacs-rime断言/pyim探针“的两种应用方式</title><link>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</link><pubDate>Sat, 21 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/emacs-rime%E6%96%AD%E8%A8%80/pyim%E6%8E%A2%E9%92%88%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BA%94%E7%94%A8%E6%96%B9%E5%BC%8F/</guid><description>&lt;p>在 &lt;a class="link" href="https://github.com/DogLooksGood/emacs-rime" target="_blank" rel="noopener"
 >emacs-rime&lt;/a> 中的断言（&lt;a class="link" href="https://github.com/tumashu/pyim" target="_blank" rel="noopener"
 >pyim&lt;/a> 中称为探针）是相当实用的功能，配置的好的话可以在输入过程中做到完全自动切换中英文。&lt;/p>
-&lt;p>我希望在配置中不同的 mode 中能有不同的断言，因此写了个判断函数，根据不同的 mode 计算不同的断言函数的值，然后集中返回；另外还自定义了几种自己需要的断言，如：&lt;/p>
+&lt;p>我希望在配置中不同的 mode 中能有不同的断言，因此写了个判断函数，根据不同的mode 计算不同的断言函数的值，然后集中返回；另外还自定义了几种自己需要的断言，如：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -207,7 +207,7 @@
 &lt;/div>&lt;p>从中可以看到对 `telega-chat-mode` 和 `text-mode` 两种模式使用了不同的断言逻辑，实际应用满足了我的需求。&lt;/p>
 &lt;p>如果使用的 mode 很多，每种 mode 又需要不同的断言组合，那就需要对判断函数增加逻辑。可以预想，很有可能会发展成类似于&lt;/p>
 &lt;blockquote>
-&lt;p>(if 条件 1 (逻辑 1) (if 条件 2 (逻辑 2) (if 条件 3 (逻辑 3) (&amp;hellip;&amp;hellip;))))&lt;/p>
+&lt;p>(if 条件1 (逻辑1) (if 条件2 (逻辑2) (if 条件3 (逻辑3) (&amp;hellip;&amp;hellip;))))&lt;/p>
 &lt;/blockquote>
 &lt;p>的形式。&lt;/p>
 &lt;p>恰好这时在 &lt;a class="link" href="https://emacs-china.org/" target="_blank" rel="noopener"
@@ -284,7 +284,7 @@
 &lt;/div>
 &lt;/div>&lt;p>搞定，简单吧？&lt;/p>
 &lt;p>&lt;strong>注： 最新的断言配置在 &lt;a class="link" href="https://github.com/cnsunyour/.doom.d/blob/develop/modules/cnsunyour/chinese/%2Brime-predicates.el" target="_blank" rel="noopener"
->github 仓库&lt;/a> ，里面的逻辑稍微复杂点，谨供参考。&lt;/strong>&lt;/p></description></item><item><title>给 telega 的聊天对话自动切换中英文输入</title><link>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</guid><description>&lt;p>现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不同的 buffer 里主动激活或关闭输入法，达到接近完美的自动切换功能。&lt;/p>
+>github仓库&lt;/a> ，里面的逻辑稍微复杂点，谨供参考。&lt;/strong>&lt;/p></description></item><item><title>给 telega 的聊天对话自动切换中英文输入</title><link>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E7%BB%99-telega-%E7%9A%84%E8%81%8A%E5%A4%A9%E5%AF%B9%E8%AF%9D%E8%87%AA%E5%8A%A8%E5%88%87%E6%8D%A2%E4%B8%AD%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5/</guid><description>&lt;p>现在已经在 emacs 里使用 pyim 或 emacs-rime 等内置输入法输入中文，用内置输入法最大的优点是可以编写探针函数，从而根据不同状态自动切换中英文输入。同理，也可以在不同的 buffer 里主动激活或关闭输入法，达到接近完美的自动切换功能。&lt;/p>
 &lt;p>因此在之前给 telega 写了个 advice ，把需要指定中英文的 chatbuf 写在配置文件中，可以做到进不同的频道切换自动切换中英文。但这样做有一个缺点，就是如果中英文频道信息有变化（包括群组名称变化），则需要修改配置文件后重新加载才能生效。&lt;/p>
 &lt;p>嗯，用群友的话说，这很不优雅。&lt;/p>
 &lt;p>于是今天抽空把配置里的中英文 chatbuf 列表进行持久化保存，并且改为保存 chatid ，避免修改名称引起的切换失效。&lt;/p>
