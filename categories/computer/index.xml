@@ -1926,7 +1926,85 @@ data-flex-basis="355px"
 &lt;p>实在是没什么办法了，突然想到论坛上大佬们写的插件别人用着出问题时，大佬们通常都让抓个报错信息参考下。也就想试一试，反正也是没其它办法，死马当活马医呗。&lt;/p>
 &lt;p>执行 M-x toggle-debug-on-err，然后再操作一次，果然出错，然后输出一堆错误信息，貌似是从发起指令开始，一直到出错位置，所有的调用信息都有，慢慢从后往前看。竟然真的发现一点端倪，发现 file-remote-p 接收到 nil 参数是因为之前调用的函数里给传的是 project-root 变量，而 project-root 变量在这里是 nil，再继续看，发现如果 project-root 是从 projectile-project-root 赋值来的，而 projectile-project-root 怎么来呢？&lt;/p>
 &lt;p>不懂问 google，继续搜索，终于在一篇介绍 projectile 的文章里发现，在项目根目录里建一个空的.projectile 文件，即可让 projectile 认为当前目录为项目根目录，马上着手 touch 一个。再执行，成功！&lt;/p>
-&lt;p>我去，原来这么简单。导致出现问题的原因 python-pytest 包调用了 projectile 包，而 projectile 包的所有操作都是基于有 project-root 的前提下，所以设定当前项目根目录是非常必要的。解决手段虽然简单，可也让自己多了解了一点 projectile 的相关知识，也是一大收获啊。至此对 emacs 的兴趣又加深了几分。&lt;/p></description></item><item><title>Emacs org to pdf (with LaTeX)设置</title><link>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</link><pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate><guid>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</guid><description>&lt;h2 id="如何能正确把中文导出成-pdf-如何能正确把中文导出成-pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}&lt;/h2>
+&lt;p>我去，原来这么简单。导致出现问题的原因 python-pytest 包调用了 projectile 包，而 projectile 包的所有操作都是基于有 project-root 的前提下，所以设定当前项目根目录是非常必要的。解决手段虽然简单，可也让自己多了解了一点 projectile 的相关知识，也是一大收获啊。至此对 emacs 的兴趣又加深了几分。&lt;/p></description></item><item><title>Mac 上安装 irony-server 步骤二</title><link>https://sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</link><pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</guid><description>&lt;p>　昨天写了一篇 Mac 上为 doom-emacs 安装 irone-server 的详细步骤，随着后来对配置的逐渐了解，发现不用那么麻烦，只要把环境变量设置好就可以成功编译。首先安装好 cmake 和 llvm（llvm 非常大，且要编译，时间非常长，耐心等候^_^）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install cmake llvm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 doom-emacs 里执行 M-x irony-install-server，会提示执行命令（各有路径有所区别）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我们在 cmake 后面加上环境变量&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/usr/local/opt/llvm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/lib/libclang.dylib
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完成后的编译命令为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/usr/local/opt/llvm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/lib/libclang.dylib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>即可正常编译。&lt;/p>
+&lt;p>另外，也可以用 xcode 的 libclang.dylib，编译命令为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON -DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>&lt;strong>注意：这里为了展示效果，把命令进行了换行，在实际执行时要在一行内。&lt;/strong>&lt;/strong>&lt;/p></description></item><item><title>Emacs org to pdf (with LaTeX)设置</title><link>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</link><pubDate>Sun, 27 Mar 2016 00:00:00 +0800</pubDate><guid>https://sunyour.org/post/emacs-org-to-pdf-with-latex%E8%AE%BE%E7%BD%AE/</guid><description>&lt;h2 id="如何能正确把中文导出成-pdf-如何能正确把中文导出成-pdf">如何能正确把中文导出成 PDF {#如何能正确把中文导出成 pdf}&lt;/h2>
 &lt;p>网上看了很多资料，最后发现最有效的解决办法竟然也是最简单的，根本不需要复杂配置，主要包括三个部分：&lt;/p>
 &lt;h3 id="安装-latex-应用程序-安装-latex-应用程序">安装 LaTeX 应用程序 {#安装 latex 应用程序}&lt;/h3>
 &lt;p>我的电脑是 Mac，直接安装 MacTeX，就是有点大，安装包要 2.68G，听说 BasicTeX 要小的多，不知道能不能用，有兴趣的同学可以试试。&lt;/p>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>cpp on 凡·记</title><link>https://sunyour.org/tags/cpp/</link><description>Recent content in cpp on 凡·记</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 07 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://sunyour.org/tags/cpp/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac 上安装 irony-server 步骤二</title><link>https://sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</link><pubDate>Sun, 07 Jul 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/mac-%E4%B8%8A%E5%AE%89%E8%A3%85-irony-server-%E6%AD%A5%E9%AA%A4%E4%BA%8C/</guid><description>&lt;p>　昨天写了一篇 Mac 上为 doom-emacs 安装 irone-server 的详细步骤，随着后来对配置的逐渐了解，发现不用那么麻烦，只要把环境变量设置好就可以成功编译。首先安装好 cmake 和 llvm（llvm 非常大，且要编译，时间非常长，耐心等候^_^）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install cmake llvm
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 doom-emacs 里执行 M-x irony-install-server，会提示执行命令（各有路径有所区别）：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>我们在 cmake 后面加上环境变量&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/usr/local/opt/llvm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/lib/libclang.dylib
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>完成后的编译命令为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/usr/local/opt/llvm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/lib/libclang.dylib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>即可正常编译。&lt;/p>
+&lt;p>另外，也可以用 xcode 的 libclang.dylib，编译命令为：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>/Users/yaohui/.emacs.d.doom/.local/etc/irony-server/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON -DLIBCLANG_INCLUDE_DIR&lt;span class="o">=&lt;/span>/usr/local/opt/llvm/include
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">-DLIBCLANG_LIBRARY&lt;span class="o">=&lt;/span>/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/Users/yaohui/.emacs.d.doom/.local/packages/elpa/irony-20190703.1732/server
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> cmake --build . --use-stderr --config Release --target install
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>&lt;strong>注意：这里为了展示效果，把命令进行了换行，在实际执行时要在一行内。&lt;/strong>&lt;/strong>&lt;/p></description></item><item><title>在 Mac 上 doom-emacs 安装 irony-server 详细步骤</title><link>https://sunyour.org/post/%E5%9C%A8-mac-%E4%B8%8A-doom-emacs-%E5%AE%89%E8%A3%85-irony-server-%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</link><pubDate>Sat, 06 Jul 2019 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%9C%A8-mac-%E4%B8%8A-doom-emacs-%E5%AE%89%E8%A3%85-irony-server-%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</guid><description>&lt;p>Mac 上的 doom-emacs 不能直接通过 M-x irony-install-server 成功安装 irony-server，需要手工安装，下面把详细步骤纪录下来，以备后来查询。&lt;/p>
+&lt;ol>
+&lt;li>下载 llvm 预编译软件包&lt;/li>
+&lt;/ol>
+&lt;!--listend-->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>解压到临时目录（如/tmp）&lt;/li>
+&lt;/ol>
+&lt;!--listend-->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">x clang+llvm-8.0.0-x86_64-apple-darwin.tar.xz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>准备编译环境&lt;/li>
+&lt;/ol>
+&lt;!--listend-->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew install cmake
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone https://github.com/Sarcasm/irony-mode irony-mode
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir irony-mode/server/build
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">pushd&lt;/span> irony-mode/server/build
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>开始编译&lt;/li>
+&lt;/ol>
+&lt;!--listend-->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nv">DEST&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$HOME&lt;/span>&lt;span class="s2">/.emacs.d/.local/etc/irony-server/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cmake -DCMAKE_INSTALL_RPATH_USE_LINK_PATH&lt;span class="o">=&lt;/span>ON -DCMAKE_INSTALL_PREFIX&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$DEST&lt;/span>&lt;span class="s2">&amp;#34;&lt;/span> -DCMAKE_PREFIX_PATH&lt;span class="o">=&lt;/span>/tmp/clang+llvm-8.0.0-x86_64-apple-darwin ../
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cmake --build . --use-stderr --config Release --target install
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">install_name_tool -change @rpath/libclang.dylib /usr/local/opt/llvm/lib/libclang.dylib &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$DEST&lt;/span>&lt;span class="s2">/bin/irony-server&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>清理&lt;/li>
+&lt;/ol>
+&lt;!--listend-->
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">popd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf irony-mode
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf clang+llvm-8.0.0-x86_64-apple-darwin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
