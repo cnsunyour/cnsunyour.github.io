@@ -754,10 +754,10 @@ data-flex-basis="355px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="no">t&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nv">+telega--deactive-input-method&lt;/span>&lt;span class="p">)))))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>我的 emacs 内置输入法正式改用 emacs-rime</title><link>https://sunyour.org/post/%E6%88%91%E7%9A%84-emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E6%88%91%E7%9A%84-emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</guid><description>&lt;p>从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中英文，几乎不用手工切换，打字真如行云流水一般。&lt;/p>
+&lt;/div></description></item><item><title>我的 emacs 内置输入法正式改用 emacs-rime</title><link>https://sunyour.org/post/%E6%88%91%E7%9A%84-emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</link><pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E6%88%91%E7%9A%84-emacs-%E5%86%85%E7%BD%AE%E8%BE%93%E5%85%A5%E6%B3%95%E6%AD%A3%E5%BC%8F%E6%94%B9%E7%94%A8-emacs-rime/</guid><description>&lt;p>　从最开始使用外置输入法到使用内置输入法 pyim ，越来越感受到内置输入法的便利，其中最让人中毒的就是通过探针函数的设置，在不同的位置或模式自动切换中英文，几乎不用手工切换，打字真如行云流水一般。&lt;/p>
 &lt;p>pyim 是一款非常优秀的内置输入法，是它坚定了我从外置输入法转为内置输入法的决心。但是这是一款从拼音起家的输入法，虽然早已加入了对五笔等方案的支持，但对五笔远没有像拼音方案那样进行优化，所以用起来总感觉有点儿不尽如意。&lt;/p>
 &lt;p>我在系统中用的是 rime 输入法， pyim 也可以把 rime 作为后端进行调用，经过一段时间的试用，发现 pyim 对 rime 的调用不太完全，而且 pyim 用自家的缓存对 rime 取出的候选词进行干预，这样就无法保持与外置 rime 输入法的一致体验了。&lt;/p>
-&lt;p>正在此时， emacs-china 上有大佬发布了一新的内置输入法 emacs-rime 。严格的说，这不是一个输入法，而是相当于是 rime 输入法在 emacs 里的一个前端，所有的输入都原封不动的发送给 rime 后端，由 rime 处理完后把数据再返回并在 emacs 里展现。&lt;/p>
+&lt;p>正在此时， emacs-china 上有大佬发布了一新的内置输入法 emacs-rime 。严格的说，这不是一个输入法，而是相当于是 rime 输入法在 emacs 里的一个前端，所有的输入都原封不动的发送给 rime后端，由 rime 处理完后把数据再返回并在 emacs 里展现。&lt;/p>
 &lt;p>经过几天的试用和调整，今天终于决定把输入法切换到 emacs-rime 了，理由有两点：&lt;/p>
 &lt;ol>
 &lt;li>几乎与外置输入法一致的输入体验；&lt;/li>
@@ -989,8 +989,10 @@ data-flex-basis="355px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">(&lt;/span>&lt;span class="nb">setq&lt;/span> &lt;span class="nv">rime-disable-predicates&lt;/span> &lt;span class="o">&amp;#39;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">+rime-english-prober&lt;/span>&lt;span class="p">))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>刚刚给作者提了点小建议，得到了非常积极的响应，非常感谢 &lt;a class="link" href="mailto:DogLooksGood@github.com" >DogLooksGood@github.com&lt;/a> 的贡献。 emacs-rime 还在不断完善中，希望 emacs-rime 越做越好，造福更多的 emacer 。&lt;/p>
-&lt;p>另外，再次感谢 pyim 和 posframe 的大神 &lt;a class="link" href="mailto:tumashu@github.com" >tumashu@github.com&lt;/a> ，造了那么多优秀的轮子。&lt;/p></description></item><item><title>在 macos 上启动 dbus</title><link>https://sunyour.org/post/%E5%9C%A8-macos-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/</link><pubDate>Wed, 22 Jan 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%9C%A8-macos-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/</guid><description>&lt;p>（ &lt;strong>注&lt;/strong> ：竟然是误打误撞给蒙到了，把注释里的 10.4 看成了 10.14，以为是对 10.14+ 版本有效，看来是对老版本的兼容处理，但是不知道为什么我现在是 10.15 了，竟然用这个方法解决了。）&lt;/p>
+&lt;/div>&lt;p>刚刚给作者提了点小建议，得到了非常积极的响应，非常感谢 &lt;a class="link" href="https://github.com/DogLooksGood" target="_blank" rel="noopener"
+>DogLooksGood&lt;/a> 的贡献。 emacs-rime 还在不断完善中，希望 emacs-rime 越做越好，造福更多的 emacer 。&lt;/p>
+&lt;p>另外，再次感谢 pyim 和 posframe 的大神 &lt;a class="link" href="https://github.com/tumashu" target="_blank" rel="noopener"
+>tumashu&lt;/a> ，造了那么多优秀的轮子。&lt;/p></description></item><item><title>在 macos 上启动 dbus</title><link>https://sunyour.org/post/%E5%9C%A8-macos-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/</link><pubDate>Wed, 22 Jan 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%9C%A8-macos-%E4%B8%8A%E5%90%AF%E5%8A%A8-dbus/</guid><description>&lt;p>（ &lt;strong>注&lt;/strong> ：竟然是误打误撞给蒙到了，把注释里的 10.4 看成了 10.14，以为是对 10.14+ 版本有效，看来是对老版本的兼容处理，但是不知道为什么我现在是 10.15 了，竟然用这个方法解决了。）&lt;/p>
 &lt;p>在 mac 上通过 brew install dbus 安装好 dbus 后，却无论如何无法启动，试过&amp;ndash;HEAD 也是不行。后来看到源码包里的 &amp;lsquo;org.freedesktop.dbus-session.plist.in&amp;rsquo; 文件里有这么几行：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
