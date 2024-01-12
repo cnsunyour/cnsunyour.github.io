@@ -15,7 +15,7 @@ data-flex-basis="492px"
 &lt;/ul>
 &lt;p>于是 fork 了一份，进行了下修复，同时向原 repo 提交了 pr 。不知原作者能否看到合并，大家也可以下载我 forked 的版本 &lt;a class="link" href="https://github.com/cnsunyour/git-messenger" target="_blank" rel="noopener"
 >git-messenger&lt;/a>&lt;/p>
-&lt;p>2024-1-10 更新：群友提到了另一个包 &amp;lsquo;blamer&amp;rsquo;, 用了一下，唔……果断叛逃过来了，放个截图：&lt;/p>
+&lt;p>2024-1-6 更新：群友提到了另一个包 &amp;lsquo;blamer&amp;rsquo;, 用了一下，唔……果断叛逃过来了，放个截图：&lt;/p>
 &lt;figure>&lt;img src="attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_154745screenshot.png"/>
 &lt;/figure></description></item><item><title>让 Emacs 在 macOS 上根据系统的 light/dark 模式切换对应主题</title><link>https://sunyour.org/post/%E8%AE%A9-emacs-%E5%9C%A8-macos-%E4%B8%8A%E6%A0%B9%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%9A%84-light/dark-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%AF%B9%E5%BA%94%E4%B8%BB%E9%A2%98/</link><pubDate>Wed, 06 May 2020 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E8%AE%A9-emacs-%E5%9C%A8-macos-%E4%B8%8A%E6%A0%B9%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%9A%84-light/dark-%E6%A8%A1%E5%BC%8F%E5%88%87%E6%8D%A2%E5%AF%B9%E5%BA%94%E4%B8%BB%E9%A2%98/</guid><description>&lt;p>之前一直是使用 &lt;code>theme-changer&lt;/code> 来根据日出日落时间自动切换 emacs 的主题的。但是有一个问题，因为 macOS 并不是完全按照计算出的日出日落时间去切换 light/dark 模式的，因此 emacs 的主题切换时间与 macOS 系统不同步。&lt;/p>
 &lt;p>我自己试了增加一个延时参数去尽量与系统切换时间保持接近，但几个月下来发现完全找不到一个相对合适的延迟时间， macOS 并不是固定给日出日落时间加一个延时，具体是什么逻辑到现在还没摸索出来。&lt;/p>

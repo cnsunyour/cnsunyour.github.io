@@ -15,7 +15,7 @@ data-flex-basis="492px"
 &lt;/ul>
 &lt;p>于是 fork 了一份，进行了下修复，同时向原 repo 提交了 pr 。不知原作者能否看到合并，大家也可以下载我 forked 的版本 &lt;a class="link" href="https://github.com/cnsunyour/git-messenger" target="_blank" rel="noopener"
 >git-messenger&lt;/a>&lt;/p>
-&lt;p>2024-1-10 更新：群友提到了另一个包 &amp;lsquo;blamer&amp;rsquo;, 用了一下，唔……果断叛逃过来了，放个截图：&lt;/p>
+&lt;p>2024-1-6 更新：群友提到了另一个包 &amp;lsquo;blamer&amp;rsquo;, 用了一下，唔……果断叛逃过来了，放个截图：&lt;/p>
 &lt;figure>&lt;img src="attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_154745screenshot.png"/>
 &lt;/figure></description></item><item><title>在 Github 上自动发布 hugo 生成的内容</title><link>https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/</link><pubDate>Sun, 24 Dec 2023 00:00:00 +0000</pubDate><guid>https://sunyour.org/post/%E5%9C%A8-github-%E4%B8%8A%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83-hugo-%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9/</guid><description>&lt;p>我的日志是通过 ox-hugo 从 org 文件中导出的，然后使用 hugo 生成最终内容后部署到线上。&lt;/p>
 &lt;p>hugo 目录本身是放在私有仓库里，另外建了一个公开仓库专门放 gh-pages 站点，为此还专门写了一个部署脚本：&lt;/p>
