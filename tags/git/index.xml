@@ -16,12 +16,15 @@ data-flex-basis="492px"
 &lt;p>于是 fork 了一份，进行了下修复，同时向原 repo 提交了 pr 。不知原作者能否看到合并，大家也可以下载我 forked 的版本 &lt;a class="link" href="https://github.com/cnsunyour/git-messenger" target="_blank" rel="noopener"
 >git-messenger&lt;/a>&lt;/p>
 &lt;p>2024-1-6 更新：群友提到了另一个包 &lt;a class="link" href="https://github.com/Artawower/blamer.el" target="_blank" rel="noopener"
->blamer&lt;/a> ，用了一下，唔……果断叛逃过来了，放个截图： &lt;img src="https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_154745screenshot.png"
-width="631"
-height="314"
-srcset="https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_154745screenshot_huca43ddf64009f30d7df56e14f48b0a47_61540_480x0_resize_box_3.png 480w, https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_154745screenshot_huca43ddf64009f30d7df56e14f48b0a47_61540_1024x0_resize_box_3.png 1024w"
+>blamer&lt;/a> ，用了一下，唔……果断叛逃过来了，放个截图：&lt;/p>
+&lt;figure>&lt;img src="attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_185836screenshot.png"/>
+&lt;/figure>
+&lt;p>&lt;img src="https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_185919screenshot.png"
+width="476"
+height="360"
+srcset="https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_185919screenshot_hu3a6a178961313f901b6f6672c7295fe8_50154_480x0_resize_box_3.png 480w, https://sunyour.org/post/git-messenger-%E6%98%BE%E7%A4%BA-git-commit-%E4%BF%A1%E6%81%AF/attach/47/603be8-064b-4d43-94f6-212256f9b2d5/_20240112_185919screenshot_hu3a6a178961313f901b6f6672c7295fe8_50154_1024x0_resize_box_3.png 1024w"
 loading="lazy"
 class="gallery-image"
-data-flex-grow="200"
-data-flex-basis="482px"
->&lt;/p></description></item></channel></rss>
+data-flex-grow="132"
+data-flex-basis="317px"
+> blamer 平常会在当前行的后面显示 commit messenge ，按快捷键后可以用 popup 或 posframe 弹出详细信息。&lt;/p></description></item></channel></rss>
